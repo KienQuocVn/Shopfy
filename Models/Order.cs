@@ -1,24 +1,35 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shofy.Models
 {
     public class Order
     {
         [Key]
-        public int Id { get; set; }
-        [Required]
-        public required int UserId { get; set; }
-        [Required, Range(0, double.MaxValue)]
+        public int OrderID { get; set; }
+
+
+        [ForeignKey("User")]
+        public int UserID { get; set; }
+
+
+        public DateTime OrderedDate { get; set; } = DateTime.Now;
+
+
+        [Required, Range(0.01, double.MaxValue), Column(TypeName = "decimal(18,2)")]
         public required decimal TotalPrice { get; set; }
-        public DateTime OrderDate { get; set; } = DateTime.Now;
+
+
         [Required]
-        public required string Status { get; set; } // "Pending", "Shipped", etc.
-        public string? ShippingAddress { get; set; }
-        public string PaymentMethod { get; set; } // "COD", "CreditCard", etc.
-        public virtual User? User { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual Payment? Payment { get; set; }
+        public string Status { get; set; }
+
+
+        [Required]
+        public string PaymentMethod { get; set; }
+        public User User { get; set; }
+        public Payment Payment { get; set; }
+        public ICollection<OrderDetail> OrderDetails { get; set; }
     }
 
 }

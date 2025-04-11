@@ -4,28 +4,25 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shofy.Models
 {
-    public class OrderDetail
+    public class CartItem
     {
         [Key]
-        public int DetailID { get; set; }
+        public int ItemId { get; set; }
 
 
-        [ForeignKey("Order")]
-        public int OrderID { get; set; }
+        [ForeignKey("Cart")]
+        public int CartID { get; set; }
 
 
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public int ProductID { get; set; }
 
 
         [Required, Range(1, int.MaxValue)]
         public int Quantity { get; set; }
 
 
-        [Range(0.01, double.MaxValue)]
-        public decimal UnitPrice { get; set; }
-
-        public Order Order { get; set; }
+        public Cart Cart { get; set; }
         public Product Product { get; set; }
     }
 }
