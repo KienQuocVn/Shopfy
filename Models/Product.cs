@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceAllInOne.Models
+namespace Shofy.Models
 {
     public class Product
     {
