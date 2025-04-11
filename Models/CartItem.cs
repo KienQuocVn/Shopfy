@@ -7,7 +7,7 @@ namespace Shofy.Models
     public class CartItem
     {
         [Key]
-        public int ItemId { get; set; }
+        public int ItemID { get; set; }
 
 
         [ForeignKey("Cart")]

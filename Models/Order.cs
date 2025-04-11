@@ -18,7 +18,7 @@ namespace Shofy.Models
 
 
         [Required, Range(0.01, double.MaxValue), Column(TypeName = "decimal(18,2)")]
-        public required decimal TotalPrice { get; set; }
+        public decimal TotalPrice { get; set; }
 
 
         [Required]

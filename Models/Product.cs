@@ -10,10 +10,6 @@ namespace Shofy.Models
         public int ProductID { get; set; }
 
 
-        [ForeignKey("Category")]
-        public int CategoryID { get; set; }
-
-
         [Required, StringLength(100)]
         public string Name { get; set; }
 

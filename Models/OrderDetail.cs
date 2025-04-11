@@ -15,7 +15,7 @@ namespace Shofy.Models
 
 
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public int ProductID { get; set; }
 
 
         [Required, Range(1, int.MaxValue)]

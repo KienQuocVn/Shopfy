@@ -11,11 +11,11 @@ namespace Shofy.Models
 
 
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
 
 
         [ForeignKey("Product")]
-        public int ProductId { get; set; }
+        public int ProductID { get; set; }
 
 
         [Range(1, 5)]
