@@ -24,7 +24,6 @@ namespace Shofy.Models
         [Required]
         public required string ImagePath { get; set; }
 
-
         public required string Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public ICollection<CartItem>? CartItems { get; set; }

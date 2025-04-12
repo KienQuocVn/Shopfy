@@ -21,7 +21,6 @@ namespace Shofy.Models
         [Required]
         public required string Status { get; set; }
 
-
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public Order? Order { get; set; }
     }

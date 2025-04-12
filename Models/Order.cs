@@ -21,8 +21,8 @@ namespace Shofy.Models
         [Required]
         public required string PaymentMethod { get; set; }
 
-
         public DateTime OrderedDate { get; set; } = DateTime.Now;
+        
         public User? User { get; set; }
         public Payment? Payment { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set; }
