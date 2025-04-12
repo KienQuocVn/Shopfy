@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36" version="26.2.12">
+  <diagram name="Trang-1" id="8wK6Sl8DpsK2z0_6e4Yr">
+    <mxGraphModel dx="12366" dy="1449" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="UPPwmvl_OQAG17RApSch-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8164" y="30.000000000000185" width="403" height="751" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-2" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-3" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-4" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-5" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-6" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-8" target="UPPwmvl_OQAG17RApSch-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-8" value="&lt;font style=&quot;font-size: 30px;&quot;&gt;Guest&lt;/font&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-8370" y="322.00000000000017" width="80" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-9" value="&lt;font&gt;Sign up&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8134" y="67.00000000000018" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-10" value="&lt;font&gt;View all motel&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8131" y="207.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;dashed=1;fontSize=16;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-12" target="UPPwmvl_OQAG17RApSch-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-12" value="&lt;font&gt;Filter&amp;nbsp;&lt;/font&gt;&lt;span&gt;motel&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7925" y="67.00000000000018" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;fontSize=16;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-14" target="UPPwmvl_OQAG17RApSch-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-14" value="&lt;font&gt;Find&amp;nbsp;&lt;/font&gt;&lt;span&gt;motel&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7925" y="207.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-15" value="Include" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7989" y="221.00000000000017" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-16" value="Include" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=-45;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8008" y="136.00000000000017" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-17" value="&lt;font&gt;View room details&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8131" y="339.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-18" value="&lt;font&gt;Chat with Employee&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8131" y="673.0000000000002" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-19" value="&lt;font&gt;View Detail reques&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8131" y="561.0000000000002" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-20" value="&lt;font&gt;View all reques&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-8131" y="449.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;fontSize=16;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-22" target="UPPwmvl_OQAG17RApSch-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-22" value="&lt;span&gt;View rating and comments&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7925" y="339.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;fontSize=16;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-24" target="UPPwmvl_OQAG17RApSch-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-24" value="&lt;span&gt;Fillter request&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7930" y="449.00000000000017" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-25" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=1;entryDx=0;entryDy=0;dashed=1;fontSize=16;" edge="1" parent="1" source="UPPwmvl_OQAG17RApSch-26" target="UPPwmvl_OQAG17RApSch-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-26" value="&lt;span&gt;Search request&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7925" y="566.0000000000002" width="130" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-27" value="Include" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7992.5" y="346.00000000000017" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-28" value="Include" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7996" y="458.00000000000017" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="UPPwmvl_OQAG17RApSch-29" value="Include" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;rotation=30;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="-7974" y="529.0000000000002" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
