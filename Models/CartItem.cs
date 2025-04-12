@@ -9,20 +9,17 @@ namespace Shofy.Models
         [Key]
         public int ItemID { get; set; }
 
-
         [ForeignKey("Cart")]
         public int CartID { get; set; }
 
-
         [ForeignKey("Product")]
         public int ProductID { get; set; }
-
 
         [Required, Range(1, int.MaxValue)]
         public int Quantity { get; set; }
 
 
-        public Cart Cart { get; set; }
-        public Product Product { get; set; }
+        public Cart? Cart { get; set; }
+        public Product? Product { get; set; }
     }
 }

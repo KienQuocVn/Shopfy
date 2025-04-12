@@ -9,32 +9,27 @@ namespace Shofy.Models
         [Key]
         public int ProductID { get; set; }
 
-
         [Required, StringLength(100)]
-        public string Name { get; set; }
-
+        public required string Name { get; set; }
 
         [Required, StringLength(1000)]
-        public string Description { get; set; }
-
+        public required string Description { get; set; }
 
         [Required, Range(0.01, double.MaxValue), Column(TypeName = "decimal(18, 2)")]
-        public decimal Price { get; set; }
-
+        public required decimal Price { get; set; }
 
         [Required, Range(0, int.MaxValue)]
-        public int StockQuantity { get; set; }
-
-
-        public string Status { get; set; } 
-
+        public required int StockQuantity { get; set; } 
 
         [Required]
-        public string ImagePath { get; set; }
+        public required string ImagePath { get; set; }
+
+
+        public required string Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public ICollection<CartItem> CartItems { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set; }
-        public ICollection<Review> Reviews { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 
 }
