@@ -1,19 +1,28 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shofy.Models
 {
     public class OrderDetail
     {
         [Key]
-        public int Id { get; set; }
-        public int OrderId { get; set; }
-        public virtual Order Order { get; set; }
-        public int ProductId { get; set; }
-        public virtual Product Product { get; set; }
-        [Range(1, int.MaxValue)]
+        public int DetailID { get; set; }
+
+        [ForeignKey("Order")]
+        public int OrderID { get; set; }
+
+        [ForeignKey("Product")]
+        public int ProductID { get; set; }
+
+        [Required, Range(1, int.MaxValue)]
         public int Quantity { get; set; }
-        [Range(0, double.MaxValue)]
-        public decimal Price { get; set; }
+
+        [Range(0.01, double.MaxValue)]
+        public decimal UnitPrice { get; set; }
+
+
+        public Order? Order { get; set; }
+        public Product? Product { get; set; }
     }
 }

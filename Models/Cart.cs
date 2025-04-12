@@ -1,23 +1,20 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shofy.Models
 {
     public class Cart
     {
         [Key]
-        public int Id { get; set; }
+        public int CartID { get; set; }
 
-        public int UserId { get; set; } // Khóa ngoại tới User
-        public virtual User User { get; set; }
+        [ForeignKey("User")]
+        public int UserID { get; set; }
 
-        public int ProductId { get; set; } // Khóa ngoại tới Product
-        public virtual Product Product { get; set; }
-
-        [Required]
-        [Range(1, int.MaxValue)]
-        public int Quantity { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public User? User { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
     }
 }
