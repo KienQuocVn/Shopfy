@@ -4,270 +4,213 @@
     ViewData["Title"] = "Blog";
 }
 
-	<!-- Cart -->
-	<div class="wrap-header-cart js-panel-cart">
-		<div class="s-full js-hide-cart"></div>
-
-		<div class="header-cart flex-col-l p-l-65 p-r-25">
-			<div class="header-cart-title flex-w flex-sb-m p-b-8">
-				<span class="mtext-103 cl2">
-					Your Cart
-				</span>
-
-				<div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-					<i class="zmdi zmdi-close"></i>
-				</div>
-			</div>
-			
-			<div class="header-cart-content flex-w js-pscroll">
-				<ul class="header-cart-wrapitem w-full">
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="#" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								White Shirt Pleat
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="#" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Converse All Star
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item flex-w flex-t m-b-12">
-						<div class="header-cart-item-img">
-							<img src="#" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt p-t-8">
-							<a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-								Nixon Porter Leather
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
-				</ul>
-				
-				<div class="w-full">
-					<div class="header-cart-total w-full p-tb-40">
-						Total: $75.00
-					</div>
-
-					<div class="header-cart-buttons flex-w w-full">
-						<a href="/Client/ShopingCart" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">
-							Check Out
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('../images/bg-02.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
 			Blog
 		</h2>
-	</section>	
+	</section>
 
 
 	<!-- Content page -->
 	<section class="bg0 p-t-62 p-b-60">
 		<div class="container">
 			<div class="row">
+
+				@{
+					// Lấy số trang từ query string (mặc định là 1 nếu không có)
+					int page;
+					bool isValidPage = int.TryParse(Request.Query["page"], out page);
+					page = isValidPage && page > 0 ? page : 1;
+
+					// Số mục blog mỗi trang
+					int pageSize = 1;
+
+					// Tổng số mục blog (hard-coded, hiện có 3 mục)
+					int totalBlogs = 3;
+
+					// Tính tổng số trang
+					int totalPages = (int)Math.Ceiling((double)totalBlogs / pageSize);
+
+					// Giới hạn page trong khoảng hợp lệ
+					page = Math.Max(1, Math.Min(page, totalPages));
+
+					// Tính chỉ số bắt đầu và kết thúc của mục blog cần hiển thị
+					int startIndex = (page - 1) * pageSize + 1; // Chỉ số mục bắt đầu (1-based)
+					int endIndex = Math.Min(startIndex + pageSize - 1, totalBlogs); // Chỉ số mục kết thúc
+				}
+
 				<div class="col-md-8 col-lg-9 p-b-80">
 					<div class="p-r-45 p-r-0-lg">
 						<!-- item blog -->
-						<div class="p-b-63">
-							<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
-								<img src="~/images/blog-04.jpg" alt="IMG-BLOG">
-
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										22
-									</span>
-
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</a>
-
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
-										8 Inspiring Ways to Wear Dresses in the Winter
-									</a>
-								</h4>
-
-								<p class="stext-117 cl6">
-									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-								</p>
-
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+						@if (startIndex <= 1 && endIndex >= 1)
+						{
+							<div class="p-b-63">
+								<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
+									<img src="~/images/blog-04.jpg" alt="IMG-BLOG">
+									<div class="flex-col-c-m size-123 bg9 how-pos5">
+										<span class="ltext-107 cl2 txt-center">
+											22
 										</span>
-
-										<span>
-											StreetStyle, Fashion, Couple  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+										<span class="stext-109 cl3 txt-center">
+											Jan 2025
 										</span>
-
-										<span>
-											8 Comments
+									</div>
+								</a>
+								<div class="p-t-32">
+									<h4 class="p-b-15">
+										<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
+											8 Inspiring Ways to Wear Dresses in the Winter
+										</a>
+									</h4>
+									<p class="stext-117 cl6">
+										Wearing dresses in winter can be both stylish and cozy with the right approach. These ideas blend practicality with fashion, keeping you warm while letting your dress shine.
+									</p>
+									<div class="flex-w flex-sb-m p-t-18">
+										<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+											<span>
+												<span class="cl4">By</span> Admin
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+											<span>
+												StreetStyle, Fashion, Couple
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+											<span>
+												8 Comments
+											</span>
 										</span>
-									</span>
-
-									<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
-
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
+										<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+											Continue Reading
+											<i class="fa fa-long-arrow-right m-l-9"></i>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						}
 
 						<!-- item blog -->
-						<div class="p-b-63">
-							<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
-								<img src="~/images/blog-05.jpg" alt="IMG-BLOG">
+						@if (startIndex <= 2 && endIndex >= 2)
+        				{
+							<div class="p-b-63">
+								<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
+									<img src="~/images/blog-05.jpg" alt="IMG-BLOG">
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										18
-									</span>
-
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</a>
-
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
-										The Great Big List of Men’s Gifts for the Holidays 
-									</a>
-								</h4>
-
-								<p class="stext-117 cl6">
-									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-								</p>
-
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+									<div class="flex-col-c-m size-123 bg9 how-pos5">
+										<span class="ltext-107 cl2 txt-center">
+											18
 										</span>
 
-										<span>
-											StreetStyle, Fashion, Couple  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+										<span class="stext-109 cl3 txt-center">
+											Feb 2025
+										</span>
+									</div>
+								</a>
+
+								<div class="p-t-32">
+									<h4 class="p-b-15">
+										<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
+											The Great Big List of Men’s Gifts for the Holidays 
+										</a>
+									</h4>
+
+									<p class="stext-117 cl6">
+										Finding the perfect holiday gift for the men in your life can be a challenge, but this list covers a wide range of interests, styles, and budgets to make it easier.
+									</p>
+
+									<div class="flex-w flex-sb-m p-t-18">
+										<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+											<span>
+												<span class="cl4">By</span> Admin  
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+
+											<span>
+												StreetStyle, Fashion, Couple  
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+
+											<span>
+												8 Comments
+											</span>
 										</span>
 
-										<span>
-											8 Comments
-										</span>
-									</span>
+										<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+											Continue Reading
 
-									<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
-
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
+											<i class="fa fa-long-arrow-right m-l-9"></i>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						}
 
 						<!-- item blog -->
-						<div class="p-b-63">
-							<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
-								<img src="~/images/blog-06.jpg" alt="IMG-BLOG">
+						@if (startIndex <= 3 && endIndex >= 3)
+        				{
+							<div class="p-b-63">
+								<a href="/Client/BlogDetail" class="hov-img0 how-pos5-parent">
+									<img src="~/images/blog-06.jpg" alt="IMG-BLOG">
 
-								<div class="flex-col-c-m size-123 bg9 how-pos5">
-									<span class="ltext-107 cl2 txt-center">
-										16
-									</span>
-
-									<span class="stext-109 cl3 txt-center">
-										Jan 2018
-									</span>
-								</div>
-							</a>
-
-							<div class="p-t-32">
-								<h4 class="p-b-15">
-									<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
-										5 Winter-to-Spring Fashion Trends to Try Now
-									</a>
-								</h4>
-
-								<p class="stext-117 cl6">
-									Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce eget dictum tortor. Donec dictum vitae sapien eu varius
-								</p>
-
-								<div class="flex-w flex-sb-m p-t-18">
-									<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-										<span>
-											<span class="cl4">By</span> Admin  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+									<div class="flex-col-c-m size-123 bg9 how-pos5">
+										<span class="ltext-107 cl2 txt-center">
+											16
 										</span>
 
-										<span>
-											StreetStyle, Fashion, Couple  
-											<span class="cl12 m-l-4 m-r-6">|</span>
+										<span class="stext-109 cl3 txt-center">
+											Mar 2025
+										</span>
+									</div>
+								</a>
+
+								<div class="p-t-32">
+									<h4 class="p-b-15">
+										<a href="/Client/BlogDetail" class="ltext-108 cl2 hov-cl1 trans-04">
+											5 Winter-to-Spring Fashion Trends to Try Now
+										</a>
+									</h4>
+
+									<p class="stext-117 cl6">
+										Transitioning from winter to spring calls for fresh, versatile styles that bridge the seasons. 
+										Here are five fashion trends for 2025 that work for both men and women, blending cozy vibes with lighter, vibrant touches. 
+										These are inspired by recent runway shows, street style, and cultural shifts, perfect for embracing now as winter fades into spring.
+									</p>
+
+									<div class="flex-w flex-sb-m p-t-18">
+										<span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+											<span>
+												<span class="cl4">By</span> Admin  
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+
+											<span>
+												StreetStyle, Fashion, Couple  
+												<span class="cl12 m-l-4 m-r-6">|</span>
+											</span>
+
+											<span>
+												8 Comments
+											</span>
 										</span>
 
-										<span>
-											8 Comments
-										</span>
-									</span>
+										<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+											Continue Reading
 
-									<a href="/Client/BlogDetail" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-										Continue Reading
-
-										<i class="fa fa-long-arrow-right m-l-9"></i>
-									</a>
+											<i class="fa fa-long-arrow-right m-l-9"></i>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
+						}
 
 						<!-- Pagination -->
 						<div class="flex-l-m flex-w w-full p-t-10 m-lr--7">
-							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7 active-pagination1">
-								1
-							</a>
-
-							<a href="#" class="flex-c-m how-pagination1 trans-04 m-all-7">
-								2
-							</a>
+							@for (int i = 1; i <= totalPages; i++)
+							{
+								<a href="?page=@i" class="flex-c-m how-pagination1 trans-04 m-all-7 @(page == i ? "active-pagination1" : "")">
+									@i
+								</a>
+							}
 						</div>
 					</div>
 				</div>
@@ -385,7 +328,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											July 2018
+											July 2024
 										</span>
 
 										<span>
@@ -397,7 +340,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											June 2018
+											June 2024
 										</span>
 
 										<span>
@@ -409,7 +352,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											May 2018
+											May 2024
 										</span>
 
 										<span>
@@ -421,7 +364,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											April  2018
+											April  2024
 										</span>
 
 										<span>
@@ -433,7 +376,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											March 2018
+											March 2024
 										</span>
 
 										<span>
@@ -445,7 +388,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											February 2018
+											February 2024
 										</span>
 
 										<span>
@@ -457,7 +400,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											January 2018
+											January 2024
 										</span>
 
 										<span>
@@ -469,7 +412,7 @@
 								<li class="p-b-7">
 									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
-											December 2017
+											December 2023
 										</span>
 
 										<span>
@@ -511,15 +454,4 @@
 				</div>
 			</div>
 		</div>
-	</section>	
-	
-		
-	<!-- Back to top -->
-	<div class="btn-back-to-top" id="myBtn">
-		<span class="symbol-btn-back-to-top">
-			<i class="zmdi zmdi-chevron-up"></i>
-		</span>
-	</div>
-
-
-
+	</section>
