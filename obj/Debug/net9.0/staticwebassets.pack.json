@@ -9,8 +9,16 @@
       "PackagePath": "staticwebassets\\css\\main.css"
     },
     {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\css\\profile.css",
+      "PackagePath": "staticwebassets\\css\\profile.css"
+    },
+    {
       "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
       "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\css\\util.css",
@@ -1093,6 +1101,10 @@
       "PackagePath": "staticwebassets\\vendor\\css-hamburgers\\hamburgers.min.css"
     },
     {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
+      "PackagePath": "staticwebassets\\vendor\\css\\vendor.bundle.base.css"
+    },
+    {
       "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\daterangepicker\\daterangepicker.css",
       "PackagePath": "staticwebassets\\vendor\\daterangepicker\\daterangepicker.css"
     },
@@ -1227,6 +1239,30 @@
     {
       "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\lightbox2\\js\\lightbox.min.map",
       "PackagePath": "staticwebassets\\vendor\\lightbox2\\js\\lightbox.min.map"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\css\\materialdesignicons.min.css"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\css\\materialdesignicons.min.css.map"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff"
+    },
+    {
+      "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2",
+      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2"
     },
     {
       "Id": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\wwwroot\\vendor\\parallax100\\parallax100.js",

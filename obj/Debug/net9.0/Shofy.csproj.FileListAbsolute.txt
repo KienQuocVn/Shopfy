@@ -893,3 +893,8 @@ D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\ref\Shofy.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\DotNetEnv.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Sprache.dll
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\d0rqqfhs6g-b9cuti1l4k.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\uue48l8h68-tas5gry4xs.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\ptw09utd4q-ezqx2lv87u.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\by0rpoo03a-5uimphqlew.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\6fpiaq3p0q-tfgvqjcsoq.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\z1asss0rk8-hm6kq9kljj.gz
