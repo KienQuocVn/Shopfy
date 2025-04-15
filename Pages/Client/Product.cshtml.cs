@@ -5,9 +5,9 @@ namespace Shofy.Pages.Client;
 
 public class Pages_Client_ProductModel : PageModel
 {
-    private readonly ILogger<IndexModel> _logger;
+    private readonly ILogger<Pages_Client_ProductModel> _logger;
 
-    public Pages_Client_ProductModel(ILogger<IndexModel> logger)
+    public Pages_Client_ProductModel(ILogger<Pages_Client_ProductModel> logger)
     {
         _logger = logger;
     }
