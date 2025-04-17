@@ -20,6 +20,17 @@ var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Pa
 // Đăng ký DbContext với connection string động
 builder.Services.AddDbContext<ShofyContext>(options =>
     options.UseSqlServer(connectionString));
+// Add distributed memory cache for session
+builder.Services.AddDistributedMemoryCache();
+
+// Add Session Storage
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+});
 
 builder.Services.AddAuthorization(options =>
 {

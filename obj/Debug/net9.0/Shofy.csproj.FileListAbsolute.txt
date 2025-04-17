@@ -896,6 +896,15 @@ C:\GitClone\Shofy\obj\Debug\net9.0\Shofy.pdb
 C:\GitClone\Shofy\obj\Debug\net9.0\Shofy.genruntimeconfig.cache
 C:\GitClone\Shofy\obj\Debug\net9.0\ref\Shofy.dll
 >>>>>>> 3d5e08d81490ccd807e95913e58432addf57b96a
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.csproj.AssemblyReference.cache
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.GeneratedMSBuildEditorConfig.editorconfig
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.AssemblyInfoInputs.cache
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.AssemblyInfo.cs
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.csproj.CoreCompileInputs.cache
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.MvcApplicationPartsAssemblyInfo.cache
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.RazorAssemblyInfo.cache
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.RazorAssemblyInfo.cs
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.sourcelink.json
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\appsettings.Development.json
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\appsettings.json
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Shofy.staticwebassets.runtime.json
@@ -907,6 +916,7 @@ D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Shofy.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Shofy.pdb
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Azure.Core.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Azure.Identity.dll
+D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\BCrypt.Net-Next.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\DotNetEnv.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Humanizer.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
@@ -1172,22 +1182,12 @@ D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\runtimes\win-arm64\native\e_sql
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\VTC\HK1\Project_1\Code\Shofy\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.csproj.AssemblyReference.cache
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.GeneratedMSBuildEditorConfig.editorconfig
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.AssemblyInfoInputs.cache
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.AssemblyInfo.cs
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.csproj.CoreCompileInputs.cache
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.MvcApplicationPartsAssemblyInfo.cache
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.RazorAssemblyInfo.cache
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.RazorAssemblyInfo.cs
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\Shofy.sourcelink.json
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\scopedcss\bundle\Shofy.styles.css
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\scopedcss\projectbundle\Shofy.bundle.scp.css
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-yp28a72ezx.gz
+D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-uxuxxjgol4.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\z1asss0rk8-hm6kq9kljj.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\7kfwq5fre5-b9sayid5wm.gz
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\6fpiaq3p0q-tfgvqjcsoq.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\yp5lv2kaht-v1b7zshdq5.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\gh5aig6umd-61n19gt1b8.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\cyeu9ez9m5-8mceye7q73.gz
@@ -1290,7 +1290,6 @@ D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\xz9yok78hr-zxtpdrje0
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\h4kzqgvqfl-0botbxx3jz.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\vg2w4zw9a9-6jdf572zud.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\fz3cf39mk9-5zojof5xt1.gz
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\uue48l8h68-tas5gry4xs.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\3qhq2wvv6c-1m8th2y9le.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\2kvwpjc3h0-pmpdjxgmrd.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\9svxknmlr2-b5o7weyekq.gz
@@ -1318,8 +1317,6 @@ D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\njjdyat9wq-le1619l9x
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\uzrsshbhvo-re1t1ai4aj.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\8i91csbh4f-s9b53c4zwx.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\a1ygd61rsa-18nqdg7el6.gz
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\ptw09utd4q-ezqx2lv87u.gz
-D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\by0rpoo03a-5uimphqlew.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\7mthadfnt3-i85bx4mroa.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\r1mzz5emku-uhddxlxxae.gz
 D:\VTC\HK1\Project_1\Code\Shofy\obj\Debug\net9.0\compressed\ue9iozt116-514ao7brti.gz

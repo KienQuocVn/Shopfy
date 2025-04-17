@@ -1,6 +1,19 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
+    "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\Shofy.csproj": {}
+  },
+  "projects": {
+    "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\Shofy.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\Shofy.csproj",
+        "projectName": "Shofy",
+        "projectPath": "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\Shofy.csproj",
+        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+        "outputPath": "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\obj\\",
+=======
     "C:\\DEV\\Vitamin_code\\Shofy\\Shofy.csproj": {}
   },
   "projects": {
@@ -12,6 +25,7 @@
         "projectPath": "C:\\DEV\\Vitamin_code\\Shofy\\Shofy.csproj",
         "packagesPath": "C:\\Users\\Duy An\\.nuget\\packages\\",
         "outputPath": "C:\\DEV\\Vitamin_code\\Shofy\\obj\\",
+>>>>>>> 7143eab3615d473eafd25182f02cf6fafc6bc6e5
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,6 +65,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "DotNetEnv": {
               "target": "Package",
               "version": "[3.1.1, )"
