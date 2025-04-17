@@ -61,9 +61,6 @@ namespace Shofy.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.HasKey("ItemID");
 
                     b.HasIndex("CartID");

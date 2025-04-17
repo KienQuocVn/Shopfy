@@ -1,0 +1,33 @@
+@page "{id:int}"
+@model Shofy.Pages.Admin.ReviewProductModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Review Product";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5" style="font-size: 2.5rem;">Product Details</h2>
+
+    <div class="card mx-auto" style="max-width: 800px; padding: 2rem;">
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
+            {
+                <div class="text-center mb-4">
+                    <img src="@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded" style="max-height: 350px; width: auto;" />
+                </div>
+            }
+
+            <p><strong style="font-size: 1.2rem;">Name:</strong> <span style="font-size: 1.4rem;">@Model.Product.Name</span></p>
+            <p><strong style="font-size: 1.2rem;">Price:</strong> <span style="font-size: 1.4rem;">$@Model.Product.Price</span></p>
+            <p><strong style="font-size: 1.2rem;">Stock Quantity:</strong> <span style="font-size: 1.4rem;">@Model.Product.StockQuantity</span></p>
+            <p><strong style="font-size: 1.2rem;">Status:</strong> <span style="font-size: 1.4rem;">@Model.Product.Status</span></p>
+            <p><strong style="font-size: 1.2rem;">Description:</strong></p>
+            <p class="border p-3 rounded bg-light" style="font-size: 1.3rem;">@Model.Product.Description</p>
+
+            <div class="mt-5 d-flex justify-content-between">
+                <a href="/Admin/Products" class="btn btn-secondary btn-lg" style="font-size: 1.2rem; padding: 0.75rem 2rem;">Back to List</a>
+                <a href="/Admin/EditProduct/@Model.Product.ProductID" class="btn btn-primary btn-lg" style="font-size: 1.2rem; padding: 0.75rem 2rem;">Edit Product</a>
+            </div>
+        </div>
+    </div>
+</div>
