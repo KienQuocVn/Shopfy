@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shofy")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ad2ece5ce780b081ad3be9358f0e33dbb48b1e2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+61186f8e368a1b7a2409a4768d21fe1a0dc9aa39")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shofy")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shofy")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
