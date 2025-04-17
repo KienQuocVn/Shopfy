@@ -18,8 +18,10 @@ namespace Shofy.Models
         [Required, StringLength(100), EmailAddress]
         public required string Email { get; set; }
 
-
+        [Required]
         public required string Role { get; set; }
+
+        
         public string? FullName { get; set; }
         public string? PhoneNumber { get; set; }
         public string? Address { get; set; }

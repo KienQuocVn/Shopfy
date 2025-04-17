@@ -2164,13 +2164,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\main.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"b9cuti1l4k"},{"Name":"integrity","Value":"sha256-j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU="},{"Name":"label","Value":"_content/Shofy/js/main.js"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"8720"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 13 Apr 2025 23:54:56 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"8720"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Apr 2025 14:47:24 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Shofy/js/main.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\main.js'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"8720"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU=\u0022"},{"Name":"Last-Modified","Value":"Sun, 13 Apr 2025 23:54:56 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"8720"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022j64KNJ4QcO8oDgxMuLcE7focbcmMqKALPYCtlgcDTNU=\u0022"},{"Name":"Last-Modified","Value":"Mon, 14 Apr 2025 14:47:24 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Shofy/js/map-custom.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\map-custom.js'))</AssetFile>
