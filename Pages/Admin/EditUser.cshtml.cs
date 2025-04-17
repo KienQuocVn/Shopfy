@@ -15,11 +15,11 @@ namespace Shofy.Pages.Admin
         }
 
         [BindProperty]
-        public User User { get; set; }
+        public User NewUser { get; set; }
 
         public IActionResult OnGet(int UserId)
         {
-            User = _context.User.Find(UserId);
+            NewUser = _context.User.Find(UserId);
             if (User == null)
             {
                 return NotFound();
@@ -29,18 +29,18 @@ namespace Shofy.Pages.Admin
 
         public IActionResult OnPost()
         {
-            var userInDb = _context.User.Find(User.UserID);
+            var userInDb = _context.User.Find(NewUser.UserID);
             if (userInDb == null)
             {
                 return NotFound();
             }
 
-            userInDb.Username = User.Username;
-            userInDb.Email = User.Email;
-            userInDb.Role = User.Role;
-            userInDb.FullName = User.FullName;
-            userInDb.PhoneNumber = User.PhoneNumber;
-            userInDb.Address = User.Address;
+            userInDb.Username = NewUser.Username;
+            userInDb.Email = NewUser.Email;
+            userInDb.Role = NewUser.Role;
+            userInDb.FullName = NewUser.FullName;
+            userInDb.PhoneNumber = NewUser.PhoneNumber;
+            userInDb.Address = NewUser.Address;
 
             _context.SaveChanges();
 
