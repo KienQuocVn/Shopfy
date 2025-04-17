@@ -1,2 +1,4 @@
 .env
 .fake
+bin/
+obj/
