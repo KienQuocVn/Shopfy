@@ -1,36 +1,41 @@
 using Shofy.Data;
 using Shofy.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Tải tệp .env trước khi đọc cấu hình từ appsettings.json
+// Load .env
 DotNetEnv.Env.Load();
 
-// Lấy các giá trị từ environment variables
+// Lấy cấu hình database từ biến môi trường
 var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
 var dbName = Environment.GetEnvironmentVariable("DB_NAME");
 var dbUser = Environment.GetEnvironmentVariable("DB_USER");
 var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-
-
-// Tạo connection string động
 var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
 
-// Đăng ký DbContext với connection string động
+// Đăng ký DbContext
 builder.Services.AddDbContext<ShofyContext>(options =>
     options.UseSqlServer(connectionString));
 
+// Cookie Authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/Accounts/Login"; // nếu chưa đăng nhập sẽ chuyển đến đây
+        options.AccessDeniedPath = "/Accounts/AccessDenied"; // nếu không đủ quyền
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    });
+
+// Authorization theo Role
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
-// Add services to the container.
-builder.Services.AddRazorPages();
-
-// Add Session Storage
+// Session
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -39,12 +44,13 @@ builder.Services.AddSession(options =>
     options.Cookie.SameSite = SameSiteMode.Strict;
 });
 
-// Add services to the container.
+// Razor Pages
+builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -57,11 +63,14 @@ else
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
-app.UseAuthentication();
+
+app.UseSession(); // Session phải trước RazorPages nếu bạn dùng session
+
+app.UseAuthentication(); // Quan trọng: kích hoạt cookie auth
 app.UseAuthorization();
-app.UseSession();
-app.MapStaticAssets();
-app.MapRazorPages().WithStaticAssets();
+
+app.MapRazorPages();
 
 app.Run();

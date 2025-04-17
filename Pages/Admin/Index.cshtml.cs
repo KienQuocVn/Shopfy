@@ -5,9 +5,13 @@ using Shofy.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace Shofy.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardModel : PageModel
     {
         private readonly ShofyContext _context;
