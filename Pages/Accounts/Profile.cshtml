@@ -1,33 +1,46 @@
 @page
-@model Shofy.Pages.Acounts.ProfileModel
+@model Shofy.Pages.Accounts.ProfileModel
 @{
     ViewData["Title"] = "Profile";
 }
 
+<style>
+    .modal {
+        z-index: 2000;
+    }
+
+    .modal-backdrop {
+        z-index: 1999;
+    }
+</style>
+
 <div class="container">
     <div class="main-body">
-
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+                <li class="breadcrumb-item"><a href="/Index">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">User Profile</li>
             </ol>
         </nav>
         <!-- /Breadcrumb -->
-
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
+                            <img src="~/images/kkq.jpg" alt="Admin"
                                 class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>Username</h4>
+                                <h4 class="mt-3">@Model.User?.Username</h4>
                                 <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Home CHI MINH CITY</p>
                                 <button class="btn btn-primary">Follow</button>
                                 <button class="btn btn-outline-primary">Message</button>
                             </div>
@@ -100,42 +113,93 @@
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Full Name</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                Kenneth Valdez
-                            </div>
+                            <div class="col-sm-9 text-secondary">@Model.User?.FullName</div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Email</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                fip@jukmuh.al
-                            </div>
+                            <div class="col-sm-9 text-secondary">@Model.User?.Email</div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">PhoneNumber</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                (239) 816-9029
-                            </div>
+                            <div class="col-sm-9 text-secondary">@Model.User?.PhoneNumber</div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">Address</h6>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
-                            </div>
+                            <div class="col-sm-9 text-secondary">@Model.User?.Address</div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a class="btn btn-info " target="__blank"
-                                    href="#">Edit</a>
+                                <button type="button" class="btn btn-info" data-toggle="modal"
+                                    data-target="#editUserModal">Edit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit User Modal -->
+                <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editUserModalLabel">Edit User Information</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form asp-page-handler="Update" method="post">
+                                    <input type="hidden" asp-for="UpdateModel.UserID" />
+                                    @if (!ViewData.ModelState.IsValid)
+                                    {
+                                        <div class="alert alert-danger" role="alert">
+                                            <ul>
+                                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                                {
+                                                    <li>@error.ErrorMessage</li>
+                                                }
+                                            </ul>
+                                        </div>
+                                    }
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <p class="form-control-static">@Model.User.Username</p>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="UpdateModel.Email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" asp-for="UpdateModel.Email" />
+                                        <span asp-validation-for="UpdateModel.Email" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="UpdateModel.FullName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" asp-for="UpdateModel.FullName" />
+                                        <span asp-validation-for="UpdateModel.FullName" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="UpdateModel.PhoneNumber" class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" asp-for="UpdateModel.PhoneNumber" />
+                                        <span asp-validation-for="UpdateModel.PhoneNumber" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label asp-for="UpdateModel.Address" class="form-label">Address</label>
+                                        <input type="text" class="form-control" asp-for="UpdateModel.Address" />
+                                        <span asp-validation-for="UpdateModel.Address" class="text-danger"></span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -209,11 +273,11 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </div>
-
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
