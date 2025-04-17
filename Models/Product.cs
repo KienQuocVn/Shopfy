@@ -1,29 +1,35 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ECommerceAllInOne.Models
+namespace Shofy.Models
 {
     public class Product
     {
         [Key]
-        public int Id { get; set; }
+        public int ProductID { get; set; }
+
         [Required, StringLength(100)]
         public required string Name { get; set; }
-        [Required]
+
+        [Required, StringLength(1000)]
         public required string Description { get; set; }
-        [Required, Range(0, double.MaxValue)]
+
+        [Required, Range(0.01, double.MaxValue), Column(TypeName = "decimal(18, 2)")]
         public required decimal Price { get; set; }
+
         [Required, Range(0, int.MaxValue)]
-        public required int Stock { get; set; }
-        public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
-        public string Status { get; set; } 
+        public required int StockQuantity { get; set; } 
+
         [Required]
         public required string ImagePath { get; set; }
+
+
+        public required string Status { get; set; }
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual ICollection<Cart> Carts { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
+        public ICollection<CartItem>? CartItems { get; set; }
+        public ICollection<OrderDetail>? OrderDetails { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
     }
 
 }

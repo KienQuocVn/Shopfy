@@ -1,24 +1,32 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class User
+namespace Shofy.Models
 {
-    [Key]
-    public int Id { get; set; }
-    [Required, StringLength(50)]
-    public required string Username { get; set; }
-    [Required]
-    public required string PasswordHash { get; set; }
-    [Required, EmailAddress]
-    public required string Email { get; set; }
-    [Required]
-    public required string Role { get; set; }
-    public DateTime CreatedDate { get; set; } = DateTime.Now;
-    [Phone]
-    public string PhoneNumber { get; set; }
-    public string? FullName { get; set; }
-    public string? Address { get; set; }
-    public virtual ICollection<Order> Orders { get; set; }
-    public virtual ICollection<Cart> Carts { get; set; }
-    public virtual ICollection<Review> Reviews { get; set; }
+    public class User
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserID { get; set; }
+
+        [Required, StringLength(50), MinLength(3)]
+        public required string Username { get; set; }
+
+        [Required, StringLength(256)]
+        public required string PasswordHash { get; set; }
+
+        [Required, StringLength(100), EmailAddress]
+        public required string Email { get; set; }
+
+
+        public required string Role { get; set; }
+        public string? FullName { get; set; }
+        public string? PhoneNumber { get; set; }
+        public string? Address { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        
+        public Cart? Cart { get; set; }
+        public ICollection<Order>? Orders { get; set; }
+        public ICollection<Review>? Reviews { get; set; }
+    }
 }

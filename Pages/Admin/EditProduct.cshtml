@@ -1,0 +1,61 @@
+@page "{id:int}"
+@model Shofy.Pages.Admin.EditProductModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Edit Product</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" asp-for="Product.ProductID" />
+
+        <div class="mb-3">
+            <label asp-for="Product.Name" class="form-label"></label>
+            <input asp-for="Product.Name" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Product.Price" class="form-label"></label>
+            <input asp-for="Product.Price" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Product.StockQuantity" class="form-label"></label>
+            <input asp-for="Product.StockQuantity" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Product.Status" class="form-label"></label>
+            <select asp-for="Product.Status" class="form-select">
+                <option value="Available">Available</option>
+                <option value="Out of Stock">Out of Stock</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Product.Description" class="form-label"></label>
+            <textarea asp-for="Product.Description" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Current Image</label><br />
+            @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
+            {
+                <img src="@Model.Product.ImagePath" width="150" class="mb-2 rounded" />
+            }
+            else
+            {
+                <p class="text-muted">No image uploaded.</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload New Image</label>
+            <input type="file" name="ImageFile" class="form-control" accept="image/*" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/Admin/Products" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
