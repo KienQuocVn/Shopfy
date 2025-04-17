@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UrSg/ji2oxQqx/PP6gSt8OzEPqp5rmai6S6ty1XPm/w=",
+  "Hash": "dSAKa22qt2r1NNRhBfV9/yLNVHGETIDv1hdSOyCtIHo=",
   "Source": "Shofy",
   "BasePath": "_content/Shofy",
   "Mode": "Default",
@@ -477,6 +477,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\bootstrap\\css\\bootstrap.min.css"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6fpiaq3p0q-txc3nkc290.gz",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "css/style#[.{fingerprint=txc3nkc290}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "kpul2fljyy",
+      "Integrity": "uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6i3q384nk8-ft3s53vfgj.gz",
@@ -1002,6 +1023,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\fonts\\font-awesome-4.7.0\\HELP-US-OUT.txt"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\by0rpoo03a-w9nfhp1obe.gz",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/css/materialdesignicons.min.css#[.{fingerprint=w9nfhp1obe}]?.map.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "2xdcz7ypy1",
+      "Integrity": "ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map"
     },
     {
       "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\c2ybwfp0od-sejl45xvog.gz",
@@ -2096,6 +2138,27 @@
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\ptw09utd4q-rkj2wc09j7.gz",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/css/materialdesignicons.min#[.{fingerprint=rkj2wc09j7}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "h3onqlnp7c",
+      "Integrity": "Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css"
+    },
+    {
       "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\pz18g1g1uz-tmc1g35s3z.gz",
       "SourceId": "Shofy",
       "SourceType": "Discovered",
@@ -2514,6 +2577,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\perfect-scrollbar\\perfect-scrollbar.min.js"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uue48l8h68-3w5og6hl44.gz",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/css/vendor.bundle.base#[.{fingerprint=3w5og6hl44}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "fv4e30h6va",
+      "Integrity": "K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css"
     },
     {
       "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uzrsshbhvo-re1t1ai4aj.gz",
@@ -2978,6 +3062,27 @@
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z1asss0rk8-hm6kq9kljj.gz",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "css/profile#[.{fingerprint=hm6kq9kljj}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\css\\profile.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "ycsnuy07a6",
+      "Integrity": "UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\css\\profile.css"
+    },
+    {
       "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z4bbt9j4di-d65t2ahsl7.gz",
       "SourceId": "Shofy",
       "SourceType": "Computed",
@@ -3146,6 +3251,27 @@
       "OriginalItemSpec": "wwwroot\\css\\main.css"
     },
     {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\css\\profile.css",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "css/profile#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "hm6kq9kljj",
+      "Integrity": "ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\profile.css"
+    },
+    {
       "Identity": "C:\\GitClone\\Shofy\\wwwroot\\css\\site.css",
       "SourceId": "Shofy",
       "SourceType": "Discovered",
@@ -3165,6 +3291,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "css/style#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "txc3nkc290",
+      "Integrity": "vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\GitClone\\Shofy\\wwwroot\\css\\util.css",
@@ -5181,6 +5328,111 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\fonts\\Poppins\\Poppins-ThinItalic.ttf"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\518Lcp3eegL._AC_SX679_.jpg",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "images/518Lcp3eegL._AC_SX679_#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9gjt69i586",
+      "Integrity": "ufE0ZBd/12c6dudBXGouLHzGE3welV1PPhoy9DmhkgQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\518Lcp3eegL._AC_SX679_.jpg"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679__1.jpg",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "images/51Q1cRNQ7JS._AC_SX679__1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eij5tqrbj8",
+      "Integrity": "+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\51Q1cRNQ7JS._AC_SX679__1.jpg"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679_.jpg",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "images/51Q1cRNQ7JS._AC_SX679_#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eij5tqrbj8",
+      "Integrity": "+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\51Q1cRNQ7JS._AC_SX679_.jpg"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\71In51ynOiL._AC_SX679_.jpg",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "images/71In51ynOiL._AC_SX679_#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sgjwaikm8i",
+      "Integrity": "jLwNAkL/yosBZRPAg9/U7AfZLoPk0q8ascYd++Y2zbo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\71In51ynOiL._AC_SX679_.jpg"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\71wDRD5YSkL._AC_SX679_.jpg",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "images/71wDRD5YSkL._AC_SX679_#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "fstwkvz0a1",
+      "Integrity": "z/6O9pyj/dhb/K4ezmG98ikTKY+Nvjdc6L2HqIvE5Pk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\71wDRD5YSkL._AC_SX679_.jpg"
     },
     {
       "Identity": "C:\\GitClone\\Shofy\\wwwroot\\images\\about-01.jpg",
@@ -8774,6 +9026,27 @@
       "OriginalItemSpec": "wwwroot\\vendor\\css-hamburgers\\hamburgers.min.css"
     },
     {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/css/vendor.bundle.base#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3w5og6hl44",
+      "Integrity": "LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\css\\vendor.bundle.base.css"
+    },
+    {
       "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\daterangepicker\\daterangepicker.css",
       "SourceId": "Shofy",
       "SourceType": "Discovered",
@@ -9551,6 +9824,132 @@
       "OriginalItemSpec": "wwwroot\\vendor\\MagnificPopup\\magnific-popup.css"
     },
     {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/css/materialdesignicons.min#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rkj2wc09j7",
+      "Integrity": "ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/css/materialdesignicons.min.css#[.{fingerprint}]?.map",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w9nfhp1obe",
+      "Integrity": "bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/fonts/materialdesignicons-webfont#[.{fingerprint}]?.eot",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ewi0zohtx9",
+      "Integrity": "rhIjerPXF50nDujGO/gz9OJoGszLn7RxgVNRjaEu4C0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/fonts/materialdesignicons-webfont#[.{fingerprint}]?.ttf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "r7ban2obvg",
+      "Integrity": "R1Zf0gWnNQAGVjKS/98fPV0rAqkHLDGhGhgCyjH15G8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/fonts/materialdesignicons-webfont#[.{fingerprint}]?.woff",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sc3zsmkh69",
+      "Integrity": "RNBlypnFim6A9VoVj3lErqcIkVWGUjkdDglrv5dYJZc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff"
+    },
+    {
+      "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2",
+      "SourceId": "Shofy",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\GitClone\\Shofy\\wwwroot\\",
+      "BasePath": "_content/Shofy",
+      "RelativePath": "vendor/mdi/fonts/materialdesignicons-webfont#[.{fingerprint}]?.woff2",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vj22nwgyoc",
+      "Integrity": "lQ9v4Ghp2iytO91kvIi8ntZ0YzXOrwwPbU5/W4XwFzE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2"
+    },
+    {
       "Identity": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\parallax100\\parallax100.js",
       "SourceId": "Shofy",
       "SourceType": "Discovered",
@@ -10313,6 +10712,304 @@
       ]
     },
     {
+      "Route": "css/profile.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z1asss0rk8-hm6kq9kljj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002544529262"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "392"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\css\\profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "840"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z1asss0rk8-hm6kq9kljj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "392"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.hm6kq9kljj.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z1asss0rk8-hm6kq9kljj.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002544529262"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "392"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hm6kq9kljj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.hm6kq9kljj.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\css\\profile.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "840"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hm6kq9kljj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ifyP3A1BQRZ7SR3culOO8BnYgOM0EaQ9KkEFDoK861I="
+        }
+      ]
+    },
+    {
+      "Route": "css/profile.hm6kq9kljj.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\z1asss0rk8-hm6kq9kljj.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "392"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "hm6kq9kljj"
+        },
+        {
+          "Name": "label",
+          "Value": "css/profile.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UlXB/2DYWFceoJsibuXdOQ0X6LOok4gATAp0CiuLxjg="
+        }
+      ]
+    },
+    {
       "Route": "css/site.b9sayid5wm.css",
       "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\7kfwq5fre5-b9sayid5wm.gz",
       "Selectors": [
@@ -10607,6 +11304,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-0FC1RbVkLkwKhJ1oi+r2Hw4Tm9av6DyJeo95YVvfA3Y="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6fpiaq3p0q-txc3nkc290.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000012768946"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "78314"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "811130"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6fpiaq3p0q-txc3nkc290.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "78314"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.txc3nkc290.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6fpiaq3p0q-txc3nkc290.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000012768946"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "78314"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "txc3nkc290"
+        },
+        {
+          "Name": "label",
+          "Value": "css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.txc3nkc290.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "811130"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "txc3nkc290"
+        },
+        {
+          "Name": "label",
+          "Value": "css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-vxRh7lwFwE64GKxWVCp/BQJS96Dvs8wLFSU/Ay6f+uU="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.txc3nkc290.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\6fpiaq3p0q-txc3nkc290.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "78314"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "txc3nkc290"
+        },
+        {
+          "Name": "label",
+          "Value": "css/style.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-uHw36VUnNTRx1NxvD9L4HsMHV6OwutOPCZLiCZbj6bI="
         }
       ]
     },
@@ -21503,6 +22498,416 @@
         {
           "Name": "integrity",
           "Value": "sha256-Si6LynsCew+MwCGLgOyYI8o7mNSgbxdlEzewH7hfjt4="
+        }
+      ]
+    },
+    {
+      "Route": "images/518Lcp3eegL._AC_SX679_.9gjt69i586.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\518Lcp3eegL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26450"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ufE0ZBd/12c6dudBXGouLHzGE3welV1PPhoy9DmhkgQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9gjt69i586"
+        },
+        {
+          "Name": "label",
+          "Value": "images/518Lcp3eegL._AC_SX679_.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ufE0ZBd/12c6dudBXGouLHzGE3welV1PPhoy9DmhkgQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/518Lcp3eegL._AC_SX679_.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\518Lcp3eegL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26450"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ufE0ZBd/12c6dudBXGouLHzGE3welV1PPhoy9DmhkgQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ufE0ZBd/12c6dudBXGouLHzGE3welV1PPhoy9DmhkgQ="
+        }
+      ]
+    },
+    {
+      "Route": "images/51Q1cRNQ7JS._AC_SX679__1.eij5tqrbj8.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679__1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31351"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eij5tqrbj8"
+        },
+        {
+          "Name": "label",
+          "Value": "images/51Q1cRNQ7JS._AC_SX679__1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/51Q1cRNQ7JS._AC_SX679__1.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679__1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31351"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/51Q1cRNQ7JS._AC_SX679_.eij5tqrbj8.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31351"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eij5tqrbj8"
+        },
+        {
+          "Name": "label",
+          "Value": "images/51Q1cRNQ7JS._AC_SX679_.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/51Q1cRNQ7JS._AC_SX679_.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\51Q1cRNQ7JS._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31351"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+ri5Liof1l+PT2Uwr4jdIIVAF0uum0frIRGu/pDZQ1Q="
+        }
+      ]
+    },
+    {
+      "Route": "images/71In51ynOiL._AC_SX679_.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\71In51ynOiL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "45922"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jLwNAkL/yosBZRPAg9/U7AfZLoPk0q8ascYd++Y2zbo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jLwNAkL/yosBZRPAg9/U7AfZLoPk0q8ascYd++Y2zbo="
+        }
+      ]
+    },
+    {
+      "Route": "images/71In51ynOiL._AC_SX679_.sgjwaikm8i.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\71In51ynOiL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "45922"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jLwNAkL/yosBZRPAg9/U7AfZLoPk0q8ascYd++Y2zbo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sgjwaikm8i"
+        },
+        {
+          "Name": "label",
+          "Value": "images/71In51ynOiL._AC_SX679_.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jLwNAkL/yosBZRPAg9/U7AfZLoPk0q8ascYd++Y2zbo="
+        }
+      ]
+    },
+    {
+      "Route": "images/71wDRD5YSkL._AC_SX679_.fstwkvz0a1.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\71wDRD5YSkL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37246"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z/6O9pyj/dhb/K4ezmG98ikTKY+Nvjdc6L2HqIvE5Pk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "fstwkvz0a1"
+        },
+        {
+          "Name": "label",
+          "Value": "images/71wDRD5YSkL._AC_SX679_.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/6O9pyj/dhb/K4ezmG98ikTKY+Nvjdc6L2HqIvE5Pk="
+        }
+      ]
+    },
+    {
+      "Route": "images/71wDRD5YSkL._AC_SX679_.jpg",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\images\\71wDRD5YSkL._AC_SX679_.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "37246"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z/6O9pyj/dhb/K4ezmG98ikTKY+Nvjdc6L2HqIvE5Pk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/6O9pyj/dhb/K4ezmG98ikTKY+Nvjdc6L2HqIvE5Pk="
         }
       ]
     },
@@ -47111,7 +48516,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47164,7 +48569,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47201,7 +48606,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47248,7 +48653,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47309,7 +48714,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47354,7 +48759,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47409,7 +48814,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47470,7 +48875,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47515,7 +48920,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47570,7 +48975,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47623,7 +49028,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -47660,7 +49065,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 13 Apr 2025 23:54:56 GMT"
+          "Value": "Thu, 17 Apr 2025 13:40:28 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -55129,6 +56534,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-+/ve7cGxKnmVMReK3sw90ReM+fA2Xbg4SIcqDoft5E0="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.3w5og6hl44.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uue48l8h68-3w5og6hl44.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001515151515"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "659"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3w5og6hl44"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/css/vendor.bundle.base.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.3w5og6hl44.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2714"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3w5og6hl44"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/css/vendor.bundle.base.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.3w5og6hl44.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uue48l8h68-3w5og6hl44.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "659"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3w5og6hl44"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/css/vendor.bundle.base.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uue48l8h68-3w5og6hl44.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001515151515"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "659"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2714"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LZTVHORKwGDAM3RFo6aolU05Es/MVhmBsSfo/xftC5s="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/css/vendor.bundle.base.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\uue48l8h68-3w5og6hl44.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "659"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-K4OD2EYDQzsGgHyym5x341sIjNTGcqcCJfwpNMxN+S8="
         }
       ]
     },
@@ -63995,6 +65698,930 @@
         {
           "Name": "integrity",
           "Value": "sha256-EFrRzY504jd5PQx1HicKGxNRwQUzv/v4yEvBnI9+qZw="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\ptw09utd4q-rkj2wc09j7.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000032006145"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31243"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "176525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\ptw09utd4q-rkj2wc09j7.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31243"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.map",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\by0rpoo03a-w9nfhp1obe.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000146434324"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6828"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.map",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "240689"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.map.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\by0rpoo03a-w9nfhp1obe.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6828"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.w9nfhp1obe.map",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\by0rpoo03a-w9nfhp1obe.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000146434324"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6828"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w9nfhp1obe"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.w9nfhp1obe.map",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "240689"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w9nfhp1obe"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css.map"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bBdPf2rPm5b0NztkHpRAt6c7zG+QA9vTnovZSurngI8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.css.w9nfhp1obe.map.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\by0rpoo03a-w9nfhp1obe.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "6828"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/plain"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w9nfhp1obe"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css.map.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ik9x0Wa1vn7uU1GQJHhnoiYD0WGyS2qESD4uPLBNDe0="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.rkj2wc09j7.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\ptw09utd4q-rkj2wc09j7.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000032006145"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31243"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkj2wc09j7"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.rkj2wc09j7.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "176525"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkj2wc09j7"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ZSAbJyRhzNjFIJDA1q4EyhZnL9wIhHQOKF5lSr14kI4="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/css/materialdesignicons.min.rkj2wc09j7.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\ptw09utd4q-rkj2wc09j7.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31243"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rkj2wc09j7"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/css/materialdesignicons.min.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Q6gvgOONhrvZpDryH53ECP4F5SnVJ0XyX04KT7OxLkw="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.eot",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "663148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.ms-fontobject"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rhIjerPXF50nDujGO/gz9OJoGszLn7RxgVNRjaEu4C0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rhIjerPXF50nDujGO/gz9OJoGszLn7RxgVNRjaEu4C0="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.ewi0zohtx9.eot",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "663148"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/vnd.ms-fontobject"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rhIjerPXF50nDujGO/gz9OJoGszLn7RxgVNRjaEu4C0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ewi0zohtx9"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/fonts/materialdesignicons-webfont.eot"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rhIjerPXF50nDujGO/gz9OJoGszLn7RxgVNRjaEu4C0="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.r7ban2obvg.ttf",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "662928"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"R1Zf0gWnNQAGVjKS/98fPV0rAqkHLDGhGhgCyjH15G8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "r7ban2obvg"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/fonts/materialdesignicons-webfont.ttf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-R1Zf0gWnNQAGVjKS/98fPV0rAqkHLDGhGhgCyjH15G8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.sc3zsmkh69.woff",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "319308"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/font-woff"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RNBlypnFim6A9VoVj3lErqcIkVWGUjkdDglrv5dYJZc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sc3zsmkh69"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/fonts/materialdesignicons-webfont.woff"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RNBlypnFim6A9VoVj3lErqcIkVWGUjkdDglrv5dYJZc="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.ttf",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "662928"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/x-font-ttf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"R1Zf0gWnNQAGVjKS/98fPV0rAqkHLDGhGhgCyjH15G8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-R1Zf0gWnNQAGVjKS/98fPV0rAqkHLDGhGhgCyjH15G8="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.vj22nwgyoc.woff2",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "224348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "font/woff2"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lQ9v4Ghp2iytO91kvIi8ntZ0YzXOrwwPbU5/W4XwFzE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vj22nwgyoc"
+        },
+        {
+          "Name": "label",
+          "Value": "vendor/mdi/fonts/materialdesignicons-webfont.woff2"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lQ9v4Ghp2iytO91kvIi8ntZ0YzXOrwwPbU5/W4XwFzE="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.woff",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "319308"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/font-woff"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RNBlypnFim6A9VoVj3lErqcIkVWGUjkdDglrv5dYJZc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RNBlypnFim6A9VoVj3lErqcIkVWGUjkdDglrv5dYJZc="
+        }
+      ]
+    },
+    {
+      "Route": "vendor/mdi/fonts/materialdesignicons-webfont.woff2",
+      "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "224348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "font/woff2"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lQ9v4Ghp2iytO91kvIi8ntZ0YzXOrwwPbU5/W4XwFzE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 17 Apr 2025 12:09:27 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lQ9v4Ghp2iytO91kvIi8ntZ0YzXOrwwPbU5/W4XwFzE="
         }
       ]
     },

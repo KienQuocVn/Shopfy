@@ -40,6 +40,7 @@
     <link rel="stylesheet" type="text/css" href="~/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/css/main.css">
     <!--===============================================================================================-->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="animsition">
@@ -56,11 +57,7 @@
 					</div>
 
 					<div class="right-top-bar flex-w h-full">
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							Help & FAQs
-						</a>
-
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="/Accounts/Profile" class="flex-c-m trans-04 p-lr-25">
 							My Account
 						</a>
 
@@ -68,8 +65,12 @@
 							EN
 						</a>
 
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
-							USD
+						<a href="/Accounts/Login" class="flex-c-m trans-04 p-lr-25">
+							Login
+						</a>
+
+						<a href="/Accounts/Register" class="flex-c-m trans-04 p-lr-25">
+							Register
 						</a>
 					</div>
 				</div>
@@ -104,6 +105,9 @@
 
 							<li>
 								<a asp-area="" asp-page="/Client/Contact">Contact</a>
+							</li>
+							<li>
+								<a asp-area="" asp-page="/Admin/Index">Admin</a>
 							</li>
 
 							<li class="label1" data-label1="hot">

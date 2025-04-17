@@ -1,0 +1,155 @@
+@page
+@model Shofy.Pages.Admin.ProductModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Product Management";
+}
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">Quản lý Sản Phẩm</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Danh mục</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                        <a class="nav-link active" href="/Admin/Index">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/User">User</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="/Admin/Products">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Admin/Order">Order</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <!-- Tìm kiếm, chọn danh mục và Create New trên cùng một hàng -->
+            <div class="row mb-4 align-items-end">
+                <div class="col-md-5">
+                    <!-- Tạo form để gửi giá trị tìm kiếm khi bấm nút kính lúp -->
+                    <form method="get">
+                        <div class="input-group">
+                            <input type="text" name="searchTerm" value="@Model.SearchTerm"
+                                class="form-control form-control-lg" placeholder="Tìm kiếm sản phẩm theo tên..." />
+                            <button class="btn btn-outline-secondary btn-lg" type="submit">
+                                <i class="bi bi-search"></i> <!-- Biểu tượng kính lúp -->
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select form-select-lg" style="font-size: 1.5rem; height: 40px;"
+                        aria-label="Chọn danh mục">
+                        <option selected>-- Category --</option>
+                        <option value="1">#</option>
+                        <option value="2">#</option>
+                        <option value="3">#</option>
+                    </select>
+                </div>
+                <div class="col-md-3 text-end">
+                    <a class="btn btn-primary w-100" asp-page="CreateProduct">+ Create New</a>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered rounded">
+                    <thead class="table-light">
+                        <tr>
+                            <th><input type="checkbox" aria-label="Select All"></th>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Created Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td><input type="checkbox" aria-label="Select Product"></td>
+                                <td>@product.ProductID</td>
+                                <td>@product.Name</td>
+                                <td>@product.Price</td>
+                                <td>@product.StockQuantity</td>
+                                <td>@product.CreatedDate</td>
+                                <td>@product.Status</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                            id="actionMenu@product.ProductID" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            ...
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="actionMenu@product.ProductID">
+                                            <li>
+                                                <a class="dropdown-item" asp-page="EditProduct"
+                                                    asp-route-id="@product.ProductID">Edit</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" asp-page="ReviewProduct"
+                                                    asp-route-id="@product.ProductID">Review</a>
+                                            </li>
+                                            <li>
+                                                <form method="post" asp-page-handler="Delete"
+                                                    asp-route-id="@product.ProductID"
+                                                    onsubmit="return confirm('Are you sure to delete this product?');">
+                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
+                            <a class="page-link" asp-page-handler="Page" asp-route-pageNumber="1">First</a>
+                        </li>
+                        <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
+                            <a class="page-link" asp-page-handler="Page"
+                                asp-route-pageNumber="@(Model.CurrentPage - 1)">Previous</a>
+                        </li>
+                        <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
+                            <a class="page-link" asp-page-handler="Page"
+                                asp-route-pageNumber="@(Model.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
+                            <a class="page-link" asp-page-handler="Page"
+                                asp-route-pageNumber="@Model.TotalPages">Last</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cài đặt Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Bootstrap JS (đảm bảo có trong _Layout.cshtml nếu chưa) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
