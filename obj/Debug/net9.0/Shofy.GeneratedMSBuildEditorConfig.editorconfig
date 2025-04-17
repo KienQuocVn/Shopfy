@@ -17,69 +17,69 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Shofy
 build_property.RootNamespace = Shofy
-build_property.ProjectDir = C:\GitClone\Shofy\
+build_property.ProjectDir = C:\DEV\Shofy\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\GitClone\Shofy
+build_property.MSBuildProjectDirectory = C:\DEV\Shofy
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/GitClone/Shofy/Pages/Client/About.cshtml]
+[C:/DEV/Shofy/Pages/Client/About.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XEFib3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/Blog.cshtml]
+[C:/DEV/Shofy/Pages/Client/Blog.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XEJsb2cuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/BlogDetail.cshtml]
+[C:/DEV/Shofy/Pages/Client/BlogDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XEJsb2dEZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/Contact.cshtml]
+[C:/DEV/Shofy/Pages/Client/Contact.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XENvbnRhY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/Payment.cshtml]
+[C:/DEV/Shofy/Pages/Client/Payment.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFBheW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/Product.cshtml]
+[C:/DEV/Shofy/Pages/Client/Product.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFByb2R1Y3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/ProductDetail.cshtml]
+[C:/DEV/Shofy/Pages/Client/ProductDetail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFByb2R1Y3REZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Client/ShopingCart.cshtml]
+[C:/DEV/Shofy/Pages/Client/ShopingCart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFNob3BpbmdDYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Error.cshtml]
+[C:/DEV/Shofy/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Index.cshtml]
+[C:/DEV/Shofy/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/DEV/Shofy/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/_ViewImports.cshtml]
+[C:/DEV/Shofy/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/_ViewStart.cshtml]
+[C:/DEV/Shofy/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/GitClone/Shofy/Pages/Shared/_Layout.cshtml]
+[C:/DEV/Shofy/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6qnjkllpts
