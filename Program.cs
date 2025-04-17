@@ -18,7 +18,7 @@ var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
 var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
 
 // Đăng ký DbContext với connection string động
-builder.Services.AddDbContext<ShofyContext>(options => 
+builder.Services.AddDbContext<ShofyContext>(options =>
     options.UseSqlServer(connectionString));
 // Add distributed memory cache for session
 builder.Services.AddDistributedMemoryCache();
@@ -32,7 +32,8 @@ builder.Services.AddSession(options =>
     options.Cookie.SameSite = SameSiteMode.Strict;
 });
 
-builder.Services.AddAuthorization(options => {
+builder.Services.AddAuthorization(options =>
+{
     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
