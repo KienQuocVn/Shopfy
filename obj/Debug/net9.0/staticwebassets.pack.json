@@ -17,10 +17,6 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\css\\style.css",
-      "PackagePath": "staticwebassets\\css\\style.css"
-    },
-    {
       "Id": "C:\\GitClone\\Shofy\\wwwroot\\css\\util.css",
       "PackagePath": "staticwebassets\\css\\util.css"
     },
@@ -625,6 +621,10 @@
       "PackagePath": "staticwebassets\\images\\item-cart-05.jpg"
     },
     {
+      "Id": "C:\\GitClone\\Shofy\\wwwroot\\images\\kkq.jpg",
+      "PackagePath": "staticwebassets\\images\\kkq.jpg"
+    },
+    {
       "Id": "C:\\GitClone\\Shofy\\wwwroot\\images\\product-01.jpg",
       "PackagePath": "staticwebassets\\images\\product-01.jpg"
     },
@@ -1121,10 +1121,6 @@
       "PackagePath": "staticwebassets\\vendor\\css-hamburgers\\hamburgers.min.css"
     },
     {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\css\\vendor.bundle.base.css",
-      "PackagePath": "staticwebassets\\vendor\\css\\vendor.bundle.base.css"
-    },
-    {
       "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\daterangepicker\\daterangepicker.css",
       "PackagePath": "staticwebassets\\vendor\\daterangepicker\\daterangepicker.css"
     },
@@ -1259,30 +1255,6 @@
     {
       "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\lightbox2\\js\\lightbox.min.map",
       "PackagePath": "staticwebassets\\vendor\\lightbox2\\js\\lightbox.min.map"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\css\\materialdesignicons.min.css"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\css\\materialdesignicons.min.css.map",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\css\\materialdesignicons.min.css.map"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.eot"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.ttf"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff"
-    },
-    {
-      "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2",
-      "PackagePath": "staticwebassets\\vendor\\mdi\\fonts\\materialdesignicons-webfont.woff2"
     },
     {
       "Id": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\parallax100\\parallax100.js",

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Shofy.Data;
 using Shofy.Models;
+using Shofy.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,121 +21,131 @@ namespace Shofy.Pages.Client
             _logger = logger;
         }
 
-        // Thuộc tính để lưu dữ liệu
         public Product Product { get; set; } = null!;
         public IList<Review> Reviews { get; set; } = new List<Review>();
         public IList<Product> RelatedProducts { get; set; } = new List<Product>();
 
-        // Xử lý yêu cầu GET
         public async Task<IActionResult> OnGetAsync(int? productId)
         {
             if (!productId.HasValue)
             {
-                return NotFound();
+                TempData["Error"] = "Product not found.";
+                return RedirectToPage("/Client/Product");
             }
 
-            // Lấy thông tin sản phẩm cùng với Reviews
             var product = await _context.Product
                 .Include(p => p.Reviews)
-                .FirstOrDefaultAsync(p => p.ProductID == productId.Value);
+                    .ThenInclude(r => r.User)
+                .FirstOrDefaultAsync(p => p.ProductID == productId.Value && p.Status == "Active");
 
             if (product == null)
             {
-                return NotFound();
+                TempData["Error"] = "Product not found or not available.";
+                return RedirectToPage("/Client/Product");
             }
 
             Product = product;
-
-            if (Product == null)
-            {
-                return NotFound();
-            }
-
-            // Lấy danh sách đánh giá
             Reviews = Product.Reviews?.ToList() ?? new List<Review>();
-
-            // Lấy sản phẩm liên quan (cùng danh mục, ví dụ: Status)
             RelatedProducts = await _context.Product
-                .Where(p => p.Status == Product.Status && p.ProductID != Product.ProductID)
-                .Take(8) // Giới hạn 8 sản phẩm
+                .Where(p => p.Status == Product.Status && p.ProductID != Product.ProductID && p.Status == "Active")
+                .Take(8)
                 .ToListAsync();
 
             return Page();
         }
 
-        // Xử lý thêm vào giỏ hàng
-        public async Task<IActionResult> OnPostAddToCartAsync(int productId, int quantity, string? size, string? color)
+        public async Task<IActionResult> OnPostAddToCartAsync(int productId, int quantity)
         {
-            // Giả sử người dùng đã đăng nhập và bạn có UserID
-            var userId = 1; // Thay bằng logic lấy UserID thực tế (ví dụ: từ UserManager)
-
-            // Kiểm tra sản phẩm
-            var product = await _context.Product.FindAsync(productId);
+            var product = await _context.Product
+                .FirstOrDefaultAsync(p => p.ProductID == productId && p.Status == "Active");
             if (product == null)
             {
-                return BadRequest("Product not found.");
+                TempData["Error"] = "Product not found or not available.";
+                return RedirectToPage();
             }
 
-            // Kiểm tra giỏ hàng của người dùng
+            if (quantity > product.StockQuantity)
+            {
+                TempData["Error"] = "Requested quantity exceeds available stock.";
+                return RedirectToPage();
+            }
+
+            var userId = HttpContext.Session.GetUserId();
+            if (!userId.HasValue)
+            {
+                TempData["Error"] = "Please log in to add items to cart.";
+                return RedirectToPage("/Accounts/Login");
+            }
+
             var cart = await _context.Cart
-                .FirstOrDefaultAsync(c => c.UserID == userId);
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.UserID == userId.Value);
 
             if (cart == null)
             {
-                cart = new Cart { UserID = userId, CreatedAt = DateTime.Now };
+                cart = new Cart { UserID = userId.Value, CreatedAt = DateTime.Now };
                 _context.Cart.Add(cart);
                 await _context.SaveChangesAsync();
             }
 
-            // Kiểm tra sản phẩm đã có trong giỏ hàng chưa
-            var cartItem = await _context.CartItem
-                .FirstOrDefaultAsync(ci => ci.CartID == cart.CartID && ci.ProductID == productId);
-
+            var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.ProductID == productId);
             if (cartItem == null)
             {
                 cartItem = new CartItem
                 {
                     CartID = cart.CartID,
                     ProductID = productId,
-                    Quantity = quantity,
+                    Quantity = quantity
                 };
                 _context.CartItem.Add(cartItem);
             }
             else
             {
                 cartItem.Quantity += quantity;
-                _context.CartItem.Update(cartItem);
             }
 
             await _context.SaveChangesAsync();
-            return new JsonResult(new { success = true, message = "Product added to cart!" });
+            TempData["CartSuccess"] = $"{product.Name} is added to cart!";
+            return RedirectToPage();
         }
 
-        // Xử lý gửi đánh giá
-        public async Task<IActionResult> OnPostAddReviewAsync(int productId, int rating, string review, string name, string email)
+        public async Task<IActionResult> OnPostAddReviewAsync(int productId, int rating, string comment)
         {
-            if (rating < 1 || rating > 5 || string.IsNullOrWhiteSpace(review) || string.IsNullOrWhiteSpace(name))
+            if (rating < 1 || rating > 5 || string.IsNullOrWhiteSpace(comment))
             {
-                return BadRequest("Invalid review data.");
+                TempData["Error"] = "Invalid review data.";
+                return RedirectToPage();
             }
 
-            var product = await _context.Product.FindAsync(productId);
+            var product = await _context.Product
+                .FirstOrDefaultAsync(p => p.ProductID == productId && p.Status == "Active");
             if (product == null)
             {
-                return BadRequest("Product not found.");
+                TempData["Error"] = "Product not found or not available.";
+                return RedirectToPage();
+            }
+
+            var userId = HttpContext.Session.GetUserId();
+            if (!userId.HasValue)
+            {
+                TempData["Error"] = "Please log in to submit a review.";
+                return RedirectToPage("/Accounts/Login");
             }
 
             var newReview = new Review
             {
                 ProductID = productId,
+                UserID = userId.Value,
                 Rating = rating,
-                Comment = review,
+                Comment = comment,
+                CreatedAt = DateTime.Now
             };
 
             _context.Review.Add(newReview);
             await _context.SaveChangesAsync();
 
-            return new JsonResult(new { success = true, message = "Review submitted successfully!" });
+            TempData["Success"] = "Review submitted successfully!";
+            return RedirectToPage();
         }
     }
 }

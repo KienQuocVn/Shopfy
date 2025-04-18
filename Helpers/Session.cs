@@ -1,4 +1,9 @@
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Shofy.Data;
+using Shofy.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Shofy.Helpers
 {
@@ -32,6 +37,27 @@ namespace Shofy.Helpers
         public static void SetUserRole(this ISession session, string role)
         {
             session.SetString("UserRole", role);
+        }
+
+        public static List<CartItem> GetCart(this ISession session, ShofyContext context)
+        {
+            var userId = session.GetUserId();
+            if (!userId.HasValue)
+            {
+                return new List<CartItem>();
+            }
+
+            return context.Cart
+                .Include(c => c.CartItems)
+                .ThenInclude(ci => ci.Product)
+                .Where(c => c.UserID == userId.Value)
+                .SelectMany(c => c.CartItems)
+                .ToList();
+        }
+
+        public static void ClearCart(this ISession session)
+        {
+            session.Remove("Cart");
         }
 
         public static void ClearUser(this ISession session)
