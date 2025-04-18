@@ -4,6 +4,7 @@ using Shofy.Helpers;
 using Shofy.Models;
 using Shofy.Data;
 using System.Collections.Generic;
+using Shofy.Helpers;
 
 namespace Shofy.Pages.Client
 {
@@ -23,14 +24,14 @@ namespace Shofy.Pages.Client
 
         public void OnGet()
         {
-            Cart = HttpContext.Session.GetCart();
+            Cart = HttpContext.Session.GetCart(_context);
             Total = Cart.Sum(item => item.Product.Price * item.Quantity);
         }
 
         public IActionResult OnPostPayment()
         {
             // Lấy giỏ hàng từ session
-            var cart = HttpContext.Session.GetCart();
+            var cart = HttpContext.Session.GetCart(_context);
 
             // Duyệt từng sản phẩm để giảm StockQuantity
             foreach (var item in cart)

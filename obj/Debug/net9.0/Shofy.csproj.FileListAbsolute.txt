@@ -734,7 +734,6 @@ C:\GitClone\Shofy\obj\Debug\net9.0\Shofy.sourcelink.json
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\bundle\Shofy.styles.css
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\projectbundle\Shofy.bundle.scp.css
-C:\GitClone\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-yp28a72ezx.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\7kfwq5fre5-b9sayid5wm.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\yp5lv2kaht-v1b7zshdq5.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\gh5aig6umd-61n19gt1b8.gz
@@ -1801,3 +1800,6 @@ D:\VTC\HK1\Project_1\Code\SHofy\obj\Debug\net9.0\refint\Shofy.dll
 D:\VTC\HK1\Project_1\Code\SHofy\obj\Debug\net9.0\Shofy.pdb
 D:\VTC\HK1\Project_1\Code\SHofy\obj\Debug\net9.0\Shofy.genruntimeconfig.cache
 D:\VTC\HK1\Project_1\Code\SHofy\obj\Debug\net9.0\ref\Shofy.dll
+C:\GitClone\Shofy\bin\Debug\net9.0\BCrypt.Net-Next.dll
+C:\GitClone\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-uxuxxjgol4.gz
+C:\GitClone\Shofy\obj\Debug\net9.0\compressed\z1asss0rk8-hm6kq9kljj.gz
