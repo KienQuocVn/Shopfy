@@ -3016,13 +3016,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Shofy.d65t2ahsl7.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1123"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 12:58:38 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1123"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 15:48:02 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Shofy/Shofy.d65t2ahsl7.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\Shofy.d65t2ahsl7.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"d65t2ahsl7"},{"Name":"integrity","Value":"sha256-dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA="},{"Name":"label","Value":"_content/Shofy/Shofy.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1123"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 12:58:38 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1123"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022dXlC3gn\u002BSyo62yDWaXPmpEMfU26m6DDx4VcS0oS7ARA=\u0022"},{"Name":"Last-Modified","Value":"Thu, 17 Apr 2025 15:48:02 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/Shofy/vendor/animate/animate.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\vendor\animate\animate.css'))</AssetFile>

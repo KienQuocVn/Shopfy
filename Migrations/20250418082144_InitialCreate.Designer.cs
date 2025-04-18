@@ -12,7 +12,7 @@ using Shofy.Data;
 namespace Shofy.Migrations
 {
     [DbContext(typeof(ShofyContext))]
-    [Migration("20250417130149_InitialCreate")]
+    [Migration("20250418082144_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -249,6 +249,9 @@ namespace Shofy.Migrations
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");

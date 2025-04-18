@@ -19,11 +19,18 @@ namespace Shofy.Models
         public required string Email { get; set; }
 
         public required string Role { get; set; }
+
         public string? FullName { get; set; }
+
         public string? PhoneNumber { get; set; }
+
         public string? Address { get; set; }
+
+        [Range(1, 120, ErrorMessage = "Please enter a valid age.")]
+        public int? Age { get; set; }  // Added Age property
+
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        
+
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }
         public ICollection<Review>? Reviews { get; set; }
