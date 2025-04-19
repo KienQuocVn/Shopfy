@@ -74,19 +74,6 @@ namespace Shofy.Pages.Accounts
                 ErrorMessage = "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.";
                 return Page();
             }
-<<<<<<< HEAD
-            
-
-            _logger.LogInformation("Login successful for Username: {Username}", Username);
-            HttpContext.Session.SetUserId(user.UserID);
-            HttpContext.Session.SetUsername(user.Username);
-            HttpContext.Session.SetUserRole(user.Role);
-
-            TempData["SuccessMessage"] = $"Chào mừng {user.FullName}!";
-
-            return RedirectToPage("/Index");
-=======
->>>>>>> 310494945b18a0220d86a559ec57e9cc47d820dd
         }
     }
 }
