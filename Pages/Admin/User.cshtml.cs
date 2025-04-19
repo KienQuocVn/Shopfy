@@ -22,21 +22,30 @@ namespace Shofy.Pages.Admin
         public List<User> Users { get; set; } = new();
         public int CurrentPage { get; set; } = 1;
         public int TotalPages { get; set; }
-        public const int PageSize = 10; // Number of items per page
+        public const int PageSize = 10;
+
+        [BindProperty(SupportsGet = true)]
+        public string RoleFilter { get; set; } // Role cần lọc
 
         public void OnGet(int pageNumber = 1)
         {
             CurrentPage = pageNumber;
 
-            // Get total number of users
-            var totalUsers = _context.User.Count();
+            var query = _context.User.AsQueryable();
+
+            // Lọc theo Role nếu có
+            if (!string.IsNullOrEmpty(RoleFilter))
+            {
+                query = query.Where(u => u.Role == RoleFilter);
+            }
+
+            var totalUsers = query.Count();
             TotalPages = (int)Math.Ceiling(totalUsers / (double)PageSize);
 
-            // Get users for the current page
-            Users = _context.User
-                            .Skip((CurrentPage - 1) * PageSize)
-                            .Take(PageSize)
-                            .ToList();
+            Users = query
+                .Skip((CurrentPage - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
         }
 
         public IActionResult OnPostDelete(int UserId)
@@ -48,27 +57,21 @@ namespace Shofy.Pages.Admin
                 _context.SaveChanges();
                 _logger.LogInformation("Deleted user with ID {UserId}", UserId);
             }
-            return RedirectToPage();
+            return RedirectToPage(new { RoleFilter, pageNumber = CurrentPage });
         }
 
         public IActionResult OnGetEdit(int UserId)
         {
             var user = _context.User.Find(UserId);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return RedirectToPage("EditUser", new { UserId = UserId });
+            if (user == null) return NotFound();
+            return RedirectToPage("EditUser", new { UserId });
         }
 
         public IActionResult OnGetReview(int UserId)
         {
             var user = _context.User.Find(UserId);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            return RedirectToPage("ReviewUser", new { UserId = UserId });
+            if (user == null) return NotFound();
+            return RedirectToPage("ReviewUser", new { UserId });
         }
     }
 }

@@ -1,0 +1,52 @@
+@page "{id:int}"
+@model Shofy.Pages.Admin.ReviewOrderModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Review Order";
+}
+
+<div class="container-fluid">
+    <h2 class="mb-4">Xem Chi Tiết Đơn Hàng</h2>
+
+    <div class="row mb-3">
+        <label for="orderId" class="col-sm-2 col-form-label">Order ID</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="orderId" value="@Model.Order.OrderID" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="user" class="col-sm-2 col-form-label">User</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="user" value="@Model.Order.User?.FullName" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="totalPrice" class="col-sm-2 col-form-label">Total Price</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control" id="totalPrice" value="@Model.Order.TotalPrice" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="paymentMethod" class="col-sm-2 col-form-label">Payment Method</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="paymentMethod" value="@Model.Order.PaymentMethod" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="status" class="col-sm-2 col-form-label">Status</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="status" value="@Model.Order.Status" disabled />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-sm-10 offset-sm-2">
+            <a href="/Admin/Order" class="btn btn-secondary">Quay lại</a>
+        </div>
+    </div>
+</div>

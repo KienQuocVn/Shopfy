@@ -15,7 +15,8 @@ namespace Shofy.Pages.Admin
         }
 
         [BindProperty]
-        public User? NewUser { get; set; }
+        public User NewUser { get; set; }
+
 
         public IActionResult OnGet(int UserId)
         {
@@ -29,6 +30,7 @@ namespace Shofy.Pages.Admin
 
         public IActionResult OnPost()
         {
+
             if (NewUser == null)
             {
                 return BadRequest("NewUser cannot be null.");

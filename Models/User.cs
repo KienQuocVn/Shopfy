@@ -37,5 +37,6 @@ namespace Shofy.Models
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }
         public ICollection<Review>? Reviews { get; set; }
+        
     }
 }

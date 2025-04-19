@@ -11,26 +11,44 @@ namespace Shofy.Pages.Admin
         private readonly ShofyContext _context;
         private readonly ILogger<OrderIndexModel> _logger;
 
+        // Number of orders per page
+        public const int PageSize = 10;
+
         public OrderIndexModel(ShofyContext context, ILogger<OrderIndexModel> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        // Danh sách đơn hàng
+        // List of orders to display
         public List<Order> Orders { get; set; } = new();
 
-        // Chuỗi tìm kiếm
+        // Current page number
+        [BindProperty(SupportsGet = true)]
+        public int CurrentPage { get; set; } = 1;
+
+        // Total number of pages
+        public int TotalPages { get; set; }
+
+        // Search keyword
         [BindProperty(SupportsGet = true)]
         public string Search { get; set; } = string.Empty;
 
-        // Xử lý GET và tìm kiếm đơn hàng
+        // Status filter
+        [BindProperty(SupportsGet = true)]
+        public string Status { get; set; }
+
+        // Payment method filter
+        [BindProperty(SupportsGet = true)]
+        public string PaymentMethod { get; set; }
+
         public async Task OnGetAsync()
         {
             var query = _context.Order
                 .Include(o => o.User)
                 .AsQueryable();
 
+            // Apply search filter
             if (!string.IsNullOrWhiteSpace(Search))
             {
                 query = query.Where(o =>
@@ -39,23 +57,61 @@ namespace Shofy.Pages.Admin
                     o.User.FullName.Contains(Search));
             }
 
+            // Apply status filter
+            if (!string.IsNullOrWhiteSpace(Status))
+            {
+                query = query.Where(o => o.Status == Status);
+            }
+
+            // Apply payment method filter
+            if (!string.IsNullOrWhiteSpace(PaymentMethod))
+            {
+                query = query.Where(o => o.PaymentMethod == PaymentMethod);
+            }
+
+            // Sort by OrderID in ascending order (from 1 upwards)
+            query = query.OrderBy(o => o.OrderID);
+
+            // Get total number of orders matching filters
+            var totalOrders = await query.CountAsync();
+
+            // Calculate total pages based on PageSize
+            TotalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+            // Get orders for the current page
             Orders = await query
-                .OrderByDescending(o => o.OrderedDate)
+                .Skip((CurrentPage - 1) * PageSize) // Skip orders from previous pages
+                .Take(PageSize) // Take orders for the current page
                 .ToListAsync();
         }
 
-        // Xử lý xóa đơn hàng
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var order = await _context.Order.FindAsync(id);
-            if (order != null)
+            if (order == null)
             {
-                _context.Order.Remove(order);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation($"Order with ID {id} deleted.");
+                TempData["ErrorMessage"] = "Không tìm thấy đơn hàng.";
+                return RedirectToPage();
             }
 
+            _context.Order.Remove(order);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation($"Đã xóa đơn hàng ID: {id}");
+            TempData["SuccessMessage"] = $"Đơn hàng ID {id} đã được xóa.";
+
             return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostEditAsync(int id)
+        {
+            var order = await _context.Order.FindAsync(id);
+            if (order == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy đơn hàng.";
+                return RedirectToPage();
+            }
+
+            return RedirectToPage("/Admin/EditOrder", new { id });
         }
     }
 }
