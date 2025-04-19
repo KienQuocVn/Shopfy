@@ -1,61 +1,131 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Shofy.Data;
 using Shofy.Models;
-using Microsoft.EntityFrameworkCore;
 using Shofy.Helpers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Shofy.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         private readonly ShofyContext _context;
+        private readonly ILogger<IndexModel> _logger;
 
-        public IndexModel(ILogger<IndexModel> logger, ShofyContext context)
+        public IndexModel(ShofyContext context, ILogger<IndexModel> logger)
         {
-            _logger = logger;
             _context = context;
+            _logger = logger;
         }
 
-        // Property to hold the list of products
-        public IList<Product> Products { get; set; } = new List<Product>();
+        // Danh sách sản phẩm hiển thị
+        public List<Product> Products { get; set; } = new List<Product>();
 
-        public async Task OnGetAsync()
+        // Thông tin sản phẩm cho Modal
+        public Product SelectedProduct { get; set; }
+
+        // Tham số tìm kiếm
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
+        // Tham số lọc giá
+        [BindProperty(SupportsGet = true)]
+        public string PriceRange { get; set; }
+
+        public async Task OnGetAsync(int? productId)
         {
-            // Load products from the database where Status is Active
-            Products = await _context.Product
-                .Where(p => p.Status == "Active")
-                .ToListAsync();
-        }
+            // Truy vấn sản phẩm
+            IQueryable<Product> productQuery = _context.Product;
 
-        public async Task<IActionResult> OnPostAddToCartAsync(int productId)
-        {
-            var product = await _context.Product.FirstOrDefaultAsync(p => p.ProductID == productId);
-            if (product == null) return NotFound();
-
-            var cart = HttpContext.Session.GetCart();
-
-            var existingItem = cart.FirstOrDefault(x => x.ProductID == productId);
-            if (existingItem != null)
+            // Tìm kiếm theo tên sản phẩm
+            if (!string.IsNullOrEmpty(SearchTerm))
             {
-                existingItem.Quantity++;
+                productQuery = productQuery.Where(p => p.Name.Contains(SearchTerm));
+            }
+
+            // Lọc theo khoảng giá
+            if (!string.IsNullOrEmpty(PriceRange))
+            {
+                switch (PriceRange)
+                {
+                    case "0-50":
+                        productQuery = productQuery.Where(p => p.Price >= 0 && p.Price <= 50);
+                        break;
+                    case "50-100":
+                        productQuery = productQuery.Where(p => p.Price > 50 && p.Price <= 100);
+                        break;
+                    case "100-150":
+                        productQuery = productQuery.Where(p => p.Price > 100 && p.Price <= 150);
+                        break;
+                    case "150-200":
+                        productQuery = productQuery.Where(p => p.Price > 150 && p.Price <= 200);
+                        break;
+                    case "200+":
+                        productQuery = productQuery.Where(p => p.Price > 200);
+                        break;
+                }
+            }
+
+            // Lấy danh sách sản phẩm
+            Products = await productQuery.ToListAsync();
+
+            // Nếu có productId, lấy thông tin sản phẩm cho Modal
+            if (productId.HasValue)
+            {
+                SelectedProduct = await _context.Product
+                    .FirstOrDefaultAsync(p => p.ProductID == productId.Value);
+            }
+        }
+
+        public async Task<IActionResult> OnPostAddToCartAsync(int productId, int quantity = 1)
+        {
+            var product = await _context.Product.FirstOrDefaultAsync(p => p.ProductID == productId && p.Status == "Active");
+            if (product == null)
+            {
+                TempData["Error"] = "Product not found.";
+                return RedirectToPage();
+            }
+
+            var userId = HttpContext.Session.GetUserId();
+            if (!userId.HasValue)
+            {
+                TempData["Error"] = "Please log in to add items to cart.";
+                return RedirectToPage("/Accounts/Login");
+            }
+
+            var cart = await _context.Cart
+                .Include(c => c.CartItems)
+                .FirstOrDefaultAsync(c => c.UserID == userId.Value);
+
+            if (cart == null)
+            {
+                cart = new Cart { UserID = userId.Value, CreatedAt = DateTime.Now };
+                _context.Cart.Add(cart);
+                await _context.SaveChangesAsync();
+            }
+
+            var cartItem = cart.CartItems?.FirstOrDefault(ci => ci.ProductID == productId);
+            if (cartItem == null)
+            {
+                cartItem = new CartItem
+                {
+                    CartID = cart.CartID,
+                    ProductID = productId,
+                    Quantity = quantity
+                };
+                _context.CartItem.Add(cartItem);
             }
             else
             {
-                cart.Add(new CartItem
-                {
-                    ProductID = productId,
-                    Quantity = 1,
-                    Product = product
-                });
+                cartItem.Quantity += quantity;
             }
 
-            HttpContext.Session.SetCart(cart);
+            await _context.SaveChangesAsync();
+            TempData["CartSuccess"] = $"{product.Name} is added to cart!";
             return RedirectToPage();
         }
-
     }
 }

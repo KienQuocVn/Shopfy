@@ -1,2 +1,8 @@
 .env
 .fake
+bin/
+obj/
+*.cache
+*.pdb
+*.dll
+*.exe

@@ -19,11 +19,21 @@ namespace Shofy.Models
         public required string Email { get; set; }
 
         public required string Role { get; set; }
+
         public string? FullName { get; set; }
+
         public string? PhoneNumber { get; set; }
+
         public string? Address { get; set; }
+
+        public string? Avatar { get; set; } = "/images/noavt.jpg"; 
+
         public DateTime CreatedDate { get; set; } = DateTime.Now;
-        
+
+        public string? ResetPasswordCode { get; set; }
+
+        public DateTime? ResetPasswordCodeExpiration { get; set; }
+
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }
         public ICollection<Review>? Reviews { get; set; }
