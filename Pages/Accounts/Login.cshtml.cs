@@ -5,10 +5,7 @@ using System.Threading.Tasks;
 using Shofy.Data;
 using Shofy.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Security.Claims;
-using Microsoft.Extensions.Logging;
+using Shofy.Helpers;
 
 namespace Shofy.Pages.Accounts
 {
@@ -41,7 +38,7 @@ namespace Shofy.Pages.Accounts
 
             if (!ModelState.IsValid)
             {
-                _logger.LogWarning("ModelState is invalid");
+                _logger.LogWarning("ModelState is invalid: {Errors}", string.Join(", ", ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)));
                 return Page();
             }
 
@@ -49,26 +46,19 @@ namespace Shofy.Pages.Accounts
 
             if (user == null || !BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
             {
-                _logger.LogWarning("User not found or password incorrect");
+                _logger.LogWarning("User not found or password incorrect for Username: {Username}", Username);
                 ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
                 return Page();
             }
+            
 
-            // Tạo danh sách Claims
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.UserID.ToString()),
-                new Claim(ClaimTypes.Role, user.Role ?? "User")
-            };
-
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-
-            // Đăng nhập cookie
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            _logger.LogInformation("Login successful for Username: {Username}", Username);
+            HttpContext.Session.SetUserId(user.UserID);
+            HttpContext.Session.SetUsername(user.Username);
+            HttpContext.Session.SetUserRole(user.Role);
 
             TempData["SuccessMessage"] = $"Chào mừng {user.FullName}!";
+
             return RedirectToPage("/Index");
         }
     }

@@ -8,7 +8,7 @@
 <div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center">
-            <h2 class="mb-4">Quản lý Đơn hàng</h2>
+            <h2 class="mb-4">Order Management</h2>
         </div>
     </div>
 
@@ -16,52 +16,58 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Danh mục</h5>
+                    <h5 class="card-title">Categories</h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Admin/Index">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/User">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Products">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Admin/Order">Order</a>
-                        </li>
-                        
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Index">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin/User">User</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/Admin/Products">Products</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/Admin/Order">Order</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="col-md-9">
-            <!-- Thanh tìm kiếm và dropdown Category -->
-            <div class="row mb-4 align-items-end">
-                <!-- Ô tìm kiếm nhỏ hơn và nằm bên trái -->
-                <div class="col-md-6">
-                    <form method="get">
-                        <div class="input-group">
-                            <input type="text" name="searchTerm" value="@Model.Search" class="form-control"
-                                placeholder="Tìm theo tên..." />
-                            <button class="btn btn-outline-secondary" type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
+            <!-- Thanh tìm kiếm và bộ lọc -->
+            <form method="get" class="row mb-4 align-items-end">
+                <!-- Tìm kiếm + nút kính lúp -->
+                <div class="col-auto" style="flex: 1;">
+                    <div class="input-group">
+                        <input type="text" name="search" value="@Model.Search" class="form-control"
+                            placeholder=" Search by ID, Status, or User Name..." />
+                        <button class="btn btn-outline-secondary" type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
                 </div>
 
-                <!-- Dropdown Category bên phải -->
-                <div class="col-md-4">
-                    <select class="form-select" name="category" style="height: 35px;" aria-label="Chọn danh mục">
-                        <option selected>-- Category --</option>
-                        <option value="1">#</option>
-                        <option value="2">#</option>
-                        <option value="3">#</option>
+                <!-- Trạng thái -->
+                <div class="col-auto d-flex justify-content-center align-items-center">
+                    <select name="status" class="form-select" style="width: 100px; height: 35px;">
+                        <option value="">--Status--</option>
+                        <option value="Pending" selected="@(Model.Status == "Pending")">Pending</option>
+                        <option value="Processing" selected="@(Model.Status == "Processing")">Processing</option>
+                        <option value="Completed" selected="@(Model.Status == "Completed")">Completed</option>
+                        <option value="Cancelled" selected="@(Model.Status == "Cancelled")">Cancelled</option>
                     </select>
                 </div>
-            </div>
+
+                <!-- Thanh toán -->
+                @* <div class="col-auto">
+                    <select name="paymentMethod" class="form-select" style="width: 150px;">
+                        <option value="">--PaymentMethod--</option>
+                        <option value="CVC" selected="@(Model.PaymentMethod == "CVC")">CVC</option>
+                        <option value="Online" selected="@(Model.PaymentMethod == "Online")">Online</option>
+                    </select>
+                </div> *@
+
+                <!-- Nút lọc -->
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-filter"></i> Filter
+                    </button>
+                </div>
+            </form>
 
             <!-- Bảng đơn hàng -->
             <div class="table-responsive">
@@ -69,14 +75,13 @@
                     <thead class="table-light text-center">
                         <tr>
                             <th>ID</th>
-                            <th>UserID</th>
-                            <th>Total</th>
-                            <th>Payment Method</th>
+                            <th>User Name</th>
+                            <th>Price</th>
+                            <th>PaymentMethod</th>
                             <th>Status</th>
-                            <th>Order Date</th>
+                            <th>OrderedDate</th>
                             <th>Actions</th>
                         </tr>
-
                     </thead>
                     <tbody>
                         @if (Model.Orders.Count == 0)
@@ -104,18 +109,12 @@
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
                                                 <li>
-                                                    <a class="dropdown-item" asp-page="OrderDetails"
-                                                        asp-route-id="@order.OrderID">Chi tiết</a>
+                                                    <a class="dropdown-item" asp-page="/Admin/EditOrder"
+                                                        asp-route-id="@order.OrderID">Edit</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" asp-page="OrderEdit"
-                                                        asp-route-id="@order.OrderID">Sửa</a>
-                                                </li>
-                                                <li>
-                                                    <form method="post" asp-page-handler="Delete" asp-route-id="@order.OrderID"
-                                                        onsubmit="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?');">
-                                                        <button type="submit" class="dropdown-item text-danger">Xóa</button>
-                                                    </form>
+                                                    <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
+                                                        asp-route-id="@order.OrderID">Review</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -126,6 +125,33 @@
                     </tbody>
                 </table>
             </div>
+
+            <!-- Pagination -->
+            <div class="d-flex justify-content-center">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-page="/Admin/Order" asp-route-currentPage="1">First</a>
+                        </li>
+                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                            <a class="page-link" asp-page="/Admin/Order"
+                                asp-route-currentPage="@(Model.CurrentPage - 1)">Previous</a>
+                        </li>
+                        <!-- Current Page -->
+                        <li class="page-item disabled">
+                            <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
+                        </li>
+                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link" asp-page="/Admin/Order"
+                                asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                            <a class="page-link" asp-page="/Admin/Order"
+                                asp-route-currentPage="@Model.TotalPages">Last</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
@@ -135,4 +161,4 @@
 
 <!-- Bootstrap JS (đảm bảo có trong _Layout.cshtml nếu chưa) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

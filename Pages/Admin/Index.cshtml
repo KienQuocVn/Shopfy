@@ -11,7 +11,7 @@
         <div class="col-md-3">
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">Danh mục</h5>
+                    <h5 class="card-title">Categories</h5>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link active" href="/Admin/Index">Dashboard</a>
@@ -25,7 +25,6 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="/Admin/Order">Order</a>
                         </li>
-                        
                     </ul>
                 </div>
             </div>
@@ -38,7 +37,7 @@
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Thống kê Đơn hàng</h5>
+                            <h5 class="card-title">Order Statistics</h5>
                             <canvas id="orderChart"></canvas>
                         </div>
                     </div>
@@ -48,7 +47,7 @@
                 <div class="col-md-6">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h5 class="card-title">Thống kê Người dùng</h5>
+                            <h5 class="card-title">User Statistics</h5>
                             <canvas id="userChart"></canvas>
                         </div>
                     </div>
@@ -61,7 +60,7 @@
 <!-- Bootstrap Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
 
-<!-- Script Chart.js -->
+<!-- Script Chart.js(java) -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Biểu đồ Đơn hàng
@@ -69,10 +68,10 @@
     var orderChart = new Chart(ctx1, {
         type: 'bar',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May'], // Tên các tháng
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Tên các tháng
             datasets: [{
                 label: 'Total Orders',
-                data: [12, 19, 3, 5, 2], // Dữ liệu đơn hàng theo tháng (thay đổi theo dữ liệu thực tế)
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.OrderCounts)), // Dữ liệu đơn hàng theo tháng
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1
@@ -92,10 +91,10 @@
     var userChart = new Chart(ctx2, {
         type: 'line',
         data: {
-            labels: ['January', 'February', 'March', 'April', 'May'], // Tên các tháng
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], // Tên các tháng
             datasets: [{
                 label: 'Total Users',
-                data: [50, 75, 120, 150, 200], // Dữ liệu người dùng theo tháng (thay đổi theo dữ liệu thực tế)
+                data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.UserCounts)), // Dữ liệu người dùng theo tháng
                 fill: false,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 tension: 0.1

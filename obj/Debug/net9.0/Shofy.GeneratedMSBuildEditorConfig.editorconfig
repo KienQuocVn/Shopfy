@@ -72,6 +72,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/DEV/Vitamin_code/Shofy/Pages/Admin/ReviewOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmV2aWV3T3JkZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/DEV/Vitamin_code/Shofy/Pages/Admin/ReviewProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmV2aWV3UHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -114,6 +118,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/DEV/Vitamin_code/Shofy/Pages/Client/ShopingCart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFNob3BpbmdDYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/DEV/Vitamin_code/Shofy/Pages/Client/ThankYou.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2xpZW50XFRoYW5rWW91LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/DEV/Vitamin_code/Shofy/Pages/Error.cshtml]
