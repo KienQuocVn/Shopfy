@@ -3,36 +3,41 @@
 @{
     ViewData["Title"] = "Login";
 }
+@{
+    var successMessage = TempData["SuccessMessage"] as string;
+}
 
 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
     <div class="card col-lg-4 mx-auto">
         <div class="card-body px-5 py-5">
             <h3 class="card-title text-left mb-3 text-dark">Login</h3>
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success mt-2 text-center">@successMessage</div>
+            }
             @if (!string.IsNullOrEmpty(Model.ErrorMessage))
             {
                 <div class="alert alert-danger mt-2 text-center">@Model.ErrorMessage</div>
             }
             <form method="post">
+                @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label asp-for="Username" class="form-label text-dark"></label>
+                    <label asp-for="Username" class="form-label text-dark">Username</label>
                     <input type="text" class="form-control" asp-for="Username" required />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="form-label text-dark"></label>
+                    <label asp-for="Password" class="form-label text-dark">Password</label>
                     <input type="password" class="form-control" asp-for="Password" required />
                     <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                 <div class="form-group">
+                    <a href="/Accounts/ForgotPassword" class="text-dark">Forgot Password?</a>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
                 </div>
-                <div class="d-flex">
-                    <button class="btn btn-facebook mr-2 col"> Facebook
-                    </button>
-                    <button class="btn btn-google col"> Google plus
-                    </button>
-                </div>
-                <p class="text-center text-dark">Don't have an Account? <a href="/Accounts/Register">Sign Up</a></p>
+                <p class="text-center text-dark mt-3">Don't have an Account? <a href="/Accounts/Register">Sign Up</a></p>
             </form>
         </div>
     </div>
