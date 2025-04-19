@@ -1893,6 +1893,7 @@ input.num-product::-webkit-inner-spin-button {
 .table-shopping-cart .column-2 {
   width: 220px;
   font-size: 15px;
+  text-align: center;
 }
 
 .table-shopping-cart .column-3 {
@@ -1902,7 +1903,7 @@ input.num-product::-webkit-inner-spin-button {
 
 .table-shopping-cart .column-4 {
   width: 145px;
-  text-align: right;
+  text-align: center;
 }
 
 .table-shopping-cart .column-5 {
@@ -3294,3 +3295,4 @@ input.num-product::-webkit-inner-spin-button {
   }
 
 }
+

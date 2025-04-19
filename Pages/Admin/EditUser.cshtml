@@ -26,7 +26,7 @@
                             <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin"
                                  class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4>@Model.User.Username</h4>
+                                <h4>@Model.NewUser.Username</h4>
                                 <p class="text-secondary mb-1">Customer</p>
                                 <p class="text-muted font-size-sm">Ho Chi Minh City</p>
                             </div>
@@ -41,31 +41,31 @@
                         <h4 class="mb-4">Edit User Information</h4>
                         <form method="post">
                             <!-- Hidden UserID để xử lý khi Submit -->
-                            <input type="hidden" asp-for="User.UserID" />
+                            <input type="hidden" asp-for="NewUser.UserID" />
 
                             <div class="mb-3">
                                 <label class="form-label">Username</label>
-                                <input asp-for="User.Username" class="form-control" />
+                                <input asp-for="NewUser.Username" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input asp-for="User.Email" class="form-control" />
+                                <input asp-for="NewUser.Email" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Role</label>
-                                <input asp-for="User.Role" class="form-control" />
+                                <input asp-for="NewUser.Role" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Full Name</label>
-                                <input asp-for="User.FullName" class="form-control" />
+                                <input asp-for="NewUser.FullName" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Phone Number</label>
-                                <input asp-for="User.PhoneNumber" class="form-control" />
+                                <input asp-for="NewUser.PhoneNumber" class="form-control" />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Address</label>
-                                <input asp-for="User.Address" class="form-control" />
+                                <input asp-for="NewUser.Address" class="form-control" />
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save Changes</button>
