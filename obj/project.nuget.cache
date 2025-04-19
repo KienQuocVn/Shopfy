@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xdZ/mRDap+E=",
+  "dgSpecHash": "ZRJ9GNUt6ec=",
   "success": true,
-  "projectFilePath": "D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\Shofy.csproj",
+  "projectFilePath": "D:\\VTC\\HK1\\Project_1\\Code\\Shofy\\Shofy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ACER\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
@@ -240,12 +240,5 @@
     "C:\\Users\\ACER\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\ACER\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\VTC\\HK1\\Project_1\\Code\\SHofy\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

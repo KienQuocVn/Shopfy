@@ -7,52 +7,53 @@
     var successMessage = TempData["SuccessMessage"] as string;
 }
 
-@if (!string.IsNullOrEmpty(successMessage))
-{
-    <div class="alert alert-success">@successMessage</div>
-}
-
-
 <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
     <div class="card col-lg-4 mx-auto">
         <div class="card-body px-5 py-5">
             <h3 class="card-title text-left mb-3 text-dark">Register</h3>
-            <form method="post">
-                @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ContainsKey(""))
+            @if (!string.IsNullOrEmpty(successMessage))
+            {
+                <div class="alert alert-success mt-2 text-center">@successMessage</div>
+            }
+            @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ContainsKey(""))
+            {
+                foreach (var modelError in ViewData.ModelState[""].Errors)
                 {
-                    foreach (var modelError in ViewData.ModelState[""].Errors)
-                    {
-                        <div class="alert alert-danger">@modelError.ErrorMessage</div>
-                    }
+                    <div class="alert alert-danger mt-2 text-center">@modelError.ErrorMessage</div>
                 }
-
+            }
+            <form method="post">
                 @Html.AntiForgeryToken()
                 <div class="form-group">
-                    <label asp-for="Username" class="form-label text-dark"></label>
+                    <label asp-for="Username" class="form-label text-dark">Username</label>
                     <input type="text" class="form-control" asp-for="Username" required />
                     <span asp-validation-for="Username" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="FullName" class="form-label text-dark"></label>
+                    <label asp-for="FullName" class="form-label text-dark">Full Name</label>
                     <input type="text" class="form-control" asp-for="FullName" required />
                     <span asp-validation-for="FullName" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Email" class="form-label text-dark"></label>
+                    <label asp-for="Email" class="form-label text-dark">Email</label>
                     <input type="email" class="form-control" asp-for="Email" required />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="form-label text-dark"></label>
+                    <label asp-for="Password" class="form-label text-dark">Password</label>
                     <input type="password" class="form-control" asp-for="Password" required />
                     <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword" class="form-label text-dark">Confirm Password</label>
+                    <input type="password" class="form-control" asp-for="ConfirmPassword" required />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary btn-block enter-btn">Đăng ký</button>
                 </div>
-                <p class="text-center text-dark">Already have an Account? <a href="/Acounts/Login">Sign In</a></p>
+                <p class="text-center text-dark mt-3">Already have an Account? <a href="/Accounts/Login">Sign In</a></p>
             </form>
-
         </div>
     </div>
 </div>
