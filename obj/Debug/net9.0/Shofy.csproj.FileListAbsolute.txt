@@ -287,7 +287,6 @@ C:\GitClone\Shofy\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Cachin
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\Pages\Shared\_Layout.cshtml.rz.scp.css
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\bundle\Shofy.styles.css
 C:\GitClone\Shofy\obj\Debug\net9.0\scopedcss\projectbundle\Shofy.bundle.scp.css
-C:\GitClone\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-uxuxxjgol4.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\z1asss0rk8-hm6kq9kljj.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\7kfwq5fre5-b9sayid5wm.gz
 C:\GitClone\Shofy\obj\Debug\net9.0\compressed\yp5lv2kaht-v1b7zshdq5.gz
@@ -449,3 +448,4 @@ C:\GitClone\Shofy\obj\Debug\net9.0\refint\Shofy.dll
 C:\GitClone\Shofy\obj\Debug\net9.0\Shofy.pdb
 C:\GitClone\Shofy\obj\Debug\net9.0\Shofy.genruntimeconfig.cache
 C:\GitClone\Shofy\obj\Debug\net9.0\ref\Shofy.dll
+C:\GitClone\Shofy\obj\Debug\net9.0\compressed\0yyzeu5jk6-qsd4yvyw82.gz

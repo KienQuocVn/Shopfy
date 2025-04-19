@@ -302,8 +302,7 @@
                 });
             });
 
-            // Xử lý tăng/giảm số lượng
-            $('.btn-num-product-up').on('click', function () {
+            $('.btn-num-product-up').off('click').on('click', function () {
                 var input = $(this).siblings('.num-product');
                 var max = parseInt(input.attr('max'));
                 var current = parseInt(input.val());
@@ -311,7 +310,7 @@
                     input.val(current + 1);
                 }
             });
-            $('.btn-num-product-down').on('click', function () {
+            $('.btn-num-product-down').off('click').on('click', function () {
                 var input = $(this).siblings('.num-product');
                 var current = parseInt(input.val());
                 if (current > 1) {

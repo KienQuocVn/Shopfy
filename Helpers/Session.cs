@@ -55,9 +55,54 @@ namespace Shofy.Helpers
                 .ToList();
         }
 
-        public static void ClearCart(this ISession session)
+        public static void SetCart(this ISession session, ShofyContext context, List<CartItem> cartItems)
         {
-            session.Remove("Cart");
+            var userId = session.GetUserId();
+            if (!userId.HasValue)
+            {
+                return;
+            }
+
+            var cart = context.Cart
+                .Include(c => c.CartItems)
+                .FirstOrDefault(c => c.UserID == userId.Value);
+
+            if (cart == null)
+            {
+                cart = new Cart { UserID = userId.Value, CreatedAt = DateTime.Now };
+                context.Cart.Add(cart);
+                context.SaveChanges();
+            }
+
+            var existingItems = context.CartItem.Where(ci => ci.CartID == cart.CartID).ToList();
+            context.CartItem.RemoveRange(existingItems);
+
+            foreach (var item in cartItems)
+            {
+                item.CartID = cart.CartID;
+                context.CartItem.Add(item);
+            }
+
+            context.SaveChanges();
+        }
+
+        public static void ClearCart(this ISession session, ShofyContext context)
+        {
+            var userId = session.GetUserId();
+            if (!userId.HasValue)
+            {
+                return;
+            }
+
+            var cart = context.Cart
+                .Include(c => c.CartItems)
+                .FirstOrDefault(c => c.UserID == userId.Value);
+
+            if (cart != null)
+            {
+                context.CartItem.RemoveRange(cart.CartItems);
+                context.SaveChanges();
+            }
         }
 
         public static void ClearUser(this ISession session)

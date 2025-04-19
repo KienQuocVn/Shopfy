@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "F1ntcYwOX4v4zokwPRpIscz1BEnxKPK6XYXjH5l+AOQ=",
+  "Hash": "HRtAK0Obcg6XaTmp2urm5pMaf4xK4FEhE4sa7vf3/Gw=",
   "Source": "Shofy",
   "BasePath": "_content/Shofy",
   "Mode": "Default",
@@ -101,12 +101,12 @@
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\vendor\\bootstrap\\js\\popper.min.js"
     },
     {
-      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-uxuxxjgol4.gz",
+      "Identity": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-qsd4yvyw82.gz",
       "SourceId": "Shofy",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/Shofy",
-      "RelativePath": "css/main#[.{fingerprint=uxuxxjgol4}]?.css.gz",
+      "RelativePath": "css/main#[.{fingerprint=qsd4yvyw82}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -115,8 +115,8 @@
       "RelatedAsset": "C:\\GitClone\\Shofy\\wwwroot\\css\\main.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "7b9ictsig9",
-      "Integrity": "o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik=",
+      "Fingerprint": "537tg0uyu6",
+      "Integrity": "ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\GitClone\\Shofy\\wwwroot\\css\\main.css"
@@ -3160,8 +3160,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "uxuxxjgol4",
-      "Integrity": "HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs=",
+      "Fingerprint": "qsd4yvyw82",
+      "Integrity": "JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\main.css"
@@ -10184,7 +10184,7 @@
   "Endpoints": [
     {
       "Route": "css/main.css",
-      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-uxuxxjgol4.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-qsd4yvyw82.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10203,11 +10203,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik=\""
+          "Value": "\"ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10227,13 +10227,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs=\""
+          "Value": "W/\"JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs="
+          "Value": "sha256-JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I="
         }
       ]
     },
@@ -10248,7 +10248,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "64366"
+          "Value": "64394"
         },
         {
           "Name": "Content-Type",
@@ -10256,11 +10256,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs=\""
+          "Value": "\"JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10270,13 +10270,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs="
+          "Value": "sha256-JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I="
         }
       ]
     },
     {
       "Route": "css/main.css.gz",
-      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-uxuxxjgol4.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-qsd4yvyw82.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10293,11 +10293,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik=\""
+          "Value": "\"ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10315,13 +10315,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik="
+          "Value": "sha256-ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow="
         }
       ]
     },
     {
-      "Route": "css/main.uxuxxjgol4.css",
-      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-uxuxxjgol4.gz",
+      "Route": "css/main.qsd4yvyw82.css",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-qsd4yvyw82.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -10340,11 +10340,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik=\""
+          "Value": "\"ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10364,13 +10364,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs=\""
+          "Value": "W/\"JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "uxuxxjgol4"
+          "Value": "qsd4yvyw82"
         },
         {
           "Name": "label",
@@ -10378,12 +10378,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs="
+          "Value": "sha256-JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I="
         }
       ]
     },
     {
-      "Route": "css/main.uxuxxjgol4.css",
+      "Route": "css/main.qsd4yvyw82.css",
       "AssetFile": "C:\\GitClone\\Shofy\\wwwroot\\css\\main.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -10393,7 +10393,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "64366"
+          "Value": "64394"
         },
         {
           "Name": "Content-Type",
@@ -10401,11 +10401,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs=\""
+          "Value": "\"JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10415,7 +10415,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "uxuxxjgol4"
+          "Value": "qsd4yvyw82"
         },
         {
           "Name": "label",
@@ -10423,13 +10423,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-HvhDB6fq2KnqTs/HViiB5+rVNVM3rHtJ0DdVDGW0tFs="
+          "Value": "sha256-JoPzB+4WHcPgqPLb8EXZeqm4RTLg3RXAJywYD7UNT0I="
         }
       ]
     },
     {
-      "Route": "css/main.uxuxxjgol4.css.gz",
-      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-uxuxxjgol4.gz",
+      "Route": "css/main.qsd4yvyw82.css.gz",
+      "AssetFile": "C:\\GitClone\\Shofy\\obj\\Debug\\net9.0\\compressed\\0yyzeu5jk6-qsd4yvyw82.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -10446,11 +10446,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik=\""
+          "Value": "\"ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 18 Apr 2025 06:52:59 GMT"
+          "Value": "Sat, 19 Apr 2025 02:42:00 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -10468,7 +10468,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "uxuxxjgol4"
+          "Value": "qsd4yvyw82"
         },
         {
           "Name": "label",
@@ -10476,7 +10476,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-o1/P0eDu0eEMJQB35SGw/M0cg+HDlPbSu9+Hx5TY+Ik="
+          "Value": "sha256-ITn9JY3cNUtXPNtRykQ2Gt+NPFIlig3nSVwNVD1YTow="
         }
       ]
     },

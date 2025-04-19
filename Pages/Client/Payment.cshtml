@@ -58,7 +58,6 @@
     }
     .payment-methods label {
         display: flex;
-        flex-wrap: wrap;
         align-items: center;
         gap: 5px;
     }
@@ -91,25 +90,64 @@
     }
 </style>
 
-    <!-- breadcrumb -->
-	<div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
+            Home
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="/Client/ShopingCart" class="stext-109 cl8 hov-cl1 trans-04">
+            Shopping Cart
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Checkout
+        </span>
+    </div>
+</div>
 
-			<span class="stext-109 cl4">
-				Shoping Cart
-                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</span>
-
-            <span class="stext-109 cl4">
-				Checkout
-			</span>
-		</div>
-	</div>
-    
+@if (!HttpContext.Session.GetInt32("UserID").HasValue)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Please Log In</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    You need to <a href="/Accounts/Login">log in</a> to proceed with payment.
+                </p>
+            </div>
+        </div>
+    </div>
+}
+else if (!Model.CartItems.Any())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Your Cart is Empty</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    Browse our <a href="/Client/Product">products</a> to add items to your cart.
+                </p>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.InvalidCartItems)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Invalid Cart Items</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    Some items in your cart are no longer available. Please return to <a href="/Client/ShopingCart">your cart</a> to review and update.
+                </p>
+            </div>
+        </div>
+    </div>
+}
+else
+{
     <div class="checkout-container">
         <!-- Checkout Form -->
         <form method="post">
@@ -117,19 +155,19 @@
                 <h2>Checkout</h2>
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="Email" placeholder="Enter your email" required>
+                    <input type="email" id="email" name="Email" value="@Model.Email" placeholder="Enter your email" required>
                 </div>
                 <div class="form-group">
                     <label for="name">Full Name</label>
-                    <input type="text" id="name" name="FullName" placeholder="Enter your full name" required>
+                    <input type="text" id="name" name="FullName" value="@Model.FullName" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
                     <label for="address">Shipping Address</label>
-                    <input type="text" id="address" name="Address" placeholder="123 Main St, City etc..." required>
+                    <input type="text" id="address" name="Address" value="@Model.Address" placeholder="123 Main St, City etc..." required>
                 </div>
                 <div class="form-group">
-                    <label for="city">Phone Number</label>
-                    <input type="text" id="phonenumber" name="PhoneNumber" placeholder="090..." required>
+                    <label for="phonenumber">Phone Number</label>
+                    <input type="text" id="phonenumber" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="090..." required>
                 </div>
                 <div class="form-group">
                     <label>Payment Method</label>
@@ -163,12 +201,37 @@
                 @foreach (var item in Model.CartItems)
                 {
                     <li>
-                        @(item.Product != null ? $"{item.Product.Name} (x{item.Quantity}) <span>{(item.Product.Price * item.Quantity).ToString("C")}</span>" : "Product details unavailable")
+                        @($"{item.Product?.Name ?? "Unknown Product"} (x{item.Quantity})")
+                        <span>@((item.Product?.Price * item.Quantity)?.ToString("C") ?? "$0.00")</span>
                     </li>
                 }
                 <li>
-                    <strong>Total</strong> <span><strong>@Model.TotalPrice.ToString("C")</strong></span>
+                    <strong>Total</strong>
+                    <span><strong>@Model.TotalPrice.ToString("C")</strong></span>
                 </li>
             </ul>
         </div>
     </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Show/hide card details based on payment method
+            $('input[name="PaymentMethod"]').on('change', function () {
+                if ($(this).val() === 'card') {
+                    $('#card-details').show();
+                } else {
+                    $('#card-details').hide();
+                }
+            });
+
+            // Trigger initial state
+            if ($('input[name="PaymentMethod"]:checked').val() === 'card') {
+                $('#card-details').show();
+            } else {
+                $('#card-details').hide();
+            }
+        });
+    </script>
+}
