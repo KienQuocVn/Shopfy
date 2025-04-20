@@ -1,0 +1,58 @@
+@page
+@model Shofy.Pages.Admin.EditOrderModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Edit Order";
+}
+
+<div class="container-fluid">
+    <h2 class="mb-4">Chỉnh sửa Đơn hàng</h2>
+
+    <form method="post">
+        <div class="row mb-3">
+            <label for="orderId" class="col-sm-2 col-form-label">Order ID</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="orderId" value="@Model.Order.OrderID" disabled />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="user" class="col-sm-2 col-form-label">User</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="user" value="@Model.Order.User?.FullName" disabled />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="totalPrice" class="col-sm-2 col-form-label">Total Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="totalPrice" name="TotalPrice" value="@Model.Order.TotalPrice" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="paymentMethod" class="col-sm-2 col-form-label">Payment Method</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="paymentMethod" name="PaymentMethod" value="@Model.Order.PaymentMethod" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="status" class="col-sm-2 col-form-label">Status</label>
+            <div class="col-sm-10">
+                <select class="form-select" id="status" name="Status">
+                    <option value="Processing" selected=@(Model.Order.Status == "Processing" ? "selected" : "")>Processing</option>
+                    <option value="Pending" selected=@(Model.Order.Status == "Pending" ? "selected" : "")>Pending</option>
+                    <option value="Completed" selected=@(Model.Order.Status == "Completed" ? "selected" : "")>Completed</option>
+                    <option value="Canceled" selected=@(Model.Order.Status == "Canceled" ? "selected" : "")>Canceled</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+            </div>
+        </div>
+    </form>
+</div>

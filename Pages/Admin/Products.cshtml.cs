@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Shofy.Data;
 using Shofy.Models;
-using System.Linq;
 
 namespace Shofy.Pages.Admin
 {
@@ -18,59 +17,74 @@ namespace Shofy.Pages.Admin
             _logger = logger;
         }
 
-        // Danh sách sản phẩm
         public List<Product> Products { get; set; } = new();
-
-        // Chuỗi tìm kiếm
         public string SearchTerm { get; set; } = string.Empty;
-
-        // Số trang hiện tại
+        public string PriceRange { get; set; } = string.Empty;
         public int CurrentPage { get; set; } = 1;
-
-        // Tổng số trang
         public int TotalPages { get; set; }
 
-        // Kích thước trang
         private const int PageSize = 10;
 
-        // Phương thức xử lý GET và tìm kiếm sản phẩm với phân trang
-        public async Task OnGetAsync(string searchTerm, int pageNumber = 1)
+        [TempData]
+        public string? StatusMessage { get; set; }
+
+        public async Task OnGetAsync(string? searchTerm, string? priceRange, int pageNumber = 1)
         {
-            // Lưu giá trị tìm kiếm vào biến SearchTerm
-            SearchTerm = searchTerm;
+            SearchTerm = searchTerm ?? string.Empty;
+            PriceRange = priceRange ?? string.Empty;
             CurrentPage = pageNumber;
 
-            // Lọc danh sách sản phẩm theo từ khóa tìm kiếm (nếu có)
             var query = _context.Product.AsQueryable();
 
-            if (!string.IsNullOrEmpty(searchTerm))
+            // Lọc theo từ khóa
+            if (!string.IsNullOrWhiteSpace(SearchTerm))
             {
-                query = query.Where(p => p.Name.Contains(searchTerm));
+                query = query.Where(p => p.Name.Contains(SearchTerm));
             }
 
-            // Tính toán tổng số trang
-            var totalProducts = await query.CountAsync();
-            TotalPages = (int)Math.Ceiling(totalProducts / (double)PageSize);
+            // Lọc theo khoảng giá
+            query = PriceRange switch
+            {
+                "under100" => query.Where(p => p.Price < 100),
+                "100to500" => query.Where(p => p.Price >= 100 && p.Price <= 500),
+                "above500" => query.Where(p => p.Price > 500),
+                _ => query
+            };
 
-            // Lấy danh sách sản phẩm cho trang hiện tại
+            var totalCount = await query.CountAsync();
+            TotalPages = (int)Math.Ceiling(totalCount / (double)PageSize);
+
+            // Sắp xếp theo điều kiện
+            if (!string.IsNullOrWhiteSpace(SearchTerm) || !string.IsNullOrWhiteSpace(PriceRange))
+            {
+                query = query.OrderByDescending(p => p.Price);
+            }
+            else
+            {
+                query = query.OrderBy(p => p.ProductID);
+            }
+
             Products = await query
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToListAsync();
         }
 
-        // Xóa sản phẩm
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var product = await _context.Product.FindAsync(id);
-            if (product != null)
+            if (product == null)
             {
-                _context.Product.Remove(product);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation($"Product with ID {id} has been deleted.");
+                StatusMessage = "Không tìm thấy sản phẩm cần xóa.";
+                return RedirectToPage();
             }
 
-            return RedirectToPage();
+            _context.Product.Remove(product);
+            await _context.SaveChangesAsync();
+
+            _logger.LogInformation($"Đã xóa sản phẩm với ID: {id}");
+            StatusMessage = $"Đã xóa sản phẩm: {product.Name}";
+            return RedirectToPage(new { pageNumber = CurrentPage });
         }
     }
 }

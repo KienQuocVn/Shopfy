@@ -2,15 +2,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;
 using Shofy.Models;
-using Shofy.Data; // namespace chứa ShofyContext
+using Shofy.Data;
 using System.ComponentModel.DataAnnotations;
 
 namespace Shofy.Pages.Admin
 {
-    public class CreateProductModel(ShofyContext context, IWebHostEnvironment environment) : PageModel
+    public class CreateProductModel : PageModel
     {
-        private readonly ShofyContext _context = context;
-        private readonly IWebHostEnvironment _environment = environment;
+        private readonly ShofyContext _context;
+        private readonly IWebHostEnvironment _environment;
+
+        public CreateProductModel(ShofyContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            _environment = environment;
+        }
 
         [BindProperty, Required, StringLength(100)]
         public string Name { get; set; } = string.Empty;
@@ -44,7 +50,13 @@ namespace Shofy.Pages.Admin
             if (UploadImage != null)
             {
                 var fileName = Path.GetFileName(UploadImage.FileName);
-                var filePath = Path.Combine(_environment.WebRootPath, "images", fileName);
+                var uploadsFolder = Path.Combine(_environment.WebRootPath, "images");
+
+                // Tạo thư mục nếu chưa tồn tại
+                if (!Directory.Exists(uploadsFolder))
+                    Directory.CreateDirectory(uploadsFolder);
+
+                var filePath = Path.Combine(uploadsFolder, fileName);
 
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
@@ -60,7 +72,7 @@ namespace Shofy.Pages.Admin
                 Description = Description,
                 Price = Price,
                 StockQuantity = StockQuantity,
-                ImagePath = imageFileName,
+                ImagePath = "/images/" + imageFileName, 
                 Status = Status,
                 CreatedDate = DateTime.Now
             };

@@ -5,9 +5,11 @@ using Shofy.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shofy.Pages.Admin
 {
+    //[Authorize(Roles = "Admin")]
     public class DashboardModel : PageModel
     {
         private readonly ShofyContext _context;
@@ -27,29 +29,55 @@ namespace Shofy.Pages.Admin
         // Get method to fetch and set data for charts
         public async Task<IActionResult> OnGetAsync()
         {
-            // Simulate or fetch the number of orders per month
+            // Fetch the number of orders per month
             OrderCounts = await GetOrderCountsAsync();
 
-            // Simulate or fetch the number of users per month
+            // Fetch the number of users per month
             UserCounts = await GetUserCountsAsync();
 
             return Page();
         }
 
-        // Function to simulate fetching order counts for each month
-        private Task<List<int>> GetOrderCountsAsync()
+        // Fetching order counts for each month from the database
+        private async Task<List<int>> GetOrderCountsAsync()
         {
-            // Example data representing order counts for the months
-            // Replace this with actual data fetch from database if necessary
-            return Task.FromResult(new List<int> { 12, 19, 3, 5, 2 });
+            var currentYear = DateTime.Now.Year;
+
+            // Grouping orders by month of the current year
+            var orderCounts = await _context.Order
+                .Where(o => o.OrderedDate.Year == currentYear)
+                .GroupBy(o => o.OrderedDate.Month)
+                .OrderBy(g => g.Key)
+                .Select(g => new { Month = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            // Initialize the list with 0 for all 12 months
+            var monthlyCounts = Enumerable.Range(1, 12)
+                                   .Select(month => orderCounts.FirstOrDefault(x => x.Month == month)?.Count ?? 0)
+                                   .ToList();
+
+            return monthlyCounts;
         }
 
-        // Function to simulate fetching user counts for each month
-        private Task<List<int>> GetUserCountsAsync()
+        // Fetching user counts for each month from the database
+        private async Task<List<int>> GetUserCountsAsync()
         {
-            // Example data representing user counts for the months
-            // Replace this with actual data fetch from database if necessary
-            return Task.FromResult(new List<int> { 50, 75, 120, 150, 200 });
+            var currentYear = DateTime.Now.Year;
+
+            // Grouping users by month of account creation for the current year
+            var userCounts = await _context.User
+                .Where(u => u.CreatedDate.Year == currentYear)
+                .GroupBy(u => u.CreatedDate.Month)
+                .OrderBy(g => g.Key)
+                .Select(g => new { Month = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            // Initialize the list with 0 for all 12 months
+            var monthlyUserCounts = Enumerable.Range(1, 12)
+                                      .Select(month => userCounts.FirstOrDefault(x => x.Month == month)?.Count ?? 0)
+                                      .ToList();
+
+            return monthlyUserCounts;
         }
     }
 }
