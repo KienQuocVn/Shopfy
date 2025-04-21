@@ -28,8 +28,15 @@ namespace Shofy.Pages.Admin
         [TempData]
         public string? StatusMessage { get; set; }
 
-        public async Task OnGetAsync(string? searchTerm, string? priceRange, int pageNumber = 1)
+        // Thêm phần kiểm tra quyền admin
+        public async Task<IActionResult> OnGetAsync(string? searchTerm, string? priceRange, int pageNumber = 1)
         {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error"); // Nếu không phải Admin, chuyển hướng đến trang AccessDenied
+            }
+
             SearchTerm = searchTerm ?? string.Empty;
             PriceRange = priceRange ?? string.Empty;
             CurrentPage = pageNumber;
@@ -68,8 +75,11 @@ namespace Shofy.Pages.Admin
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToListAsync();
+
+            return Page();
         }
 
+        // Xử lý xóa sản phẩm
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var product = await _context.Product.FindAsync(id);

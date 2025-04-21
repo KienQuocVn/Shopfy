@@ -37,6 +37,7 @@ namespace Shofy.Helpers
         public static void SetUserRole(this ISession session, string role)
         {
             session.SetString("UserRole", role);
+            
         }
 
         public static List<CartItem> GetCart(this ISession session, ShofyContext context)
