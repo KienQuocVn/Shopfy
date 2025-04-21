@@ -24,9 +24,22 @@ namespace Shofy.Pages.Client
         public Product Product { get; set; } = null!;
         public IList<Review> Reviews { get; set; } = new List<Review>();
         public IList<Product> RelatedProducts { get; set; } = new List<Product>();
+        public List<int> WishlistProductIds { get; set; } = new List<int>();
 
         public async Task<IActionResult> OnGetAsync(int? productId)
         {
+
+
+
+            var userId = HttpContext.Session.GetUserId();
+            if (userId.HasValue)
+            {
+                var user = await _context.User.FirstOrDefaultAsync(u => u.UserID == userId.Value);
+                if (user != null)
+                {
+                    WishlistProductIds = WishlistHelper.GetWishlistProductIds(user.Wishlist ?? "");
+                }
+            }
             if (!productId.HasValue)
             {
                 TempData["Error"] = "Product not found.";
@@ -52,6 +65,8 @@ namespace Shofy.Pages.Client
                 .ToListAsync();
 
             return Page();
+
+
         }
 
         public async Task<IActionResult> OnPostAddToCartAsync(int productId, int quantity)
@@ -145,6 +160,39 @@ namespace Shofy.Pages.Client
             await _context.SaveChangesAsync();
 
             TempData["Success"] = "Review submitted successfully!";
+            return RedirectToPage();
+        }
+
+        public async Task<IActionResult> OnPostToggleWishlistAsync(int productId)
+        {
+            var userId = HttpContext.Session.GetUserId();
+            if (!userId.HasValue)
+            {
+                TempData["Error"] = "Please log in to add items to wishlist.";
+                return RedirectToPage("/Accounts/Login");
+            }
+
+            var user = await _context.User.FirstOrDefaultAsync(u => u.UserID == userId.Value);
+            if (user == null)
+            {
+                TempData["Error"] = "User not found.";
+                return RedirectToPage();
+            }
+
+            var wishlist = WishlistHelper.GetWishlistProductIds(user.Wishlist);
+            if (wishlist.Contains(productId))
+            {
+                // Xóa khỏi Wishlist
+                await WishlistHelper.RemoveFromWishlistAsync(_context, userId.Value, productId);
+                TempData["Success"] = "Product removed from wishlist!";
+            }
+            else
+            {
+                // Thêm vào Wishlist
+                await WishlistHelper.AddToWishlistAsync(_context, userId.Value, productId);
+                TempData["Success"] = "Product added to wishlist!";
+            }
+
             return RedirectToPage();
         }
     }
