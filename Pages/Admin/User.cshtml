@@ -14,27 +14,37 @@
 
     <div class="row">
         <div class="col-md-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Categories</h5>
+            <div class="card shadow-sm rounded-4 border-0">
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-4 text-primary fw-bold">
+                        <i class="bi bi-grid-fill me-2"></i>Admin Menu
+                    </h5>
                     <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="/Admin/Index">Dashboard</a>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Index">
+                                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/User">
+                                <i class="bi bi-people-fill me-2 text-primary"></i>Users
+                            </a>
+                        </li>
+                        <li class="nav-item mb-2">
+                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Products">
+                                <i class="bi bi-box-seam me-2 text-primary"></i>Products
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/Admin/User">Users</a>
+                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Order">
+                                <i class="bi bi-receipt-cutoff me-2 text-primary"></i>Orders
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Products">Products</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Order">Order</a>
-                        </li>
-
                     </ul>
                 </div>
             </div>
         </div>
+
 
         <div class="col-md-9">
             <form method="get" class="mb-3">
@@ -115,6 +125,9 @@
                         <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
                             <a class="page-link" asp-page-handler="Page"
                                 asp-route-pageNumber="@(Model.CurrentPage - 1)">Previous</a>
+                        </li>
+                         <li class="page-item disabled"></li>
+                            <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
                         </li>
                         <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
                             <a class="page-link" asp-page-handler="Page"

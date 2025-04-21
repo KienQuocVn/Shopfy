@@ -11,7 +11,6 @@ namespace Shofy.Pages.Admin
     {
         private readonly ShofyContext _context;
         private readonly IWebHostEnvironment _environment;
-
         public CreateProductModel(ShofyContext context, IWebHostEnvironment environment)
         {
             _context = context;

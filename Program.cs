@@ -4,34 +4,34 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Mail;
 using System.Net;
+using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Tải tệp .env trước khi đọc cấu hình từ appsettings.json
-DotNetEnv.Env.Load();
+// Load environment variables từ .env
+Env.Load();
 
-// Lấy các giá trị từ environment variables
-var dbServer = Environment.GetEnvironmentVariable("DB_SERVER");
-var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD");
-var emailHost = Environment.GetEnvironmentVariable("EMAIL_HOST");
-var emailPort = int.Parse(Environment.GetEnvironmentVariable("EMAIL_PORT") ?? "587");
-var emailUsername = Environment.GetEnvironmentVariable("EMAIL_USERNAME");
-var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD");
-var emailFrom = Environment.GetEnvironmentVariable("EMAIL_FROM");
+// Lấy biến từ môi trường
+var dbServer = Environment.GetEnvironmentVariable("DB_SERVER") ?? "localhost";
+var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "ShofyDb";
+var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "sa";
+var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "yourStrong(!)Password";
 
-// Tạo connection string động
+var emailHost = Environment.GetEnvironmentVariable("EMAIL_HOST") ?? "smtp.example.com";
+var emailPort = int.TryParse(Environment.GetEnvironmentVariable("EMAIL_PORT"), out int port) ? port : 587;
+var emailUsername = Environment.GetEnvironmentVariable("EMAIL_USERNAME") ?? "";
+var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD") ?? "";
+var emailFrom = Environment.GetEnvironmentVariable("EMAIL_FROM") ?? "no-reply@example.com";
+
+// Connection string động
 var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
 
-// Đăng ký DbContext với connection string động
+// Đăng ký DbContext
 builder.Services.AddDbContext<ShofyContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Add distributed memory cache for session
+// Session
 builder.Services.AddDistributedMemoryCache();
-
-// Add Session Storage
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -40,7 +40,7 @@ builder.Services.AddSession(options =>
     options.Cookie.SameSite = SameSiteMode.Strict;
 });
 
-// Configure email service
+// SMTP client
 builder.Services.AddSingleton(new SmtpClient
 {
     Host = emailHost,
@@ -50,19 +50,20 @@ builder.Services.AddSingleton(new SmtpClient
 });
 builder.Services.AddSingleton(new MailAddress(emailFrom, "Shofy Support"));
 
+// Authorization
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
     options.AddPolicy("User", policy => policy.RequireRole("User"));
 });
 
-// Add services to the container.
+// Dịch vụ Razor
 builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -79,7 +80,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
-app.MapStaticAssets();
-app.MapRazorPages().WithStaticAssets();
+
+app.MapRazorPages();
 
 app.Run();
