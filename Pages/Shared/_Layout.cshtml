@@ -18,6 +18,9 @@
 		wishlistCount = wishlist.Count;
 	}
 }
+@{
+	var role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -482,7 +485,7 @@
  {
 		<script>
 			$(document).ready(function () {
-				// Xử lý thông báo TempData
+
 				@if (TempData["CartSuccess"] != null)
 					{
 						<text>
@@ -653,6 +656,9 @@
 	<script src="~/js/map-custom.js"></script>
 	<!--===============================================================================================-->
 	<script src="~/js/main.js"></script>
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+	<df-messenger chat-width="400px" chat-height="500px" intent="WELCOME" chat-title="Hỗ trợ"
+		agent-id="9f11d8a2-bb70-45be-998c-62b765c9ea87" language-code="vi"></df-messenger>
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -12,7 +12,8 @@ namespace Shofy.Pages.Client
 {
     public class Pages_Client_ProductModel : PageModel
     {
-        private readonly ShofyContext _context;
+
+        private readonly ShofyContext _context; 
         private readonly ILogger<Pages_Client_ProductModel> _logger;
 
         public Pages_Client_ProductModel(ShofyContext context, ILogger<Pages_Client_ProductModel> logger)
@@ -122,7 +123,7 @@ namespace Shofy.Pages.Client
 
             await _context.SaveChangesAsync();
             TempData["CartSuccess"] = $"{product.Name} is added to cart!";
-            return RedirectToPage();
+            return RedirectToPage("");
         }
 
 

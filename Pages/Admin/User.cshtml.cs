@@ -5,6 +5,7 @@ using Shofy.Data;
 using Shofy.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Shofy.Pages.Admin
 {
@@ -25,39 +26,57 @@ namespace Shofy.Pages.Admin
         public const int PageSize = 10;
 
         [BindProperty(SupportsGet = true)]
-        public string RoleFilter { get; set; } // Role cần lọc
+        public string RoleFilter { get; set; } = "";
 
-        public void OnGet(int pageNumber = 1)
+        public async Task<IActionResult> OnGetAsync(int pageNumber = 1)
         {
+            var role = HttpContext.Session.GetString("Role");
+
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error");
+            }
+
+            // Đảm bảo pageNumber không nhỏ hơn 1
+            pageNumber = pageNumber < 1 ? 1 : pageNumber;
+
             CurrentPage = pageNumber;
 
             var query = _context.User.AsQueryable();
 
-            // Lọc theo Role nếu có
             if (!string.IsNullOrEmpty(RoleFilter))
             {
                 query = query.Where(u => u.Role == RoleFilter);
             }
 
             var totalUsers = query.Count();
-            TotalPages = (int)Math.Ceiling(totalUsers / (double)PageSize);
+            TotalPages = (int)System.Math.Ceiling(totalUsers / (double)PageSize);
 
             Users = query
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
+
+            return Page();
         }
 
-        public IActionResult OnPostDelete(int UserId)
+
+        public IActionResult OnPostDelete(int UserId, int CurrentPage, string RoleFilter)
         {
             var user = _context.User.Find(UserId);
             if (user != null)
             {
                 _context.User.Remove(user);
                 _context.SaveChanges();
-                _logger.LogInformation("Deleted user with ID {UserId}", UserId);
+                _logger.LogInformation("Xóa người dùng với mã {UserId}", UserId);
             }
-            return RedirectToPage(new { RoleFilter, pageNumber = CurrentPage });
+            else
+            {
+                TempData["Error"] = "User not found.";
+                _logger.LogWarning("Không tìm thấy người dùng với mã ID {UserId}", UserId);
+            }
+
+            return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter = RoleFilter });
         }
 
         public IActionResult OnGetEdit(int UserId)

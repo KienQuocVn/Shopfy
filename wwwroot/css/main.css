@@ -3296,3 +3296,21 @@ input.num-product::-webkit-inner-spin-button {
 
 }
 
+/* Ẩn biểu tượng mặc định của bot */
+df-messenger {
+  --df-messenger-button-titlebar-color: #717fe0; /* màu tiêu đề */
+  --df-messenger-chat-background-color: #f3f3f3; /* nền khung chat */
+  --df-messenger-font-color: #000000; /* màu chữ */
+  --df-messenger-send-icon: #717fe0; /* màu biểu tượng gửi */
+  --df-messenger-user-message: #ffecd1; /* màu nền tin nhắn người dùng */
+  --df-messenger-bot-message: #ffffff; /* màu nền tin nhắn bot */
+  --df-messenger-button-titlebar-font-color: white;
+}
+
+/* Thay đổi vị trí khung chat */
+df-messenger {
+  position: fixed;
+  bottom: 200px;
+  right: 50px;
+  z-index: 9999;
+}
