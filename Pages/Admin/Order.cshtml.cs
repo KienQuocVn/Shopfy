@@ -42,8 +42,15 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public string PaymentMethod { get; set; }
 
-        public async Task OnGetAsync()
+        // Thêm kiểm tra quyền Role=Admin
+        public async Task<IActionResult> OnGetAsync()
         {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error");//Chuyển hướng sang trang error nếu ko hợp lệ
+            }
+
             var query = _context.Order
                 .Include(o => o.User)
                 .AsQueryable();
@@ -83,10 +90,19 @@ namespace Shofy.Pages.Admin
                 .Skip((CurrentPage - 1) * PageSize) // Skip orders from previous pages
                 .Take(PageSize) // Take orders for the current page
                 .ToListAsync();
+
+            return Page();
         }
 
+        // Xóa đơn hàng
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error"); // Chuyển hướng sang trang error nếu ko hợp lệ
+            }
+
             var order = await _context.Order.FindAsync(id);
             if (order == null)
             {
@@ -102,8 +118,15 @@ namespace Shofy.Pages.Admin
             return RedirectToPage();
         }
 
+        // Chỉnh sửa đơn hàng
         public async Task<IActionResult> OnPostEditAsync(int id)
         {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error"); // Chuyển hướng sang trang error nếu ko hợp lệ
+            }
+
             var order = await _context.Order.FindAsync(id);
             if (order == null)
             {

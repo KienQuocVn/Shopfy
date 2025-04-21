@@ -64,7 +64,7 @@ namespace Shofy.Pages.Accounts
                 HttpContext.Session.SetUserId(user.UserID);
                 HttpContext.Session.SetUsername(user.Username);
                 HttpContext.Session.SetUserRole(user.Role);
-
+                HttpContext.Session.SetString("Role", "Admin");
                 TempData["SuccessMessage"] = $"Chào mừng {user.FullName}!";
                 return RedirectToPage("/Index");
             }
