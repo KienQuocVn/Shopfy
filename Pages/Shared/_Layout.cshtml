@@ -127,12 +127,9 @@
 							</li>
 
 
-							@if (role == "Admin")
-							{
 								<li class="nav-item">
-									<a class="nav-link" href="/Admin/Index">Admin</a>
+									<a class="nav-link" asp-page="/Admin/Index">Admin</a>
 								</li>
-							}
 
 
 							<li class="label1" data-label1="hot">
@@ -487,7 +484,7 @@
 							swal("Error", "@TempData["Error"]", "error");
 						</text>
 				}
-				});
+			});
 		</script>
 	}
 
@@ -595,6 +592,9 @@
 	<script src="~/js/map-custom.js"></script>
 	<!--===============================================================================================-->
 	<script src="~/js/main.js"></script>
+	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+	<df-messenger chat-width="400px" chat-height="500px" intent="WELCOME" chat-title="Hỗ trợ"
+		agent-id="9f11d8a2-bb70-45be-998c-62b765c9ea87" language-code="vi"></df-messenger>
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
