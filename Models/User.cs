@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Shofy.Models
 {
+
     public class User
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -26,7 +27,7 @@ namespace Shofy.Models
 
         public string? Address { get; set; }
 
-        public string? Avatar { get; set; } = "/images/noavt.jpg"; 
+        public string? Avatar { get; set; } = "/images/noavt.jpg";
 
         public DateTime CreatedDate { get; set; } = DateTime.Now;
 
@@ -37,6 +38,8 @@ namespace Shofy.Models
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }
         public ICollection<Review>? Reviews { get; set; }
-        
+
+        // Thêm thuộc tính Wishlist để lưu danh sách ProductID dưới dạng JSON
+        public string? Wishlist { get; set; } // Chuỗi JSON chứa danh sách ProductID
     }
 }
