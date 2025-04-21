@@ -9,6 +9,9 @@
 	var cart = session.GetCart(ShofyContext);
 	var total = cart.Sum(item => item.Product?.Price * item.Quantity ?? 0);
 }
+@{
+	var role = HttpContextAccessor.HttpContext.Session.GetString("Role");
+}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,9 +127,9 @@
 							</li>
 
 
-							<li class="nav-item">
-								<a class="nav-link" asp-page="/Admin/Index">Admin</a>
-							</li>
+								<li class="nav-item">
+									<a class="nav-link" asp-page="/Admin/Index">Admin</a>
+								</li>
 
 
 							<li class="label1" data-label1="hot">
@@ -481,7 +484,7 @@
 							swal("Error", "@TempData["Error"]", "error");
 						</text>
 				}
-					});
+			});
 		</script>
 	}
 
