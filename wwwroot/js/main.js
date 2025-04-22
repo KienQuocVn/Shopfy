@@ -293,4 +293,83 @@ $(".js-pscroll").each(function () {
   });
 });
 
-//Js for Product.cs and ProductDetail.cshtml
+$('.gallery-lb').each(function () { 
+  $(this).magnificPopup({
+    delegate: 'a',
+    type: 'image',
+    gallery: {
+      enabled: true
+    },
+    mainClass: 'mfp-fade'
+  });
+});
+
+
+$(document).ready(function () {
+  // Xử lý sự kiện bấm vào icon Wishlist
+  $('.js-addwish-b2, .js-addwish-detail').on('click', function (e) {
+    e.preventDefault();
+    var form = $(this).closest('form');
+    var productId = form.find('input[name="productId"]').val();
+    var nameProduct = form.closest('.block2, .p-r-50').find('.js-name-b2, .js-name-detail').text().trim();
+
+    $.ajax({
+      url: form.attr('action'),
+      type: 'POST',
+      data: { productId: productId },
+      success: function (response) {
+        // Cập nhật số lượng Wishlist trên navbar
+        $.get('/Client/Wishlist/GetWishlistCount', function (count) {
+          $('.icon-header-noti[data-notify]').each(function () {
+            if ($(this).find('.zmdi-favorite-outline').length) {
+              $(this).attr('data-notify', count);
+            }
+          });
+        });
+
+        // Hiển thị thông báo
+        var isAdded = response.isAdded; // Giả định server trả về trạng thái
+        var message = isAdded ? nameProduct + " is added to wishlist!" : nameProduct + " is removed from wishlist!";
+        swal(message, "", "success");
+
+        // Cập nhật trạng thái icon
+        if (isAdded) {
+          form.find('.btn-addwish-b2, .js-addwish-detail').addClass('js-addedwish-b2 js-addedwish-detail');
+        } else {
+          form.find('.btn-addwish-b2, .js-addwish-detail').removeClass('js-addedwish-b2 js-addedwish-detail');
+        }
+      },
+      error: function (xhr) {
+        var errorMessage = xhr.responseJSON?.message || "An error occurred.";
+        swal("Error", errorMessage, "error");
+      }
+    });
+  });
+});
+
+// Dark Mode Toggle
+$(document).ready(function () {
+  // Check for saved theme in localStorage
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  $('body').attr('data-theme', savedTheme);
+  updateIcon(savedTheme);
+
+  // Toggle theme on click
+  $('.js-toggle-theme').click(function () {
+    const currentTheme = $('body').attr('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    $('body').attr('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateIcon(newTheme);
+  });
+
+  // Update icon based on theme
+  function updateIcon(theme) {
+    const icon = $('.js-toggle-theme i');
+    if (theme === 'dark') {
+      icon.removeClass('zmdi-brightness-2').addClass('zmdi-brightness-7');
+    } else {
+      icon.removeClass('zmdi-brightness-7').addClass('zmdi-brightness-2');
+    }
+  }
+});
