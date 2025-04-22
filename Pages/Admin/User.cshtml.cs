@@ -28,6 +28,11 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public string RoleFilter { get; set; } = "";
 
+        // Profile section properties
+        public string Username { get; set; }
+        public string Role { get; set; }
+        public string Avatar { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int pageNumber = 1)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -37,6 +42,11 @@ namespace Shofy.Pages.Admin
                 return RedirectToPage("/Error");
             }
 
+            // Retrieve profile data from session
+            Username = HttpContext.Session.GetString("Username") ?? "Guest";
+            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
+            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
+            
             // Đảm bảo pageNumber không nhỏ hơn 1
             pageNumber = pageNumber < 1 ? 1 : pageNumber;
 
