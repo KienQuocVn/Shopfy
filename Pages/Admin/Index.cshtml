@@ -5,79 +5,224 @@
     ViewData["Title"] = "Dashboard";
 }
 
-<div class="container-fluid">
-    <div class="row">
-        <!-- Admin Menu -->
-        <div class="col-md-3">
-            <div class="card shadow-sm rounded-4 border-0 mb-4">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4 text-primary fw-bold">
-                        <i class="bi bi-grid-fill me-2"></i>Admin Menu
-                    </h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Index">
-                                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/User">
-                                <i class="bi bi-people-fill me-2 text-primary"></i>Users
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Products">
-                                <i class="bi bi-box-seam me-2 text-primary"></i>Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Order">
-                                <i class="bi bi-receipt-cutoff me-2 text-primary"></i>Orders
-                            </a>
-                        </li>
-                    </ul>
+
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark text-white">
+        <div class="sidebar-header">
+            <a href="/Index" class="text-light">
+                <h3 class="mb-0">SHOPFY</h3>
+            </a>
+        </div>
+        <div class="navigation-section">
+            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
+            <ul class="list-unstyled">
+                <li class="active"><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a>
+                </li>
+                <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> USer</a></li>
+                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
+                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
+                <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li>
+            </ul>
+        </div>
+        <div class="apps-section">
+            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
+            <ul class="list-unstyled">
+                <li><a href="#"><i class="far fa-calendar me-2"></i>Calendar</a></li>
+                <li><a href="#"><i class="far fa-comment-alt me-2"></i>Chat</a></li>
+                <li>
+                    <a href="#" class="d-flex align-items-center">
+                        <i class="fas fa-user-friends me-2"></i>
+                        CRM
+                        <span class="badge bg-danger ms-auto">New</span>
+                    </a>
+                </li>
+                <li><a href="#"><i class="fas fa-store me-2"></i>Ecommerce</a></li>
+                <li><a href="#"><i class="far fa-envelope me-2"></i>Email</a></li>
+                <li><a href="#"><i class="fas fa-folder me-2"></i>Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+
+                <div class="d-flex align-items-center">
+
+                    <div class="icons-group">
+                        <button class="btn"><i class="bi bi-bell"></i></button>
+                        <button class="btn"><i class="bi bi-grid-fill"></i></button>
+                        <button class="btn"><i class="bi bi-gear"></i></button>
+                        <button class="btn"><i class="bi bi-moon"></i></button>
+                        <button class="btn"><i class="bi bi-fullscreen"></i></button>
+                    </div>
+                    <div class="profile-section ms-3">
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                            <small class="text-muted">Role: @Model.Role</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
 
-        <!-- Charts -->
-        <div class="col-md-9">
+        <!-- Dashboard Content -->
+        <div class="container-fluid py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Dashboard</h1>
+                <div class="date-section">
+                    <div class="btn-group ms-3">
+                        <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
+                        <button class="btn ms-2" style="background-color: #6658dd;"><i
+                                class="bi bi-arrow-repeat text-light"></i></button>
+                        <button class="btn ms-2" style="background-color: #6658dd;"><i
+                                class="bi bi-funnel-fill text-light"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Cards -->
             <div class="row">
-                <!-- Biểu đồ quản lý đơn hàng -->
-                <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                <div class="col-md-3">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Order Statistics</h5>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">Orders</h6>
+                                    <h2>@Model.TotalOrderCount.ToString("N0")</h2>
+                                    <div class="@(Model.OrderPercentageChange >= 0 ? "text-success" : "text-danger")">
+                                        <i class="bi bi-shop @(Model.OrderPercentageChange >= 0 ? "up" : "down")"></i>
+                                        @Math.Abs(Model.OrderPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="stat-icon bg-light">
+                                    <i class="bi bi-shop text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">Accounts</h6>
+                                    <h2>@Model.TotalUserCount.ToString("N0")</h2>
+                                    <div class="@(Model.UserPercentageChange >= 0 ? "text-success" : "text-danger")">
+                                        <i class="bi bi-people @(Model.UserPercentageChange >= 0 ? "up" : "down")"></i>
+                                        @Math.Abs(Model.UserPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="stat-icon bg-light">
+                                    <i class="bi bi-people text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">Monthly Revenue</h6>
+                                    <h2>@Model.TotalMonthlyRevenue.ToString("C0")</h2>
+                                    <div class="@(Model.RevenuePercentageChange >= 0 ? "text-success" : "text-danger")">
+                                        <i
+                                            class="bi bi-currency-dollar @(Model.RevenuePercentageChange >= 0 ? "up" : "down")"></i>
+                                        @Math.Abs(Model.RevenuePercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="stat-icon bg-light">
+                                    <i class="bi bi-currency-dollar text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6 class="text-muted">Products Sold</h6>
+                                    <h2>@Model.TotalProductsSold.ToString("N0")</h2>
+                                    <div
+                                        class="@(Model.ProductsSoldPercentageChange >= 0 ? "text-success" : "text-danger")">
+                                        <i
+                                            class="bi bi-box @(Model.ProductsSoldPercentageChange >= 0 ? "up" : "down")"></i>
+                                        @Math.Abs(Model.ProductsSoldPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span>
+                                    </div>
+                                </div>
+                                <div class="stat-icon bg-light">
+                                    <i class="bi bi-box text-primary"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">Order Statistics</h5>
+                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                            </div>
                             <canvas id="orderChart"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <!-- Biểu đồ quản lý người dùng -->
                 <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">User Statistics</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">User Statistics</h5>
+                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                            </div>
                             <canvas id="userChart"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <!-- Biểu đồ donah thu -->
                 <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Monthly Revenue</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">Monthly Revenue</h5>
+                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                            </div>
                             <canvas id="revenueChart"></canvas>
                         </div>
                     </div>
                 </div>
-
-                <!-- Biểu đồ quản lý số lượng truy cập -->
                 <div class="col-md-6">
-                    <div class="card mb-4 shadow-sm">
+                    <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Products Sold</h5>
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="card-title">Products Sold</h5>
+                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                            </div>
                             <canvas id="productChart"></canvas>
                         </div>
                     </div>
@@ -87,13 +232,9 @@
     </div>
 </div>
 
-<!-- Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
-
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
     //Quản lý đơn hàng
     new Chart(document.getElementById('orderChart'), {
