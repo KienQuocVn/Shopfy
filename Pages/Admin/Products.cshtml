@@ -26,18 +26,9 @@
         <div class="apps-section">
             <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
             <ul class="list-unstyled">
-                <li><a href="#"><i class="far fa-calendar me-2"></i>Calendar</a></li>
-                <li><a href="#"><i class="far fa-comment-alt me-2"></i>Chat</a></li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="fas fa-user-friends me-2"></i>
-                        CRM
-                        <span class="badge bg-danger ms-auto">New</span>
-                    </a>
-                </li>
-                <li><a href="#"><i class="fas fa-store me-2"></i>Ecommerce</a></li>
-                <li><a href="#"><i class="far fa-envelope me-2"></i>Email</a></li>
-                <li><a href="#"><i class="fas fa-folder me-2"></i>Projects</a></li>
+                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
+                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
+                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
             </ul>
         </div>
     </nav>
@@ -65,10 +56,11 @@
                         <button class="btn"><i class="bi bi-fullscreen"></i></button>
                     </div>
                     <div class="profile-section ms-3">
-                        <img src="" class="rounded-circle" alt="Profile">
-                        <div class="d-flex">
-                            <span class="ms-2">Username</span>
-                            <small class="text-muted d-block">Role:Admin</small>
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                            <small class="text-muted">Role: @Model.Role</small>
                         </div>
                     </div>
                 </div>
@@ -103,21 +95,26 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <form method="get" class="mb-0">
-                        <strong>Range</strong>
                         <a asp-page="/Admin/Products" asp-route-PriceRange="under100"
                             class="btn btn-outline-primary btn-sm @(Model.PriceRange == "under100" ? "active" : "")">Under
                             100</a>
                         <a asp-page="/Admin/Products" asp-route-PriceRange="100to500"
-                            class="btn btn-outline-success btn-sm @(Model.PriceRange == "100to500" ? "active" : "")">100-500</a>
+                            class="btn btn-outline-success btn-sm @(Model.PriceRange == "100to500" ? "active" : "")">To 100-500</a>
                         <a asp-page="/Admin/Products" asp-route-PriceRange="above500"
                             class="btn btn-outline-danger btn-sm @(Model.PriceRange == "above500" ? "active" : "")">Above
                             500</a>
                     </form>
                 </div>
-                <div class="col-md-3 text-end">
-                    <a class="btn btn-primary w-100" asp-page="CreateProduct">+ Create New</a>
+                <div class="col-md-4 text-end d-flex">
+                    <a class="btn btn-primary" asp-page="CreateProduct" style="margin-right:10px;">Create New</a>
+                    <form method="post" asp-page-handler="ExportExcel" style="margin-right:10px;">
+                        <button type="submit" class="btn btn-success">Export to Excel</button>
+                    </form>
+                    <form method="post" asp-page-handler="ExportPdf">
+                        <button type="submit" class="btn btn-danger">Export to PDF</button>
+                    </form>
                 </div>
             </div>
 

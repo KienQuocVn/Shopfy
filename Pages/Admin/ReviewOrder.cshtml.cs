@@ -19,12 +19,13 @@ namespace Shofy.Pages.Admin
 
         public Order Order { get; set; }
 
-        // Phương thức GET để lấy thông tin đơn hàng theo OrderID
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            // Lấy thông tin đơn hàng từ cơ sở dữ liệu
+            // Lấy thông tin đơn hàng từ cơ sở dữ liệu, bao gồm User và OrderDetails
             Order = await _context.Order
                 .Include(o => o.User)
+                .Include(o => o.OrderDetails)
+                    .ThenInclude(od => od.Product)
                 .FirstOrDefaultAsync(o => o.OrderID == id);
 
             if (Order == null)

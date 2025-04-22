@@ -26,18 +26,9 @@
         <div class="apps-section">
             <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
             <ul class="list-unstyled">
-                <li><a href="#"><i class="far fa-calendar me-2"></i>Calendar</a></li>
-                <li><a href="#"><i class="far fa-comment-alt me-2"></i>Chat</a></li>
-                <li>
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="fas fa-user-friends me-2"></i>
-                        CRM
-                        <span class="badge bg-danger ms-auto">New</span>
-                    </a>
-                </li>
-                <li><a href="#"><i class="fas fa-store me-2"></i>Ecommerce</a></li>
-                <li><a href="#"><i class="far fa-envelope me-2"></i>Email</a></li>
-                <li><a href="#"><i class="fas fa-folder me-2"></i>Projects</a></li>
+                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
+                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
+                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
             </ul>
         </div>
     </nav>
@@ -57,7 +48,6 @@
                 </div>
 
                 <div class="d-flex align-items-center">
-                   
                     <div class="icons-group">
                         <button class="btn"><i class="bi bi-bell"></i></button>
                         <button class="btn"><i class="bi bi-grid-fill"></i></button>
@@ -66,10 +56,11 @@
                         <button class="btn"><i class="bi bi-fullscreen"></i></button>
                     </div>
                     <div class="profile-section ms-3">
-                        <img src="" class="rounded-circle" alt="Profile">
-                        <div class="d-flex">
-                            <span class="ms-2">Username</span>
-                            <small class="text-muted d-block">Role:Admin</small>
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                            <small class="text-muted">Role: @Model.Role</small>
                         </div>
                     </div>
                 </div>
@@ -85,8 +76,6 @@
                         <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
                         <button class="btn ms-2" style="background-color: #6658dd;"><i
                                 class="bi bi-arrow-repeat text-light"></i></button>
-                        <button class="btn ms-2" style="background-color: #6658dd;"><i
-                                class="bi bi rivoluzione-fill text-light"></i></button>
                     </div>
                 </div>
             </div>
@@ -159,8 +148,9 @@
                                             <td>@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
                                             <td>
                                                 <div class="dropdown">
-                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                                                        id="actionMenu@order.OrderID" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="actionMenu@order.OrderID" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
                                                         ...
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
@@ -171,6 +161,10 @@
                                                         <li>
                                                             <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
                                                                 asp-route-id="@order.OrderID">Review</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" asp-page-handler="ExportInvoice"
+                                                                asp-route-id="@order.OrderID">Invoice</a>
                                                         </li>
                                                     </ul>
                                                 </div>
