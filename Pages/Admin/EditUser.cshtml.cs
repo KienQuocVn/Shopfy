@@ -43,6 +43,7 @@ namespace Shofy.Pages.Admin
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại.")]
         [Phone(ErrorMessage = "Vui lòng nhập số điện thoại hợp lệ.")]
         public string PhoneNumber { get; set; }
+
         [BindProperty]
         public string Address { get; set; }
 
@@ -50,7 +51,6 @@ namespace Shofy.Pages.Admin
         [Required(ErrorMessage = "Vui lòng chọn quyền.")]
         public string Role { get; set; }
 
-        // Phương thức GET để lấy thông tin người dùng
         public async Task<IActionResult> OnGetAsync(int userId)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -66,7 +66,6 @@ namespace Shofy.Pages.Admin
                 return NotFound();
             }
 
-            // Gán thông tin người dùng cho các thuộc tính trong form
             UserId = user.UserID;
             Username = user.Username;
             FullName = user.FullName;
@@ -78,28 +77,20 @@ namespace Shofy.Pages.Admin
             return Page();
         }
 
-        // Phương thức POST để cập nhật thông tin người dùng
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                _logger.LogWarning("ModelState không hợp lệ khi cập nhật thông tin người dùng.");
-                return Page();
-            }
-
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
                 return RedirectToPage("/Error");
             }
 
-            // Kiểm tra và thêm .com vào email nếu chưa có
-            if (!Email.EndsWith(".com"))
+            if (!ModelState.IsValid)
             {
-                Email = Email + ".com";
+                _logger.LogWarning("ModelState không hợp lệ.");
+                return Page();
             }
 
-            // Tìm người dùng cần cập nhật từ cơ sở dữ liệu
             var userInDb = await _context.User.FindAsync(UserId);
             if (userInDb == null)
             {
@@ -107,7 +98,6 @@ namespace Shofy.Pages.Admin
                 return NotFound();
             }
 
-            // Cập nhật thông tin người dùng
             userInDb.Username = Username;
             userInDb.FullName = FullName;
             userInDb.Email = Email;
@@ -117,18 +107,16 @@ namespace Shofy.Pages.Admin
 
             try
             {
-                // Lưu thay đổi vào cơ sở dữ liệu
                 await _context.SaveChangesAsync();
-                _logger.LogInformation("Thông tin người dùng với ID {UserId} đã được cập nhật thành công.", userInDb.UserID);
+                _logger.LogInformation("Cập nhật người dùng thành công.");
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Đã xảy ra lỗi khi cập nhật người dùng.");
-                ModelState.AddModelError("", "Đã xảy ra lỗi khi ghi dữ liệ. Xin vui lòng thử lại sau.");
+                _logger.LogError(ex, "Lỗi khi cập nhật người dùng.");
+                ModelState.AddModelError("", "Đã xảy ra lỗi. Vui lòng thử lại sau.");
                 return Page();
             }
 
-            // Thông báo thành công
             TempData["SuccessMessage"] = "Cập nhật thông tin người dùng thành công!";
             return RedirectToPage("User");
         }

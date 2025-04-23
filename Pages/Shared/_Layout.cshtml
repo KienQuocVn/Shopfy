@@ -127,11 +127,9 @@
 							</li>
 
 
-							@if (role == "Admin")
+							@if (User.IsInRole("Admin"))
 							{
-								<li class="nav-item">
-									<a class="nav-link" href="/Admin/Index">Admin</a>
-								</li>
+								<li><a href="/Admin/Index">Admin</a></li>
 							}
 
 
@@ -487,7 +485,7 @@
 							swal("Error", "@TempData["Error"]", "error");
 						</text>
 				}
-				});
+					});
 		</script>
 	}
 

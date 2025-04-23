@@ -6,11 +6,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 namespace Shofy.Pages.Admin
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardModel : PageModel
     {
+        
         private readonly ShofyContext _context;
 
         public DashboardModel(ShofyContext context)
@@ -22,14 +25,19 @@ namespace Shofy.Pages.Admin
         public List<int> UserCounts { get; set; }
         public List<decimal> RevenuePerMonth { get; set; }
         public List<int> ProductQuantityPerMonth { get; set; }
+        
 
         public async Task<IActionResult> OnGetAsync()
         {
+            // Kiểm tra quyền của người dùng từ session
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
+                // Nếu không phải Admin, chuyển hướng đến trang lỗi
                 return RedirectToPage("/Error"); 
             }
+
+            // Gọi các phương thức lấy dữ liệu
             OrderCounts = await GetOrderCountsAsync();
             UserCounts = await GetUserCountsAsync();
             RevenuePerMonth = await GetRevenuePerMonthAsync();
