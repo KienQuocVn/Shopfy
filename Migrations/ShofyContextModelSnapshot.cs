@@ -284,6 +284,9 @@ namespace Shofy.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Wishlist")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("UserID");
 
                     b.ToTable("Users", (string)null);

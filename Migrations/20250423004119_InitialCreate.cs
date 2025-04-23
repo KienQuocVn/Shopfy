@@ -46,7 +46,8 @@ namespace Shofy.Migrations
                     Avatar = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ResetPasswordCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ResetPasswordCodeExpiration = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ResetPasswordCodeExpiration = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Wishlist = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

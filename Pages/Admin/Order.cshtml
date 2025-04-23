@@ -5,62 +5,95 @@
     ViewData["Title"] = "Order Management";
 }
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center">
-            <h2 class="mb-4">Order Management</h2>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark text-white">
+        <div class="sidebar-header">
+            <a href="/Index" class="text-light">
+                <h3 class="mb-0">SHOPFY</h3>
+            </a>
         </div>
-    </div>
+        <div class="navigation-section">
+            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
+                <li><a href="/Admin/User"><i class="bi bi-cart me-2"></i> User</a></li>
+                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
+                <li class="active"><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
+                <li><a href="#"><i class="bi bi-wallet me-2"></i> E-Wallet</a></li>
+            </ul>
+        </div>
+        <div class="apps-section">
+            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
+                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
+                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card shadow-sm rounded-4 border-0">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4 text-primary fw-bold">
-                        <i class="bi bi-grid-fill me-2"></i>Admin Menu
-                    </h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Index">
-                                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/User">
-                                <i class="bi bi-people-fill me-2 text-primary"></i>Users
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Products">
-                                <i class="bi bi-box-seam me-2 text-primary"></i>Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Order">
-                                <i class="bi bi-receipt-cutoff me-2 text-primary"></i>Orders
-                            </a>
-                        </li>
-                    </ul>
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <button class="btn btn-primary">Search</button>
+                </div>
+
+                <div class="d-flex align-items-center">
+                    <div class="icons-group">
+                        <button class="btn"><i class="bi bi-bell"></i></button>
+                        <button class="btn"><i class="bi bi-grid-fill"></i></button>
+                        <button class="btn"><i class="bi bi-gear"></i></button>
+                        <button class="btn"><i class="bi bi-moon"></i></button>
+                        <button class="btn"><i class="bi bi-fullscreen"></i></button>
+                    </div>
+                    <div class="profile-section ms-3">
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                            <small class="text-muted">Role: @Model.Role</small>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </nav>
 
+        <!-- Order Management Content -->
+        <div class="container-fluid py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">Order Management</h1>
+                <div class="date-section">
+                    <div class="btn-group ms-3">
+                        <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
+                        <button class="btn ms-2" style="background-color: #6658dd;"><i
+                                class="bi bi-arrow-repeat text-light"></i></button>
+                    </div>
+                </div>
+            </div>
 
-        <div class="col-md-9">
-            <!-- Thanh tìm kiếm và bộ lọc -->
+            <!-- Search and Filter Form -->
             <form method="get" class="row mb-4 align-items-end">
-                <!-- Tìm kiếm + nút kính lúp -->
+                <!-- Search Input -->
                 <div class="col-auto" style="flex: 1;">
                     <div class="input-group">
                         <input type="text" name="search" value="@Model.Search" class="form-control"
-                            placeholder=" Search by ID, Status, or User Name..." />
+                            placeholder="Search by ID, Status, or User Name..." />
                         <button class="btn btn-outline-secondary" type="submit">
                             <i class="bi bi-search"></i>
                         </button>
                     </div>
                 </div>
 
-                <!-- Trạng thái -->
+                <!-- Status Filter -->
                 <div class="col-auto d-flex justify-content-center align-items-center">
                     <select name="status" class="form-select" style="width: 100px; height: 35px;">
                         <option value="">--Status--</option>
@@ -71,16 +104,7 @@
                     </select>
                 </div>
 
-                <!-- Thanh toán -->
-                @* <div class="col-auto">
-                    <select name="paymentMethod" class="form-select" style="width: 150px;">
-                        <option value="">--PaymentMethod--</option>
-                        <option value="CVC" selected="@(Model.PaymentMethod == "CVC")">CVC</option>
-                        <option value="Online" selected="@(Model.PaymentMethod == "Online")">Online</option>
-                    </select>
-                </div> *@
-
-                <!-- Nút lọc -->
+                <!-- Filter Button -->
                 <div class="col-auto">
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-filter"></i> Filter
@@ -88,65 +112,74 @@
                 </div>
             </form>
 
-            <!-- Bảng đơn hàng -->
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered rounded">
-                    <thead class="table-light text-center">
-                        <tr>
-                            <th>ID</th>
-                            <th>User Name</th>
-                            <th>Price</th>
-                            <th>PaymentMethod</th>
-                            <th>Status</th>
-                            <th>OrderedDate</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Orders.Count == 0)
-                        {
-                            <tr>
-                                <td colspan="7" class="text-center text-muted">Không tìm thấy đơn hàng nào.</td>
-                            </tr>
-                        }
-                        else
-                        {
-                            @foreach (var order in Model.Orders)
-                            {
+            <!-- Orders Table -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered rounded">
+                            <thead class="table-light text-center">
                                 <tr>
-                                    <td class="text-center">@order.OrderID</td>
-                                    <td>@order.User?.FullName</td>
-                                    <td class="text-success fw-bold">$@order.TotalPrice</td>
-                                    <td>@order.PaymentMethod</td>
-                                    <td><span class="badge bg-info text-dark">@order.Status</span></td>
-                                    <td>@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                                                id="actionMenu@order.OrderID" data-bs-toggle="dropdown" aria-expanded="false">
-                                                ...
-                                            </button>
-                                            <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
-                                                <li>
-                                                    <a class="dropdown-item" asp-page="/Admin/EditOrder"
-                                                        asp-route-id="@order.OrderID">Edit</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
-                                                        asp-route-id="@order.OrderID">Review</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>User Name</th>
+                                    <th>Price</th>
+                                    <th>PaymentMethod</th>
+                                    <th>Status</th>
+                                    <th>OrderedDate</th>
+                                    <th>Actions</th>
                                 </tr>
-                            }
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                @if (Model.Orders.Count == 0)
+                                {
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted">Không tìm thấy đơn hàng nào.</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var order in Model.Orders)
+                                    {
+                                        <tr>
+                                            <td class="text-center">@order.OrderID</td>
+                                            <td>@order.User?.FullName</td>
+                                            <td class="text-success fw-bold">$@order.TotalPrice</td>
+                                            <td>@order.PaymentMethod</td>
+                                            <td><span class="badge bg-info text-dark">@order.Status</span></td>
+                                            <td>@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                        type="button" id="actionMenu@order.OrderID" data-bs-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        ...
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
+                                                        <li>
+                                                            <a class="dropdown-item" asp-page="/Admin/EditOrder"
+                                                                asp-route-id="@order.OrderID">Edit</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
+                                                                asp-route-id="@order.OrderID">Review</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" asp-page-handler="ExportInvoice"
+                                                                asp-route-id="@order.OrderID">Invoice</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center mt-4">
                 <nav>
                     <ul class="pagination">
                         <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
@@ -156,7 +189,6 @@
                             <a class="page-link" asp-page="/Admin/Order"
                                 asp-route-currentPage="@(Model.CurrentPage - 1)">Previous</a>
                         </li>
-                        <!-- Current Page -->
                         <li class="page-item disabled">
                             <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
                         </li>
@@ -175,9 +207,16 @@
     </div>
 </div>
 
-<!-- Cài đặt Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-<!-- Bootstrap JS (đảm bảo có trong _Layout.cshtml nếu chưa) -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Sidebar Toggle Script -->
+<script>
+    document.getElementById('sidebarCollapse').addEventListener('click', function () {
+        document.getElementById('sidebar').classList.toggle('active');
+        document.getElementById('content').classList.toggle('active');
+    });
+</script>

@@ -45,6 +45,7 @@ namespace Shofy.Pages.Admin
         public string PhoneNumber { get; set; }
 
         [BindProperty]
+        [Required(ErrorMessage = "Vui lòng nhập địa chỉ.")]
         public string Address { get; set; }
 
         [BindProperty]
