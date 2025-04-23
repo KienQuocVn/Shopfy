@@ -1,0 +1,47 @@
+@page
+@model Shofy.Pages.Client.OrderHistoryModel
+@{
+    ViewData["Title"] = "Order History";
+}
+
+<div class="container">
+    <h2>Your Orders</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>User Name</th>
+                <th>Price</th>
+                <th>PaymentMethod</th>
+                <th>Status</th>
+                <th>OrderedDate</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Orders.Count == 0)
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">Không tìm thấy đơn hàng nào.</td>
+                </tr>
+            }
+            else
+            {
+                @foreach (var order in Model.Orders)
+                {
+                    <tr>
+                        <td class="text-center">@order.OrderID</td>
+                        <td>@order.User?.FullName</td>
+                        <td class="text-success fw-bold">$@order.TotalPrice</td>
+                        <td>@order.PaymentMethod</td>
+                        <td><span class="badge bg-info text-dark">@order.Status</span></td>
+                        <td>@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            <a class="btn text-light" asp-page="/Client/OrderTracking" asp-route-id="@order.OrderID" style="background-color: #717fe0;">Chi tiết</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
