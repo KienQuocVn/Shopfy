@@ -65,7 +65,6 @@ namespace Shofy.Pages.Accounts
                 HttpContext.Session.SetUsername(user.Username);
                 HttpContext.Session.SetUserRole(user.Role);
                 HttpContext.Session.SetString("Role", user.Role);
-                TempData["SuccessMessage"] = $"Chào mừng {user.FullName}!";
                 HttpContext.Session.SetString("Avatar", user.Avatar ?? "/images/noavt.jpg");
                 return RedirectToPage("/Index");
             }
