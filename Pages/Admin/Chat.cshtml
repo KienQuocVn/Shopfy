@@ -1,13 +1,12 @@
 @page
-@model Shofy.Pages.Admin.DashboardModel
+@model Shofy.Pages.Admin.ChatModel
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "Chat";
 }
 
 <style>
     .chat-container {
-        height: calc(100vh - 2rem);
+        height: 620px;
         background-color: white;
         border-radius: 0.5rem;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -108,16 +107,52 @@
     }
 
     .profile-section {
-        padding: 1.5rem;
-        text-align: center;
+        padding: 2rem;
         border-left: 1px solid #e9ecef;
+        background-color: #fff;
     }
 
     .profile-avatar {
         width: 100px;
         height: 100px;
         border-radius: 50%;
-        margin-bottom: 1rem;
+        object-fit: cover;
+        border: 3px solid #f8f9fa;
+    }
+
+    .contact-info {
+        margin-top: 1rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: flex-start;
+        padding: 0.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .info-item:hover {
+        background-color: #f8f9fa;
+    }
+
+    .info-item i {
+        font-size: 1.2rem;
+        margin-top: 3px;
+    }
+
+    .info-item div {
+        margin-left: 0.5rem;
+    }
+
+    .info-item label {
+        display: block;
+        font-size: 0.85rem;
+        margin-bottom: 2px;
+    }
+
+    .info-item p {
+        color: #495057;
     }
 
     .action-buttons .btn {
@@ -197,24 +232,12 @@
         </nav>
 
         <!-- Dashboard Content -->
-        <div class="container-fluid py-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Chat</h1>
-                <div class="date-section">
-                    <div class="btn-group ms-3">
-                        <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
-                        <button class="btn ms-2" style="background-color: #6658dd;"><i
-                                class="bi bi-arrow-repeat text-light"></i></button>
-                        <button class="btn ms-2" style="background-color: #6658dd;"><i
-                                class="bi bi-funnel-fill text-light"></i></button>
-                    </div>
-                </div>
-            </div>
+        <div class="container-fluid ">
 
             <!-- Stats Cards -->
             <div class="chat-container row m-0">
                 <!-- Sidebar -->
-                <div class="col-3 p-0 sidebar">
+                <div class="col-3 p-0">
                     <!-- Navigation Pills -->
                     <ul class="nav nav-pills nav-fill p-2">
                         <li class="nav-item">
@@ -231,7 +254,7 @@
                     <!-- Search Box -->
                     <div class="search-box">
                         <i class="bi bi-search text-muted"></i>
-                        <input type="text" class="border-0 bg-transparent" placeholder="People, groups & messages">
+                        <input type="text" class="border-0 bg-transparent" placeholder="Messages">
                     </div>
 
                     <!-- Chat List -->
@@ -247,18 +270,6 @@
                                     <p class="mb-0 text-muted small">How are you today?</p>
                                 </div>
                                 <span class="ms-auto unread-badge">3</span>
-                            </div>
-                        </div>
-                        <div class="chat-item">
-                            <div class="d-flex align-items-center">
-                                <img src="" class="chat-avatar">
-                                <div class="ms-3">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0">Shreyu N</h6>
-                                        <small class="text-muted">5:30am</small>
-                                    </div>
-                                    <p class="mb-0 text-muted small">Hey! a reminder for tomorrow's meeting...</p>
-                                </div>
                             </div>
                         </div>
                         <!-- Add more chat items as needed -->
@@ -320,35 +331,43 @@
 
                 <!-- Profile Section -->
                 <div class="col-3 profile-section">
-                    <img src="" class="profile-avatar">
-                    <h5>Shreyu N</h5>
-                    <p class="text-muted mb-4">Last Interacted: Few hours back</p>
+                    <div class="d-flex flex-column align-items-center">
+                        <img src="" class="profile-avatar mb-3">
+                        <h5 class="mb-2">Shreyu N</h5>
+                        <p class="text-muted mb-4">Last Interacted: Few hours back</p>
 
-                    <button class="btn btn-primary mb-4">
-                        <i class="bi bi-envelope"></i> Send Email
-                    </button>
+                        <button class="btn btn-primary mb-4 w-100">
+                            <i class="bi bi-envelope me-2"></i> Send Email
+                        </button>
 
-                    <div class="text-start">
-                        <p class="mb-2">
-                            <i class="bi bi-envelope text-muted me-2"></i>
-                            Email:
-                            <span class="text-muted">support@coderthemes.com</span>
-                        </p>
-                        <p class="mb-2">
-                            <i class="bi bi-telephone text-muted me-2"></i>
-                            Phone Number:
-                            <span class="text-muted">+1 456 9595 9594</span>
-                        </p>
-                        <p class="mb-2">
-                            <i class="bi bi-geo-alt text-muted me-2"></i>
-                            Location:
-                            <span class="text-muted">California, USA</span>
-                        </p>
+                        <div class="contact-info w-100">
+                            <div class="info-item mb-3">
+                                <i class="bi bi-envelope text-muted me-2"></i>
+                                <div>
+                                    <label class="text-muted">Email:</label>
+                                    <p class="mb-0">support@coderthemes.com</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item mb-3">
+                                <i class="bi bi-telephone text-muted me-2"></i>
+                                <div>
+                                    <label class="text-muted">Phone Number:</label>
+                                    <p class="mb-0">+1 456 9595 9594</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item mb-3">
+                                <i class="bi bi-geo-alt text-muted me-2"></i>
+                                <div>
+                                    <label class="text-muted">Location:</label>
+                                    <p class="mb-0">California, USA</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
