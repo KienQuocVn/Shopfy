@@ -35,8 +35,8 @@ using Microsoft.AspNetCore.Builder;
 
    // MoMo configuration
    builder.Services.Configure<MoMoConfig>(builder.Configuration.GetSection("MoMo"));
-   builder.Services.AddHttpClient<MoMoService>(); // Add this line
-
+   builder.Services.AddHttpClient<MoMoService>();
+   builder.Services.AddScoped<MoMoService>();
    // Session
    builder.Services.AddDistributedMemoryCache();
    builder.Services.AddSession(options =>

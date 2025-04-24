@@ -10,6 +10,7 @@
         background-color: hsl(0, 0%, 100%);
         margin: 0;
     }
+
     .checkout-container {
         display: flex;
         max-width: 1200px;
@@ -17,38 +18,48 @@
         gap: 20px;
         padding-top: 50px;
     }
-    .checkout-form, .order-summary {
+
+    .checkout-form,
+    .order-summary {
         background: white;
         padding: 20px;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
     .checkout-form {
         flex: 2;
     }
+
     .order-summary {
         flex: 1;
     }
+
     h2 {
         font-size: 24px;
         margin-bottom: 20px;
     }
+
     .form-group {
         margin-bottom: 15px;
     }
+
     label {
         display: block;
         font-size: 14px;
         margin-top: 10px;
         margin-bottom: 5px;
     }
-    input, select {
+
+    input,
+    select {
         width: 100%;
         padding: 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 16px;
     }
+
     .payment-methods {
         display: flex;
         flex-wrap: wrap;
@@ -56,11 +67,13 @@
         gap: 10px;
         margin-bottom: 20px;
     }
+
     .payment-methods label {
         display: flex;
         align-items: center;
         gap: 5px;
     }
+
     .checkout-container .checkout-form button {
         background-color: #717fe0;
         color: white;
@@ -71,168 +84,211 @@
         font-size: 16px;
         cursor: pointer;
     }
+
     .checkout-container .checkout-form button:hover {
         background-color: #333;
     }
+
     .order-summary ul {
         list-style: none;
         padding: 0;
     }
+
     .order-summary li {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
     }
-    @@media (max-width: 768px) {
-        .checkout-container {
-            flex-direction: column;
+
+    @@media(max - width: 768px) {
+            .checkout-container {
+                flex-direction: column;
+            }
         }
+    </style>
+
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
+                Home
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+            <a href="/Client/ShopingCart" class="stext-109 cl8 hov-cl1 trans-04">
+                Shopping Cart
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+            <span class="stext-109 cl4">
+                Checkout
+            </span>
+        </div>
+    </div>
+
+    @if (!HttpContext.Session.GetInt32("UserID").HasValue)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-t-50 p-b-50 text-center">
+                    <h4 class="mtext-105 cl2">Please Log In</h4>
+                    <p class="stext-102 cl3 p-t-23">
+                        You need to <a href="/Accounts/Login">log in</a> to proceed with payment.
+                    </p>
+                </div>
+            </div>
+        </div>
     }
-</style>
-
-<!-- breadcrumb -->
-<div class="container">
-    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-            Home
-            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-        </a>
-        <a href="/Client/ShopingCart" class="stext-109 cl8 hov-cl1 trans-04">
-            Shopping Cart
-            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-        </a>
-        <span class="stext-109 cl4">
-            Checkout
-        </span>
-    </div>
-</div>
-
-@if (!HttpContext.Session.GetInt32("UserID").HasValue)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-12 p-t-50 p-b-50 text-center">
-                <h4 class="mtext-105 cl2">Please Log In</h4>
-                <p class="stext-102 cl3 p-t-23">
-                    You need to <a href="/Accounts/Login">log in</a> to proceed with payment.
-                </p>
+    else if (!Model.CartItems.Any())
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-t-50 p-b-50 text-center">
+                    <h4 class="mtext-105 cl2">Your Cart is Empty</h4>
+                    <p class="stext-102 cl3 p-t-23">
+                        Browse our <a href="/Client/Product">products</a> to add items to your cart.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-}
-else if (!Model.CartItems.Any())
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-12 p-t-50 p-b-50 text-center">
-                <h4 class="mtext-105 cl2">Your Cart is Empty</h4>
-                <p class="stext-102 cl3 p-t-23">
-                    Browse our <a href="/Client/Product">products</a> to add items to your cart.
-                </p>
+    }
+    else if (Model.InvalidCartItems)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-12 p-t-50 p-b-50 text-center">
+                    <h4 class="mtext-105 cl2">Invalid Cart Items</h4>
+                    <p class="stext-102 cl3 p-t-23">
+                        Some items in your cart are no longer available. Please return to <a href="/Client/ShopingCart">your
+                            cart</a> to review and update.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-}
-else if (Model.InvalidCartItems)
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-12 p-t-50 p-b-50 text-center">
-                <h4 class="mtext-105 cl2">Invalid Cart Items</h4>
-                <p class="stext-102 cl3 p-t-23">
-                    Some items in your cart are no longer available. Please return to <a href="/Client/ShopingCart">your cart</a> to review and update.
-                </p>
-            </div>
-        </div>
-    </div>
-}
-else
-{
-    <div class="checkout-container">
-        <!-- Checkout Form -->
-        <form method="post">
-            <div class="checkout-form">
-                <h2>Checkout</h2>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="Email" value="@Model.Email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="FullName" value="@Model.FullName" placeholder="Enter your full name" required>
-                </div>
-                <div class="form-group">
-                    <label for="address">Shipping Address</label>
-                    <input type="text" id="address" name="Address" value="@Model.Address" placeholder="123 Main St, City etc..." required>
-                </div>
-                <div class="form-group">
-                    <label for="phonenumber">Phone Number</label>
-                    <input type="text" id="phonenumber" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="090..." required>
-                </div>
-                <div class="form-group">
-                    <label>Payment Method</label>
-                    <div class="payment-methods">
-                        <label><input type="radio" name="PaymentMethod" value="card" checked> Credit Card</label>
-                        <label><input type="radio" name="PaymentMethod" value="cod"> Cash on Delivery</label>
-                        <label><input type="radio" name="PaymentMethod" value="paypal"> PayPal</label>
-                        <label><input type="radio" name="PaymentMethod" value="momo"> MoMo</label>
+    }
+    else
+    {
+        <div class="checkout-container">
+            <form method="post" id="paymentForm">
+                <div class="checkout-form">
+                    <h2>Checkout</h2>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="Email" value="@Model.Email" placeholder="Enter your email"
+                            required>
                     </div>
-                </div>
-                <div class="form-group" id="card-details">
-                    <label for="card-number">Card Number</label>
-                    <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx">
-                    <div style="display: flex; gap: 10px;">
-                        <div style="flex: 1;">
-                            <label for="expiry">Expiration Date</label>
-                            <input type="text" id="expiry" placeholder="MM/YY">
-                        </div>
-                        <div style="flex: 1;">
-                            <label for="cvv">CVV</label>
-                            <input type="password" id="cvv" placeholder="Enter CVV">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="FullName" value="@Model.FullName" placeholder="Enter your full name"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <input type="text" id="address" name="Address" value="@Model.Address"
+                            placeholder="123 Main St, City etc..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phonenumber">Phone Number</label>
+                        <input type="text" id="phonenumber" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="090..."
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div class="payment-methods">
+                            <label>
+                                <input type="radio" name="PaymentMethod" value="card" checked
+                                    onchange="handlePaymentMethodChange(this)"> Credit Card
+                            </label>
+                            <label>
+                                <input type="radio" name="PaymentMethod" value="cod" onchange="handlePaymentMethodChange(this)">
+                                Cash on Delivery
+                            </label>
+                            <label>
+                                <input type="radio" name="PaymentMethod" value="momo"
+                                    onchange="handlePaymentMethodChange(this)"> MoMo
+                            </label>
                         </div>
                     </div>
+                    <div class="form-group" id="card-details">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx">
+                        <div style="display: flex; gap: 10px;">
+                            <div style="flex: 1;">
+                                <label for="expiry">Expiration Date</label>
+                                <input type="text" id="expiry" placeholder="MM/YY">
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="cvv">CVV</label>
+                                <input type="password" id="cvv" placeholder="Enter CVV">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="submitButton">Place Order</button>
                 </div>
-                <button type="submit">Place Order</button>
-            </div>
-        </form>
-        <!-- Order Summary -->
-        <div class="order-summary">
-            <h2>Order Summary</h2>
-            <ul>
-                @foreach (var item in Model.CartItems)
-                {
+            </form>
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <ul>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <li>
+                            @($"{item.Product?.Name ?? "Unknown Product"} (x{item.Quantity})")
+                            <span>@((item.Product?.Price * item.Quantity)?.ToString("C") ?? "$0.00")</span>
+                        </li>
+                    }
                     <li>
-                        @($"{item.Product?.Name ?? "Unknown Product"} (x{item.Quantity})")
-                        <span>@((item.Product?.Price * item.Quantity)?.ToString("C") ?? "$0.00")</span>
+                        <strong>Total</strong>
+                        <span><strong>@Model.TotalPrice.ToString("C")</strong></span>
                     </li>
-                }
-                <li>
-                    <strong>Total</strong>
-                    <span><strong>@Model.TotalPrice.ToString("C")</strong></span>
-                </li>
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-}
+    }
 
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            // Show/hide card details based on payment method
-            $('input[name="PaymentMethod"]').on('change', function () {
-                if ($(this).val() === 'card') {
-                    $('#card-details').show();
+    @section Scripts {
+        <script>
+            function handlePaymentMethodChange(radio) {
+                const cardDetails = document.getElementById('card-details');
+                const submitButton = document.getElementById('submitButton');
+
+                if (radio.value === 'card') {
+                    cardDetails.style.display = 'block';
+                    submitButton.textContent = 'Place Order';
+                } else if (radio.value === 'momo') {
+                    cardDetails.style.display = 'none';
+                    submitButton.textContent = 'Proceed to MoMo Payment';
                 } else {
-                    $('#card-details').hide();
+                    cardDetails.style.display = 'none';
+                    submitButton.textContent = 'Place Order';
+                }
+            }
+
+            document.getElementById('paymentForm').addEventListener('submit', async function (e) {
+                const selectedPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked').value;
+                if (selectedPaymentMethod === 'momo') {
+                    e.preventDefault();
+                    try {
+                        const form = e.target;
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            body: new FormData(form)
+                        });
+
+                        const result = await response.json();
+                        if (result.success && result.payUrl) {
+                            window.location.href = result.payUrl;
+                        } else {
+                            alert('Could not initialize MoMo payment. Please try again.');
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert('An error occurred. Please try again.');
+                    }
                 }
             });
 
             // Trigger initial state
-            if ($('input[name="PaymentMethod"]:checked').val() === 'card') {
-                $('#card-details').show();
-            } else {
-                $('#card-details').hide();
+            const initialPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked');
+            if (initialPaymentMethod) {
+                handlePaymentMethodChange(initialPaymentMethod);
             }
-        });
-    </script>
-}
+        </script>
+    }
