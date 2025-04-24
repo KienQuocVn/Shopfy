@@ -71,7 +71,7 @@ namespace Shofy.Pages.Admin
                 Description = Description,
                 Price = Price,
                 StockQuantity = StockQuantity,
-                ImagePath = "/images/" + imageFileName, 
+                ImagePath = imageFileName, 
                 Status = Status,
                 CreatedDate = DateTime.Now
             };

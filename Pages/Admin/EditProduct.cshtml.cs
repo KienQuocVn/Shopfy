@@ -72,7 +72,7 @@ namespace Shofy.Pages.Admin
                     ImageFile.CopyTo(stream);
                 }
 
-                productInDb.ImagePath = "/images/" + Path.GetFileName(filePath);
+                productInDb.ImagePath = Path.GetFileName(filePath);
             }
 
             _context.SaveChanges();

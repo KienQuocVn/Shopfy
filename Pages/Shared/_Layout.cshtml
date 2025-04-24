@@ -23,6 +23,7 @@
 	var currentPath = HttpContextAccessor.HttpContext.Request.Path.ToString();
 	var isAdminDashboard = adminPaths.Any(path => currentPath.StartsWith(path, StringComparison.OrdinalIgnoreCase));
 }
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -147,10 +148,10 @@
 							</a>
 							@{
 								var orderCount = 0;
-								var userId = HttpContextAccessor.HttpContext.Session.GetUserId();
-								if (userId.HasValue)
+								var userID = HttpContextAccessor.HttpContext.Session.GetUserId();
+								if (userID.HasValue)
 								{
-									orderCount = ShofyContext.Order.Count(o => o.UserID == userId.Value);
+									orderCount = ShofyContext.Order.Count(o => o.UserID == userID.Value);
 								}
 							}
 							<a class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
