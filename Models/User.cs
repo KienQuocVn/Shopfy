@@ -34,6 +34,7 @@ namespace Shofy.Models
         public string? ResetPasswordCode { get; set; }
 
         public DateTime? ResetPasswordCodeExpiration { get; set; }
+        public bool IsActive { get; set; } = true;
 
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }

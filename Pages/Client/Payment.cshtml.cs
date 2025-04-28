@@ -87,9 +87,8 @@ namespace Shofy.Pages.Client
             var userId = HttpContext.Session.GetUserId();
             if (!userId.HasValue)
             {
-                TempData["ErrorMessage"] = "Please log in to proceed with payment.";
-                _logger.LogWarning("No user logged in during payment attempt.");
-                return RedirectToPage("/Accounts/Login");
+                return new JsonResult(new { success = false, message = "Please log in to proceed with payment." });
+
             }
 
             // Load CartItems with Product
@@ -143,6 +142,7 @@ namespace Shofy.Pages.Client
                 OrderDetails = new List<OrderDetail>()
             };
 
+
             foreach (var item in CartItems)
             {
                 order.OrderDetails.Add(new OrderDetail
@@ -190,25 +190,41 @@ namespace Shofy.Pages.Client
             // Handle MoMo payment
             if (PaymentMethod == "momo")
             {
-                var paymentResponse = await _moMoService.CreatePaymentAsync(order);
-                if (paymentResponse.ErrorCode == 0 && !string.IsNullOrEmpty(paymentResponse.PayUrl))
+                try
                 {
-                    _logger.LogInformation("MoMo payment initiated for order {OrderId}, redirecting to {PayUrl}", order.OrderID, paymentResponse.PayUrl);
-                    HttpContext.Session.ClearCart(_context);
-                    return Redirect(paymentResponse.PayUrl);
+                    var paymentResponse = await _moMoService.CreatePaymentAsync(order);
+                    if (paymentResponse.ErrorCode == 0 && !string.IsNullOrEmpty(paymentResponse.PayUrl))
+                    {
+                        HttpContext.Session.ClearCart(_context);
+                        return new JsonResult(new
+                        {
+                            success = true,
+                            payUrl = paymentResponse.PayUrl
+                        });
+                    }
+                    else
+                    {
+                        _logger.LogError("MoMo payment failed: {ErrorCode} - {Message}",
+                            paymentResponse.ErrorCode, paymentResponse.Message);
+                        return new JsonResult(new
+                        {
+                            success = false,
+                            message = $"Payment initialization failed: {paymentResponse.Message}"
+                        });
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError(string.Empty, "Failed to initiate MoMo payment. Please try again.");
-                    _logger.LogError("MoMo payment failed for order {OrderId}: {Message}", order.OrderID, paymentResponse.Message);
-                    TotalPrice = CartItems.Sum(ci => (ci.Product?.Price ?? 0) * ci.Quantity);
-                    return Page();
+                    _logger.LogError(ex, "Error processing MoMo payment for order {OrderId}", order.OrderID);
+                    return new JsonResult(new
+                    {
+                        success = false,
+                        message = "An error occurred while processing your payment. Please try again later."
+                    });
                 }
             }
 
             HttpContext.Session.ClearCart(_context);
-            _logger.LogInformation("Order {OrderId} created successfully, cart cleared.", order.OrderID);
-
             return RedirectToPage("/Client/ThankYou", new { orderId = order.OrderID });
         }
 

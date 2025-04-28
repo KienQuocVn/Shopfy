@@ -1,4 +1,4 @@
-﻿﻿@using Microsoft.AspNetCore.Http
+﻿﻿﻿@using Microsoft.AspNetCore.Http
 @using Shofy.Helpers
 @using Shofy.Data
 @inject IHttpContextAccessor HttpContextAccessor
@@ -9,7 +9,7 @@
 	var total = cart.Sum(item => item.Product?.Price * item.Quantity ?? 0);
 	// Lấy số lượng sản phẩm trong Wishlist
 	var wishlistCount = 0;
-	var userId = session.GetUserId();
+	var userId = HttpContextAccessor.HttpContext.Session.GetUserId();
 	if (userId.HasValue)
 	{
 		var wishlist = WishlistHelper.GetWishlistProductIds(
@@ -22,8 +22,13 @@
 	var adminPaths = new[] { "/Error", "/Admin", "/Admin/User", "/Admin/Products", "/Admin/Order" };
 	var currentPath = HttpContextAccessor.HttpContext.Request.Path.ToString();
 	var isAdminDashboard = adminPaths.Any(path => currentPath.StartsWith(path, StringComparison.OrdinalIgnoreCase));
+	
+	var orderCount = 0;
+	if (userId.HasValue)
+	{
+		orderCount = ShofyContext.Order.Count(o => o.UserID == userId.Value);
+	}
 }
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,14 +151,6 @@
 								data-notify="@wishlistCount">
 								<i class="zmdi zmdi-favorite-outline"></i>
 							</a>
-							@{
-								var orderCount = 0;
-								var userID = HttpContextAccessor.HttpContext.Session.GetUserId();
-								if (userID.HasValue)
-								{
-									orderCount = ShofyContext.Order.Count(o => o.UserID == userID.Value);
-								}
-							}
 							<a class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
 								asp-page="/Client/OrderHistory" data-notify="@orderCount">
 								<i class="bi bi-box-seam"></i>
@@ -423,10 +420,12 @@
 	<!--===============================================================================================-->
 
 	<script src="~/js/main.js"></script>
-	<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-	<df-messenger chat-width="400px" chat-height="500px" intent="WELCOME" chat-title="Hỗ trợ"
-		agent-id="9f11d8a2-bb70-45be-998c-62b765c9ea87" language-code="vi"></df-messenger>
-
+	@if (!isAdminDashboard)
+	{
+		<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+		<df-messenger chat-width="400px" chat-height="500px" intent="WELCOME" chat-title="Hỗ trợ"
+			agent-id="9f11d8a2-bb70-45be-998c-62b765c9ea87" language-code="vi"></df-messenger>
+	}
 	@await RenderSectionAsync("Scripts", required: false)
 	@functions {
 		private int? GetUserRecentOrderId()
