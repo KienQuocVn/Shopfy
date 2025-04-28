@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Shofy.Data;
 using Shofy.Models;
+using System.Threading.Tasks;
 
-namespace Shofy.Pages.Admin
+namespace Shofy.Pages.Client
 {
-    public class ReviewOrderModel : PageModel
+    public class OrderTrackingModel : PageModel
     {
         private readonly ShofyContext _context;
-        private readonly ILogger<ReviewOrderModel> _logger;
+        private readonly ILogger<OrderTrackingModel> _logger;
 
-        public ReviewOrderModel(ShofyContext context, ILogger<ReviewOrderModel> logger)
+        public OrderTrackingModel(ShofyContext context, ILogger<OrderTrackingModel> logger)
         {
             _context = context;
             _logger = logger;
@@ -28,11 +29,7 @@ namespace Shofy.Pages.Admin
                     .ThenInclude(od => od.Product)
                 .FirstOrDefaultAsync(o => o.OrderID == id);
 
-            if (Order == null)
-            {
-                TempData["ErrorMessage"] = "Order not found.";
-                return RedirectToPage("/Admin/OrderIndex");
-            }
+            
 
             return Page();
         }

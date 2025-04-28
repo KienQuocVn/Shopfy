@@ -115,7 +115,6 @@ namespace Shofy.Pages.Accounts
                 return Page();
             }
 
-            TempData["SuccessMessage"] = "Đăng ký thành công! Vui lòng đăng nhập.";
             return RedirectToPage("/Accounts/Login");
         }
     }

@@ -6,11 +6,190 @@
 @{
     var successMessage = TempData["SuccessMessage"] as string;
 }
+<style>
+    .login-container {
+        background-color: #fff;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
 
-<div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
-    <div class="card col-lg-4 mx-auto">
-        <div class="card-body px-5 py-5">
-            <h3 class="card-title text-left mb-3 text-dark">Login</h3>
+    .login-illustration {
+        background-color: #f8f9fa;
+        padding: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 600px;
+    }
+
+    .login-illustration img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .login-form {
+        padding: 3rem 2rem;
+    }
+
+    .form-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .form-subtitle {
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+
+    .form-control {
+        padding: 0.75rem 1rem;
+        border-radius: 5px;
+        border: 1px solid #dee2e6;
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #0d6efd;
+    }
+
+    .input-group-text {
+        background: none;
+        border-left: none;
+    }
+
+    .password-toggle {
+        cursor: pointer;
+        color: #6c757d;
+    }
+
+    .form-check-label {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .forgot-password {
+        color: #dc3545;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+
+    .btn-login {
+        padding: 0.75rem;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 1rem;
+        background-color: #0f172a;
+        border: none;
+    }
+
+    .btn-login:hover {
+        background-color: #1e293b;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+
+    .register-link a {
+        color: #dc3545;
+        text-decoration: none;
+    }
+
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+
+    .social-login {
+        margin-top: 2rem;
+    }
+
+    .social-login-title {
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        position: relative;
+    }
+
+    .social-login-title::before,
+    .social-login-title::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 45%;
+        height: 1px;
+        background-color: #dee2e6;
+    }
+
+    .social-login-title::before {
+        left: 0;
+    }
+
+    .social-login-title::after {
+        right: 0;
+    }
+
+    .btn-social {
+        width: 100%;
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        border: 1px solid #dee2e6;
+        border-radius: 5px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: background-color 0.3s;
+    }
+
+    .btn-facebook {
+        background-color: #4267B2;
+        color: white;
+    }
+
+    .btn-google {
+        background-color: #DB4437;
+        color: white;
+    }
+
+    .btn-github {
+        background-color: #333;
+        color: white;
+    }
+
+    .btn-linkedin {
+        background-color: #0077B5;
+        color: white;
+    }
+
+    .btn-social:hover {
+        opacity: 0.9;
+        color: white;
+    }
+</style>
+<div class="container">
+    <div class="row login-container">
+        <!-- Left side - Illustration -->
+        <div class="col-lg-6 login-illustration">
+            <img src="~/images/auth-banner.png" alt="Login Illustration" class="img-fluid">
+        </div>
+
+        <!-- Right side - Login Form -->
+        <div class="col-lg-6 login-form">
+            <h1 class="form-title">Login to your account</h1>
+            <p class="form-subtitle">Your personal data will be used to support your experience throughout this website,
+                to manage access to your account.</p>
+
             @if (!string.IsNullOrEmpty(successMessage))
             {
                 <div class="alert alert-success mt-2 text-center">@successMessage</div>
@@ -19,25 +198,71 @@
             {
                 <div class="alert alert-danger mt-2 text-center">@Model.ErrorMessage</div>
             }
+
             <form method="post">
                 @Html.AntiForgeryToken()
-                <div class="form-group">
-                    <label asp-for="Username" class="form-label text-dark">Username</label>
-                    <input type="text" class="form-control" asp-for="Username" required />
-                    <span asp-validation-for="Username" class="text-danger"></span>
+
+                <!-- Email/Username Input -->
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label">Email <i class="bi bi-envelope"></i></label>
+                    <div class="form-group">
+                        <input type="text" class="form-control border-start-0" asp-for="Username"
+                            placeholder="Email address" required />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="form-label text-dark">Password</label>
-                    <input type="password" class="form-control" asp-for="Password" required />
-                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                <!-- Password Input -->
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Password <i class="bi bi-lock"></i></label>
+                    <div class="form-group">
+                        <div class="d-flex">
+                            <input type="password" class="form-control border-start-0" asp-for="Password"
+                                placeholder="Password" required id="passwordInput" />
+                            <span class="input-group-text border-start-0 password-toggle"
+                                style="margin-top: 10px;margin-left: 5px;">
+                                <i class="bi bi-eye" id="togglePassword"></i>
+                            </span>
+                        </div>
+
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
                 </div>
-                 <div class="form-group">
-                    <a href="/Accounts/ForgotPassword" class="text-dark">Forgot Password?</a>
+
+                <!-- Remember Me & Forgot Password -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="remember" disabled>
+                        <label class="form-check-label" for="remember">Remember me</label>
+                    </div>
+                    <a href="/Accounts/ForgotPassword" class="forgot-password">Forgot password?</a>
                 </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary btn-login">Login →</button>
+
+                <!-- Register Link -->
+                <div class="register-link">
+                    Don't have an account? <a href="/Accounts/Register">Register now</a>
                 </div>
-                <p class="text-center text-dark mt-3">Don't have an Account? <a href="/Accounts/Register">Sign Up</a></p>
+
+                <!-- Social Login (Commented out as not supported by backend) -->
+                <div class="social-login">
+                    <div class="social-login-title">Login with social networks</div>
+                    <a href="#" class="btn btn-social btn-facebook" disabled>
+                        <i class="bi bi-facebook"></i> Sign in with Facebook
+                    </a>
+                    <a href="#" class="btn btn-social btn-google" disabled>
+                        <i class="bi bi-google"></i> Sign in with Google
+                    </a>
+                    <a href="#" class="btn btn-social btn-github" disabled>
+                        <i class="bi bi-github"></i> Sign in with GitHub
+                    </a>
+                    <a href="#" class="btn btn-social btn-linkedin" disabled>
+                        <i class="bi bi-linkedin"></i> Sign in with LinkedIn
+                    </a>
+                </div>
             </form>
         </div>
     </div>
@@ -45,4 +270,20 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Password toggle functionality
+        document.getElementById('togglePassword').addEventListener('click', function () {
+            const passwordInput = document.getElementById('passwordInput');
+            const icon = this;
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('bi-eye');
+                icon.classList.add('bi-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('bi-eye-slash');
+                icon.classList.add('bi-eye');
+            }
+        });
+    </script>
 }

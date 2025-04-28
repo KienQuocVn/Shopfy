@@ -7,6 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Shofy.Services.MoMo;
+using Microsoft.Extensions.Logging;
+using System.Text;
+
 
 namespace Shofy.Pages.Client
 {
@@ -14,11 +18,13 @@ namespace Shofy.Pages.Client
     {
         private readonly ShofyContext _context;
         private readonly ILogger<Pages_Client_PaymentModel> _logger;
+        private readonly MoMoService _moMoService;
 
-        public Pages_Client_PaymentModel(ShofyContext context, ILogger<Pages_Client_PaymentModel> logger)
+        public Pages_Client_PaymentModel(ShofyContext context, ILogger<Pages_Client_PaymentModel> logger, MoMoService moMoService)
         {
             _context = context;
             _logger = logger;
+            _moMoService = moMoService;
         }
 
         public List<CartItem> CartItems { get; set; } = new();
@@ -81,9 +87,8 @@ namespace Shofy.Pages.Client
             var userId = HttpContext.Session.GetUserId();
             if (!userId.HasValue)
             {
-                TempData["ErrorMessage"] = "Please log in to proceed with payment.";
-                _logger.LogWarning("No user logged in during payment attempt.");
-                return RedirectToPage("/Accounts/Login");
+                return new JsonResult(new { success = false, message = "Please log in to proceed with payment." });
+
             }
 
             // Load CartItems with Product
@@ -137,6 +142,7 @@ namespace Shofy.Pages.Client
                 OrderDetails = new List<OrderDetail>()
             };
 
+
             foreach (var item in CartItems)
             {
                 order.OrderDetails.Add(new OrderDetail
@@ -179,13 +185,137 @@ namespace Shofy.Pages.Client
             // Save to database
             _context.Order.Add(order);
             _context.Payment.Add(payment);
-            _context.CartItem.RemoveRange(CartItems);
             await _context.SaveChangesAsync();
 
-            HttpContext.Session.ClearCart(_context);
-            _logger.LogInformation("Order {OrderId} created successfully, cart cleared.", order.OrderID);
+            // Handle MoMo payment
+            if (PaymentMethod == "momo")
+            {
+                try
+                {
+                    var paymentResponse = await _moMoService.CreatePaymentAsync(order);
+                    if (paymentResponse.ErrorCode == 0 && !string.IsNullOrEmpty(paymentResponse.PayUrl))
+                    {
+                        HttpContext.Session.ClearCart(_context);
+                        return new JsonResult(new
+                        {
+                            success = true,
+                            payUrl = paymentResponse.PayUrl
+                        });
+                    }
+                    else
+                    {
+                        _logger.LogError("MoMo payment failed: {ErrorCode} - {Message}",
+                            paymentResponse.ErrorCode, paymentResponse.Message);
+                        return new JsonResult(new
+                        {
+                            success = false,
+                            message = $"Payment initialization failed: {paymentResponse.Message}"
+                        });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error processing MoMo payment for order {OrderId}", order.OrderID);
+                    return new JsonResult(new
+                    {
+                        success = false,
+                        message = "An error occurred while processing your payment. Please try again later."
+                    });
+                }
+            }
 
+            HttpContext.Session.ClearCart(_context);
             return RedirectToPage("/Client/ThankYou", new { orderId = order.OrderID });
+        }
+
+        public async Task<IActionResult> OnGetReturnAsync(string orderId, string resultCode, string extraData)
+        {
+            var decodedExtraData = string.Empty;
+            try
+            {
+                decodedExtraData = Encoding.UTF8.GetString(Convert.FromBase64String(extraData));
+            }
+            catch
+            {
+                _logger.LogWarning("Invalid extraData received from MoMo for order {OrderId}", orderId);
+            }
+
+            var orderIdFromExtraData = decodedExtraData.Split('=')[1];
+            var order = await _context.Order
+                .Include(o => o.Payment)
+                .FirstOrDefaultAsync(o => o.OrderID.ToString() == orderIdFromExtraData);
+
+            if (order == null)
+            {
+                _logger.LogWarning("Order {OrderId} not found for MoMo return", orderIdFromExtraData);
+                TempData["ErrorMessage"] = "Order not found.";
+                return RedirectToPage("/Client/ShopingCart");
+            }
+
+            var payment = order.Payment;
+            if (payment == null)
+            {
+                _logger.LogWarning("No payment found for order {OrderId}", orderIdFromExtraData);
+                TempData["ErrorMessage"] = "Payment not found.";
+                return RedirectToPage("/Client/ShopingCart");
+            }
+
+            if (resultCode == "0")
+            {
+                order.Status = "Confirmed";
+                payment.Status = "Completed";
+                _logger.LogInformation("MoMo payment successful for order {OrderId}", order.OrderID);
+            }
+            else
+            {
+                order.Status = "Failed";
+                payment.Status = "Failed";
+                _logger.LogWarning("MoMo payment failed for order {OrderId}, resultCode: {ResultCode}", order.OrderID, resultCode);
+                TempData["ErrorMessage"] = "Payment failed. Please try again.";
+                return RedirectToPage("/Client/ShopingCart");
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Client/ThankYou", new { orderId = order.OrderID });
+        }
+
+        public async Task<IActionResult> OnPostNotifyAsync()
+        {
+            var orderId = Request.Form["orderId"].ToString().Split('-')[1];
+            var resultCode = Request.Form["resultCode"].ToString();
+
+            var order = await _context.Order
+                .Include(o => o.Payment)
+                .FirstOrDefaultAsync(o => o.OrderID.ToString() == orderId);
+
+            if (order == null)
+            {
+                _logger.LogWarning("Order {OrderId} not found for MoMo IPN", orderId);
+                return StatusCode(400);
+            }
+
+            var payment = order.Payment;
+            if (payment == null)
+            {
+                _logger.LogWarning("No payment found for order {OrderId}", orderId);
+                return StatusCode(400);
+            }
+
+            if (resultCode == "0")
+            {
+                order.Status = "Confirmed";
+                payment.Status = "Completed";
+                _logger.LogInformation("MoMo IPN: Payment confirmed for order {OrderId}", order.OrderID);
+            }
+            else
+            {
+                order.Status = "Failed";
+                payment.Status = "Failed";
+                _logger.LogWarning("MoMo IPN: Payment failed for order {OrderId}, resultCode: {ResultCode}", order.OrderID, resultCode);
+            }
+
+            await _context.SaveChangesAsync();
+            return StatusCode(200);
         }
     }
 }

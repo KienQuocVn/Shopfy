@@ -1,0 +1,227 @@
+@page "{id:int?}"
+@model Shofy.Pages.Client.OrderTrackingModel
+@{
+    ViewData["Title"] = "Order Tracking";
+}
+
+<style>
+    .tracking-container {
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin-top: 2rem;
+        padding: 2rem;
+    }
+
+    .tracking-step {
+        position: relative;
+        padding-left: 45px;
+        list-style-type: none;
+        padding-bottom: 3rem;
+    }
+
+    .tracking-step:last-child {
+        padding-bottom: 0;
+    }
+
+    .tracking-step::before {
+        content: "";
+        position: absolute;
+        left: 9px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #e9ecef;
+    }
+
+    .tracking-step::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #e9ecef;
+        border: 3px solid #fff;
+    }
+
+    .tracking-step.completed::before {
+        background: #28a745;
+    }
+
+    .tracking-step.completed::after {
+        background: #28a745;
+    }
+
+    .tracking-step.active::after {
+        background: #007bff;
+        border-color: #cce5ff;
+        box-shadow: 0 0 0 3px #cce5ff;
+    }
+
+    .tracking-step .step-title {
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .tracking-step .step-info {
+        color: #6c757d;
+        font-size: 0.875rem;
+    }
+
+    .tracking-step .step-time {
+        color: #adb5bd;
+        font-size: 0.75rem;
+    }
+
+    .order-summary {
+        background-color: #f8f9fa;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+    }
+
+    .product-item {
+        border-bottom: 1px solid #dee2e6;
+        padding: 1rem 0;
+    }
+
+    .product-item:last-child {
+        border-bottom: none;
+    }
+
+    .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+    }
+
+    .delivery-info {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .status-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .status-badge.in-transit {
+        background-color: #cce5ff;
+        color: #004085;
+    }
+</style>
+<div class="container">
+    <div class="tracking-container">
+        <div class="row d-flex justify-content-between align-items-center mb-4">
+            <div class="col-auto">
+                <h4>Order @Model.Order.OrderID</h4>
+                <p class="text-muted mb-0">@Model.Order.OrderedDate.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div class="col-auto">
+                <span class="status-badge in-transit">
+                    <i class="bi bi-truck"></i> In Transit
+                </span>
+            </div>
+        </div>
+
+        <!-- Delivery Info -->
+        <div class="row">
+            <div class="col-md-8">
+                <div class="delivery-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Delivery Address</h6>
+                            <p class="mb-0">FullName: @Model.Order.User?.FullName</p>
+                            <p class="mb-0">Address: @Model.Order.User?.Address</p>
+                            <p class="mb-0">Phone: @Model.Order.User?.PhoneNumber</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Estimated Delivery</h6>
+                            <p class="mb-0">March 18, 2024</p>
+                            <p class="mb-0">Between 9:00 AM - 5:00 PM</p>
+                            <h6 class="mt-3">Tracking Number</h6>
+                            <p class="mb-0">1Z999AA1234567890</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tracking Timeline -->
+                <div class="tracking-timeline">
+                    <ul class="p-0">
+                        <li class="tracking-step completed">
+                            <div class="step-title">Order Placed</div>
+                            <div class="step-info">Your order has been placed successfully</div>
+                            <div class="step-time">March 15, 2024 - 10:30 AM</div>
+                        </li>
+                        <li class="tracking-step completed">
+                            <div class="step-title">Order Confirmed</div>
+                            <div class="step-info">Your order has been confirmed and is being processed</div>
+                            <div class="step-time">March 15, 2024 - 11:00 AM</div>
+                        </li>
+                        <li class="tracking-step completed">
+                            <div class="step-title">Order Packed</div>
+                            <div class="step-info">Your items have been packed and are ready for shipping</div>
+                            <div class="step-time">March 16, 2024 - 2:15 PM</div>
+                        </li>
+                        <li class="tracking-step active">
+                            <div class="step-title">In Transit</div>
+                            <div class="step-info">Your package is on its way to you</div>
+                            <div class="step-time">March 17, 2024 - 9:45 AM</div>
+                        </li>
+                        <li class="tracking-step">
+                            <div class="step-title">Delivered</div>
+                            <div class="step-info">Package will be delivered to the provided address</div>
+                            <div class="step-time">Expected by March 18, 2024</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="col-md-4">
+                <div class="order-summary">
+                    <h5 class="mb-4">Order Summary</h5>
+                    @foreach (var detail in Model.Order.OrderDetails)
+                    {
+                        <div class="product-item d-flex">
+                            <img src="~/images/@detail.Product?.ImagePath" class="product-image" alt="@detail.Product?.Name" style="margin-right: 15px;">
+                            <div>
+                                <h6 class="mb-1"> @detail.Product?.Name</h6>
+                                <p class="mb-1 text-muted"> @detail.Quantity</p>
+                                <p class="mb-0">@detail.UnitPrice</p>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Order Totals -->
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Subtotal:</span>
+                            <span>@Model.Order.TotalPrice</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Shipping:</span>
+                            <span>...</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Tax:</span>
+                            <span>...</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold">
+                            <span>Total:</span>
+                            <span>@Model.Order.TotalPrice</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

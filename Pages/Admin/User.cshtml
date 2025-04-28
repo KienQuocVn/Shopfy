@@ -5,159 +5,188 @@
     ViewData["Title"] = "User Management";
 }
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-12 text-center">
-            <h2 class="mb-4">User Management</h2>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark text-white">
+        <div class="sidebar-header">
+            <a href="/Index" class="text-light">
+                <h3 class="mb-0">SHOPFY</h3>
+            </a>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card shadow-sm rounded-4 border-0">
-                <div class="card-body p-4">
-                    <h5 class="card-title mb-4 text-primary fw-bold">
-                        <i class="bi bi-grid-fill me-2"></i>Admin Menu
-                    </h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Index">
-                                <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/User">
-                                <i class="bi bi-people-fill me-2 text-primary"></i>Users
-                            </a>
-                        </li>
-                        <li class="nav-item mb-2">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Products">
-                                <i class="bi bi-box-seam me-2 text-primary"></i>Products
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex align-items-center text-dark fw-semibold" href="/Admin/Order">
-                                <i class="bi bi-receipt-cutoff me-2 text-primary"></i>Orders
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+        <div class="navigation-section">
+            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
+                <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
+                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
+                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
+                <li><a href="#"><i class="bi bi-wallet me-2"></i> E-Wallet</a></li>
+            </ul>
         </div>
 
+        <div class="apps-section">
+            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
+                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
+                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <div class="col-md-9">
-            <form method="get" class="mb-3">
-                <div class="mb-3">
-                    <strong>Categories</strong>
-                    <a asp-page="/Admin/User" asp-route-RoleFilter=""
-                        class="btn btn-outline-secondary btn-sm @(string.IsNullOrEmpty(Model.RoleFilter) ? "active" : "")">All
-                    </a>
-                    <a asp-page="/Admin/User" asp-route-RoleFilter="Admin"
-                        class="btn btn-outline-primary btn-sm @(Model.RoleFilter == "Admin" ? "active" : "")">Admin</a>
-                    <a asp-page="/Admin/User" asp-route-RoleFilter="User"
-                        class="btn btn-outline-success btn-sm @(Model.RoleFilter == "User" ? "active" : "")">User</a>
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="search-box">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <button class="btn btn-primary">Search</button>
                 </div>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered rounded">
-                    <thead class="table-light">
-                        <tr>
-                            <th scope="col">Username</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Full Name</th>
-                            <th scope="col">Phone Number</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Created Date</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var user in Model.Users)
-                        {
-                            <tr>
-                                <td>@user.Username</td>
-                                <td>@user.Email</td>
-                                <td>@user.Role</td>
-                                <td>@user.FullName</td>
-                                <td>@user.PhoneNumber</td>
-                                <td>@user.Address</td>
-                                <td>@user.CreatedDate</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                                            id="actionMenu@user.UserID" data-bs-toggle="dropdown" aria-expanded="false">
-                                            ...
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="actionMenu@user.UserID">
-                                            <li>
-                                                <a class="dropdown-item" asp-page="/Admin/EditUser"
-                                                    asp-route-UserId="@user.UserID">Edit</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" asp-page="/Admin/ReviewUser"
-                                                    asp-route-UserId="@user.UserID">Review</a>
-                                            </li>
-                                            <li>
-                                                <form method="post" asp-page-handler="Delete"
-                                                    asp-route-UserId="@user.UserID"
-                                                    onsubmit="return confirm('Are you sure to delete this user?');">
-                                                    <button type="submit" class="dropdown-item text-danger">Delete</button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                <div class="d-flex align-items-center">
+                    
+                    <div class="icons-group">
+                        <button class="btn"><i class="bi bi-bell"></i></button>
+                        <button class="btn"><i class="bi bi-grid-fill"></i></button>
+                        <button class="btn"><i class="bi bi-gear"></i></button>
+                        <button class="btn"><i class="bi bi-moon"></i></button>
+                        <button class="btn"><i class="bi bi-fullscreen"></i></button>
+                    </div>
+                    <div class="profile-section ms-3">
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                            <small class="text-muted">Role: @Model.Role</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- User Management Content -->
+        <div class="container-fluid py-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1 class="h3">User Management</h1>
+                <div class="date-section">
+                    <div class="btn-group ms-3">
+                        <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
+                        <button class="btn ms-2" style="background-color: #6658dd;">
+                            <i class="bi bi-arrow-repeat text-light"></i>
+                        </button>
+                        <button class="btn ms-2" style="background-color: #6658dd;">
+                            <i class="bi bi-funnel-fill text-light"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center">
-                <nav>
-                    <ul class="pagination">
-                        <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
-                            <a class="page-link" asp-page-handler="Page" asp-route-pageNumber="1">First</a>
-                        </li>
-                        <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
-                            <a class="page-link" asp-page-handler="Page"
-                                asp-route-pageNumber="@(Model.CurrentPage - 1)">Previous</a>
-                        </li>
-                         <li class="page-item disabled"></li>
-                            <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
-                        </li>
-                        <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
-                            <a class="page-link" asp-page-handler="Page"
-                                asp-route-pageNumber="@(Model.CurrentPage + 1)">Next</a>
-                        </li>
-                        <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
-                            <a class="page-link" asp-page-handler="Page"
-                                asp-route-pageNumber="@Model.TotalPages">Last</a>
-                        </li>
-                    </ul>
-                </nav>
+            <!-- User Management Card -->
+            <div class="card">
+                <div class="card-body">
+                    <form method="get" class="mb-3">
+                        <div class="mb-3">
+                            <strong>Categories</strong>
+                            <a asp-page="/Admin/User" asp-route-RoleFilter=""
+                               class="btn btn-outline-secondary btn-sm @(string.IsNullOrEmpty(Model.RoleFilter) ? "active" : "")">All</a>
+                            <a asp-page="/Admin/User" asp-route-RoleFilter="Admin"
+                               class="btn btn-outline-primary btn-sm @(Model.RoleFilter == "Admin" ? "active" : "")">Admin</a>
+                            <a asp-page="/Admin/User" asp-route-RoleFilter="User"
+                               class="btn btn-outline-success btn-sm @(Model.RoleFilter == "User" ? "active" : "")">User</a>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered rounded">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Full Name</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Created Date</th>
+                                    <th scope="col">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model.Users)
+                                {
+                                    <tr>
+                                        <td>@user.Username</td>
+                                        <td>@user.Email</td>
+                                        <td>@user.Role</td>
+                                        <td>@user.FullName</td>
+                                        <td>@user.PhoneNumber</td>
+                                        <td>@user.Address</td>
+                                        <td>@user.CreatedDate</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                                        id="actionMenu@user.UserID" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    ...
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="actionMenu@user.UserID">
+                                                    <li>
+                                                        <a class="dropdown-item" asp-page="/Admin/EditUser"
+                                                           asp-route-UserId="@user.UserID">Edit</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" asp-page="/Admin/ReviewUser"
+                                                           asp-route-UserId="@user.UserID">Review</a>
+                                                    </li>
+                                                    <li>
+                                                        <form method="post" asp-page-handler="Delete"
+                                                              asp-route-UserId="@user.UserID"
+                                                              onsubmit="return confirm('Are you sure to delete this user?');">
+                                                            <button type="submit" class="dropdown-item text-danger">Delete</button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="d-flex justify-content-center">
+                        <nav>
+                            <ul class="pagination">
+                                <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
+                                    <a class="page-link" asp-page-handler="Page" asp-route-pageNumber="1">First</a>
+                                </li>
+                                <li class="page-item @((Model.CurrentPage == 1) ? "disabled" : "")">
+                                    <a class="page-link" asp-page-handler="Page"
+                                       asp-route-pageNumber="@(Model.CurrentPage - 1)">Previous</a>
+                                </li>
+                                <li class="page-item disabled">
+                                    <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
+                                </li>
+
+                                <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
+                                    <a class="page-link" asp-page-handler="Page"
+                                       asp-route-pageNumber="@(Model.CurrentPage + 1)">Next</a>
+                                </li>
+                                <li class="page-item @((Model.CurrentPage == Model.TotalPages) ? "disabled" : "")">
+                                    <a class="page-link" asp-page-handler="Page"
+                                       asp-route-pageNumber="@Model.TotalPages">Last</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    .table-responsive {
-        overflow-x: auto;
-        margin-bottom: 1rem;
-        width: 100%;
-    }
 
-    .pagination {
-        display: flex;
-        justify-content: center;
-        list-style: none;
-        padding: 0;
-    }
-</style>
 <!-- Cài đặt Bootstrap Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 

@@ -12,7 +12,7 @@ using Shofy.Data;
 namespace Shofy.Migrations
 {
     [DbContext(typeof(ShofyContext))]
-    [Migration("20250420070101_InitialCreate")]
+    [Migration("20250428112016_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

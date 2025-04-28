@@ -1,86 +1,102 @@
-using Shofy.Data;
-using Shofy.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net.Mail;
-using System.Net;
-using DotNetEnv;
+using Microsoft.AspNetCore.Builder;
+   using Microsoft.Extensions.DependencyInjection;
+   using Shofy.Data;
+   using Shofy.Models;
+   using Microsoft.EntityFrameworkCore;
+   using System.Net.Mail;
+   using System.Net;
+   using DotNetEnv;
+   using Microsoft.AspNetCore.Authentication.Cookies;
+   using Shofy.Services.MoMo;
 
-var builder = WebApplication.CreateBuilder(args);
+   var builder = WebApplication.CreateBuilder(args);
 
-// Load environment variables từ .env
-Env.Load();
+   // Load environment variables from .env
+   Env.Load();
 
-// Lấy biến từ môi trường
-var dbServer = Environment.GetEnvironmentVariable("DB_SERVER") ?? "localhost";
-var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "ShofyDb";
-var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "sa";
-var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "yourStrong(!)Password";
+   // Get environment variables
+   var dbServer = Environment.GetEnvironmentVariable("DB_SERVER") ?? "localhost";
+   var dbName = Environment.GetEnvironmentVariable("DB_NAME") ?? "ShofyDb";
+   var dbUser = Environment.GetEnvironmentVariable("DB_USER") ?? "sa";
+   var dbPassword = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "yourStrong(!)Password";
 
-var emailHost = Environment.GetEnvironmentVariable("EMAIL_HOST") ?? "smtp.example.com";
-var emailPort = int.TryParse(Environment.GetEnvironmentVariable("EMAIL_PORT"), out int port) ? port : 587;
-var emailUsername = Environment.GetEnvironmentVariable("EMAIL_USERNAME") ?? "";
-var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD") ?? "";
-var emailFrom = Environment.GetEnvironmentVariable("EMAIL_FROM") ?? "no-reply@example.com";
+   var emailHost = Environment.GetEnvironmentVariable("EMAIL_HOST") ?? "smtp.gmail.com";
+   var emailPort = int.TryParse(Environment.GetEnvironmentVariable("EMAIL_PORT"), out int port) ? port : 587;
+   var emailUsername = Environment.GetEnvironmentVariable("EMAIL_USERNAME") ?? "";
+   var emailPassword = Environment.GetEnvironmentVariable("EMAIL_PASSWORD") ?? "";
+   var emailFrom = Environment.GetEnvironmentVariable("EMAIL_FROM") ?? "no-reply@example.com";
 
-// Connection string động
-var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
+   // Dynamic connection string
+   var connectionString = $"Server={dbServer};Database={dbName};User Id={dbUser};Password={dbPassword};TrustServerCertificate=True;";
 
-// Đăng ký DbContext
-builder.Services.AddDbContext<ShofyContext>(options =>
-    options.UseSqlServer(connectionString));
+   // Register DbContext
+   builder.Services.AddDbContext<ShofyContext>(options =>
+       options.UseSqlServer(connectionString));
 
-// Session
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.SameSite = SameSiteMode.Strict;
-});
+   // MoMo configuration
+   builder.Services.Configure<MoMoConfig>(builder.Configuration.GetSection("MoMo"));
+   builder.Services.AddHttpClient<MoMoService>();
+   builder.Services.AddScoped<MoMoService>();
+   // Session
+   builder.Services.AddDistributedMemoryCache();
+   builder.Services.AddSession(options =>
+   {
+       options.IdleTimeout = TimeSpan.FromMinutes(30);
+       options.Cookie.HttpOnly = true;
+       options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+       options.Cookie.SameSite = SameSiteMode.Strict;
+   });
 
-// SMTP client
-builder.Services.AddSingleton(new SmtpClient
-{
-    Host = emailHost,
-    Port = emailPort,
-    EnableSsl = true,
-    Credentials = new NetworkCredential(emailUsername, emailPassword)
-});
-builder.Services.AddSingleton(new MailAddress(emailFrom, "Shofy Support"));
+   // SMTP client
+   builder.Services.AddSingleton(new SmtpClient
+   {
+       Host = emailHost,
+       Port = emailPort,
+       EnableSsl = true,
+       Credentials = new NetworkCredential(emailUsername, emailPassword)
+   });
+   builder.Services.AddSingleton(new MailAddress(emailFrom, "Shofy Support"));
 
-// Authorization
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-    options.AddPolicy("User", policy => policy.RequireRole("User"));
-});
+   // Authentication
+   builder.Services.AddAuthentication("CookieAuth")
+       .AddCookie("CookieAuth", options =>
+       {
+           options.LoginPath = "/Accounts/Login";
+           options.AccessDeniedPath = "/Accounts/AccessDenied";
+           options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+       });
 
-// Dịch vụ Razor
-builder.Services.AddRazorPages();
-builder.Services.AddHttpContextAccessor();
+   // Authorization
+   builder.Services.AddAuthorization(options =>
+   {
+       options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+       options.AddPolicy("User", policy => policy.RequireRole("User"));
+   });
 
-var app = builder.Build();
+   // Razor Pages
+   builder.Services.AddRazorPages();
+   builder.Services.AddHttpContextAccessor();
 
-// Middleware
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
-else
-{
-    app.UseDeveloperExceptionPage();
-}
+   var app = builder.Build();
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
-app.UseSession();
+   // Middleware
+   if (!app.Environment.IsDevelopment())
+   {
+       app.UseExceptionHandler("/Error");
+       app.UseHsts();
+   }
+   else
+   {
+       app.UseDeveloperExceptionPage();
+   }
 
-app.MapRazorPages();
+   app.UseHttpsRedirection();
+   app.UseStaticFiles();
+   app.UseRouting();
+   app.UseAuthentication();
+   app.UseAuthorization();
+   app.UseSession();
 
-app.Run();
+   app.MapRazorPages();
+
+   app.Run();

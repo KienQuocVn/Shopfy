@@ -3,6 +3,14 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Shofy.Data;
 using Shofy.Models;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Font;
+using iText.IO.Font.Constants;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Shofy.Pages.Admin
 {
@@ -42,15 +50,25 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public string PaymentMethod { get; set; }
 
-        // Thêm kiểm tra quyền Role=Admin
+        // Profile section properties
+        public string Username { get; set; }
+        public string Role { get; set; }
+        public string Avatar { get; set; }
+
+        // Check Role=Admin
         public async Task<IActionResult> OnGetAsync()
         {
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
-                return RedirectToPage("/Error");//Chuyển hướng sang trang error nếu ko hợp lệ
+                return RedirectToPage("/Error");
             }
 
+            // Retrieve profile data from session
+            Username = HttpContext.Session.GetString("Username") ?? "Guest";
+            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
+            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
+            
             var query = _context.Order
                 .Include(o => o.User)
                 .AsQueryable();
@@ -94,13 +112,13 @@ namespace Shofy.Pages.Admin
             return Page();
         }
 
-        // Xóa đơn hàng
+        // Delete an order
         public async Task<IActionResult> OnPostDeleteAsync(int id)
         {
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
-                return RedirectToPage("/Error"); // Chuyển hướng sang trang error nếu ko hợp lệ
+                return RedirectToPage("/Error");
             }
 
             var order = await _context.Order.FindAsync(id);
@@ -118,13 +136,13 @@ namespace Shofy.Pages.Admin
             return RedirectToPage();
         }
 
-        // Chỉnh sửa đơn hàng
+        // Edit an order
         public async Task<IActionResult> OnPostEditAsync(int id)
         {
             var role = HttpContext.Session.GetString("Role");
             if (role != "Admin")
             {
-                return RedirectToPage("/Error"); // Chuyển hướng sang trang error nếu ko hợp lệ
+                return RedirectToPage("/Error");
             }
 
             var order = await _context.Order.FindAsync(id);
@@ -135,6 +153,108 @@ namespace Shofy.Pages.Admin
             }
 
             return RedirectToPage("/Admin/EditOrder", new { id });
+        }
+
+        // Export Invoice as PDF
+        public async Task<IActionResult> OnGetExportInvoiceAsync(int id)
+        {
+            var role = HttpContext.Session.GetString("Role");
+            if (role != "Admin")
+            {
+                return RedirectToPage("/Error");
+            }
+
+            // Fetch the order with related data (User and OrderDetails)
+            var order = await _context.Order
+                .Include(o => o.User)
+                .Include(o => o.OrderDetails)
+                .ThenInclude(od => od.Product)
+                .FirstOrDefaultAsync(o => o.OrderID == id);
+
+            if (order == null)
+            {
+                TempData["ErrorMessage"] = "Không tìm thấy đơn hàng.";
+                return RedirectToPage();
+            }
+
+            using (var stream = new MemoryStream())
+            {
+                using (var writer = new PdfWriter(stream))
+                {
+                    using (var pdf = new PdfDocument(writer))
+                    {
+                        var document = new Document(pdf);
+                        var boldFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                        var regularFont = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+
+                        // Title
+                        document.Add(new Paragraph("Invoice")
+                            .SetFont(boldFont)
+                            .SetFontSize(20)
+                            .SetTextAlignment(TextAlignment.CENTER));
+
+                        // Order Information
+                        document.Add(new Paragraph($"Order ID: {order.OrderID}")
+                            .SetFont(boldFont)
+                            .SetFontSize(12)
+                            .SetMarginTop(10));
+                        document.Add(new Paragraph($"Customer: {order.User?.FullName ?? "N/A"}")
+                            .SetFont(regularFont)
+                            .SetFontSize(12));
+                        document.Add(new Paragraph($"Ordered Date: {order.OrderedDate:dd/MM/yyyy HH:mm}")
+                            .SetFont(regularFont)
+                            .SetFontSize(12));
+                        document.Add(new Paragraph($"Payment Method: {order.PaymentMethod}")
+                            .SetFont(regularFont)
+                            .SetFontSize(12));
+                        document.Add(new Paragraph($"Status: {order.Status}")
+                            .SetFont(regularFont)
+                            .SetFontSize(12));
+
+                        // Order Items Table
+                        document.Add(new Paragraph("Order Items")
+                            .SetFont(boldFont)
+                            .SetFontSize(14)
+                            .SetMarginTop(20));
+
+                        var table = new Table(UnitValue.CreatePercentArray(new float[] { 40, 15, 15, 30 }))
+                            .UseAllAvailableWidth();
+                        table.AddHeaderCell(new Cell().Add(new Paragraph("Product").SetFont(boldFont)));
+                        table.AddHeaderCell(new Cell().Add(new Paragraph("Quantity").SetFont(boldFont)));
+                        table.AddHeaderCell(new Cell().Add(new Paragraph("Unit Price").SetFont(boldFont)));
+                        table.AddHeaderCell(new Cell().Add(new Paragraph("Subtotal").SetFont(boldFont)));
+
+                        foreach (var detail in order.OrderDetails ?? new List<OrderDetail>())
+                        {
+                            table.AddCell(new Cell().Add(new Paragraph(detail.Product?.Name ?? "N/A").SetFont(regularFont)));
+                            table.AddCell(new Cell().Add(new Paragraph(detail.Quantity.ToString()).SetFont(regularFont)));
+                            table.AddCell(new Cell().Add(new Paragraph($"${detail.UnitPrice:N2}").SetFont(regularFont)));
+                            table.AddCell(new Cell().Add(new Paragraph($"${(detail.Quantity * detail.UnitPrice):N2}").SetFont(regularFont)));
+                        }
+
+                        document.Add(table);
+
+                        // Total Price
+                        document.Add(new Paragraph($"Total Price: ${order.TotalPrice:N2}")
+                            .SetFont(boldFont)
+                            .SetFontSize(14)
+                            .SetTextAlignment(TextAlignment.RIGHT)
+                            .SetMarginTop(20));
+
+                        // Footer
+                        document.Add(new Paragraph($"Generated on: {DateTime.Now:dd/MM/yyyy HH:mm}")
+                            .SetFont(regularFont)
+                            .SetFontSize(10)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetMarginTop(20));
+
+                        document.Close();
+                    }
+                }
+
+                var content = stream.ToArray();
+                return File(content, "application/pdf", $"Invoice_Order_{order.OrderID}.pdf");
+            }
         }
     }
 }
