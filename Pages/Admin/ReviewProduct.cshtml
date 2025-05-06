@@ -13,7 +13,7 @@
             @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
             {
                 <div class="text-center mb-4">
-                    <img src="@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded" style="max-height: 350px; width: auto;" />
+                    <img src="~/images/@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded" style="max-height: 350px; width: auto;" />
                 </div>
             }
 
