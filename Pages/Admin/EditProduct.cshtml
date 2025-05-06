@@ -42,7 +42,7 @@
             <label class="form-label">Current Image</label><br />
             @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
             {
-                <img src="@Model.Product.ImagePath" width="150" class="mb-2 rounded" />
+                <img src="~/images/@Model.Product.ImagePath" width="150" class="mb-2 rounded" />
             }
             else
             {
