@@ -7,6 +7,7 @@ using Shofy.Models;
 using Microsoft.EntityFrameworkCore;
 using Shofy.Helpers;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace Shofy.Pages.Accounts
 {
@@ -53,10 +54,14 @@ namespace Shofy.Pages.Accounts
             {
                 var user = await _context.User.FirstOrDefaultAsync(u => u.Username.ToLower() == Username.ToLower());
 
-                if (user == null || !BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
+                // Kiểm tra tài khoản tồn tại, mật khẩu đúng và đang hoạt động
+                if (user == null || !BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash) || !user.IsActive)
                 {
-                    _logger.LogWarning("User not found or password incorrect for Username: {Username}", Username);
-                    ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    _logger.LogWarning("Login failed for Username: {Username}. Reason: {Reason}", Username,
+                        user == null ? "User not found" :
+                        (!user.IsActive ? "User is inactive" : "Password incorrect"));
+
+                    ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng hoặc tài khoản đã bị vô hiệu hóa.";
                     return Page();
                 }
 
@@ -66,6 +71,7 @@ namespace Shofy.Pages.Accounts
                 HttpContext.Session.SetUserRole(user.Role);
                 HttpContext.Session.SetString("Role", user.Role);
                 HttpContext.Session.SetString("Avatar", user.Avatar ?? "/images/noavt.jpg");
+
                 return RedirectToPage("/Index");
             }
             catch (Exception ex)

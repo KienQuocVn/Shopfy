@@ -122,14 +122,9 @@ h2 {
         </div>
         <h1>Error</h1>
         <h2>An Error Occurred</h2>
-        <p class="error-description">An error occurred while processing your request.</p>
+        <p class="error-description">Unauthorized to access</p>
         
-        @if (Model.ShowRequestId)
-        {
-            <p class="error-description">
-                <strong>Request ID:</strong> <code>@Model.RequestId</code>
-            </p>
-        }
+       
 
         <div class="error-actions">
             <a href="/" class="btn btn-primary btn-lg">

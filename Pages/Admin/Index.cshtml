@@ -22,17 +22,17 @@
                 <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> USer</a></li>
                 <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
                 <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-                <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li>
+                @* <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li> *@
             </ul>
         </div>
-        <div class="apps-section" >
-                <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
-                <ul class="list-unstyled">
-                    <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
-                    <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
-                    <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
-                </ul>
-            </div>
+        @* <div class="apps-section">
+            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
+                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
+                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
+            </ul>
+        </div> *@
     </nav>
 
     <!-- Main Content -->
@@ -44,26 +44,25 @@
                     <i class="bi bi-list"></i>
                 </button>
 
-                <div class="search-box">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <button class="btn btn-primary">Search</button>
-                </div>
+                @* <div class="search-box d-flex">
+                    <input type="text" id="searchInput" class="form-control me-2" placeholder="Search...">
+                    <button class="btn btn-primary" type="button" onclick="handleSearch()">Search</button>
+                </div> *@
 
                 <div class="d-flex align-items-center">
 
-                    <div class="icons-group">
+                    @* <div class="icons-group">
                         <button class="btn"><i class="bi bi-bell"></i></button>
                         <button class="btn"><i class="bi bi-grid-fill"></i></button>
                         <button class="btn"><i class="bi bi-gear"></i></button>
                         <button class="btn"><i class="bi bi-moon"></i></button>
                         <button class="btn"><i class="bi bi-fullscreen"></i></button>
-                    </div>
+                    </div> *@
                     <div class="profile-section ms-3">
                         <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
                             style="width: 40px; height: 40px;">
                         <div class="d-flex flex-column">
                             <span class="ms-2">@Model.Username</span>
-                            <small class="text-muted">Role: @Model.Role</small>
                         </div>
                     </div>
                 </div>
@@ -74,7 +73,7 @@
         <div class="container-fluid py-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">Dashboard</h1>
-                <div class="date-section">
+                @* <div class="date-section">
                     <div class="btn-group ms-3">
                         <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
                         <button class="btn ms-2" style="background-color: #6658dd;"><i
@@ -82,7 +81,7 @@
                         <button class="btn ms-2" style="background-color: #6658dd;"><i
                                 class="bi bi-funnel-fill text-light"></i></button>
                     </div>
-                </div>
+                </div> *@
             </div>
 
             <!-- Stats Cards -->
@@ -172,6 +171,11 @@
                 </div>
             </div>
 
+            <!-- Stats Cards -->
+            <div class="row">
+                <!-- Stat Cards Here (Same as before) -->
+            </div>
+
             <!-- Charts Section -->
             <div class="row mt-4">
                 <div class="col-md-6">
@@ -179,7 +183,8 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h5 class="card-title">Order Statistics</h5>
-                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                                <button id="toggleOrderChart" class="btn btn-link"><i
+                                        class="bi bi-three-dots-vertical"></i></button>
                             </div>
                             <canvas id="orderChart"></canvas>
                         </div>
@@ -190,7 +195,8 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h5 class="card-title">User Statistics</h5>
-                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                                <button id="toggleUserChart" class="btn btn-link"><i
+                                        class="bi bi-three-dots-vertical"></i></button>
                             </div>
                             <canvas id="userChart"></canvas>
                         </div>
@@ -201,7 +207,8 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h5 class="card-title">Monthly Revenue</h5>
-                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                                <button id="toggleRevenueChart" class="btn btn-link"><i
+                                        class="bi bi-three-dots-vertical"></i></button>
                             </div>
                             <canvas id="revenueChart"></canvas>
                         </div>
@@ -212,7 +219,8 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center mb-4">
                                 <h5 class="card-title">Products Sold</h5>
-                                <button class="btn btn-link"><i class="bi bi-three-dots-vertical"></i></button>
+                                <button id="toggleProductChart" class="btn btn-link"><i
+                                        class="bi bi-three-dots-vertical"></i></button>
                             </div>
                             <canvas id="productChart"></canvas>
                         </div>
@@ -227,8 +235,8 @@
 <script>
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-    //Quản lý đơn hàng
-    new Chart(document.getElementById('orderChart'), {
+    // Order Statistics Chart (Bar/Line Toggle)
+    let orderChart = new Chart(document.getElementById('orderChart'), {
         type: 'bar',
         data: {
             labels: months,
@@ -243,8 +251,13 @@
         options: { scales: { y: { beginAtZero: true } } }
     });
 
-    // Quản lý người dùng
-    new Chart(document.getElementById('userChart'), {
+    document.getElementById('toggleOrderChart').addEventListener('click', function () {
+        orderChart.config.type = orderChart.config.type === 'bar' ? 'line' : 'bar';
+        orderChart.update();
+    });
+
+    // User Statistics Chart (Bar/Line Toggle)
+    let userChart = new Chart(document.getElementById('userChart'), {
         type: 'line',
         data: {
             labels: months,
@@ -259,8 +272,13 @@
         options: { scales: { y: { beginAtZero: true } } }
     });
 
-    // Quản lý doanh thu trong tháng
-    new Chart(document.getElementById('revenueChart'), {
+    document.getElementById('toggleUserChart').addEventListener('click', function () {
+        userChart.config.type = userChart.config.type === 'bar' ? 'line' : 'bar';
+        userChart.update();
+    });
+
+    // Revenue Statistics Chart (Bar/Line Toggle)
+    let revenueChart = new Chart(document.getElementById('revenueChart'), {
         type: 'bar',
         data: {
             labels: months,
@@ -275,8 +293,13 @@
         options: { scales: { y: { beginAtZero: true } } }
     });
 
-    // Quản lý số lượng người dùng truy cập trong tháng
-    new Chart(document.getElementById('productChart'), {
+    document.getElementById('toggleRevenueChart').addEventListener('click', function () {
+        revenueChart.config.type = revenueChart.config.type === 'bar' ? 'line' : 'bar';
+        revenueChart.update();
+    });
+
+    // Product Statistics Chart (Bar/Line Toggle)
+    let productChart = new Chart(document.getElementById('productChart'), {
         type: 'line',
         data: {
             labels: months,
@@ -290,4 +313,26 @@
         },
         options: { scales: { y: { beginAtZero: true } } }
     });
+
+    document.getElementById('toggleProductChart').addEventListener('click', function () {
+        productChart.config.type = productChart.config.type === 'bar' ? 'line' : 'bar';
+        productChart.update();
+    });
+</script>
+<script>
+    function handleSearch() {
+        const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
+        if (keyword === 'user') {
+            window.location.href = '/Admin/User';
+        } else if (keyword === 'products') {
+            window.location.href = '/Admin/Products';
+        } else if (keyword === 'order') {
+            window.location.href = '/Admin/Order';
+        } else if (keyword === 'chat') {
+            window.location.href = '/Admin/Chat';
+        } else {
+            alert('Không tìm thấy trang phù hợp');
+        }else if (keyword === 'Dashboard') {
+            window.location.href = '/Admin/Index';
+        }
 </script>
