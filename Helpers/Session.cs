@@ -1,11 +1,9 @@
-using Newtonsoft.Json;
 using Shofy.Data;
 using Shofy.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
 using Microsoft.AspNetCore.Http;
 namespace Shofy.Helpers
 
@@ -40,7 +38,7 @@ namespace Shofy.Helpers
         public static void SetUserRole(this ISession session, string role)
         {
             session.SetString("UserRole", role);
-            
+
         }
 
         public static List<CartItem> GetCart(this ISession session, ShofyContext context)
@@ -120,18 +118,22 @@ namespace Shofy.Helpers
     public static class WishlistHelper
     {
         // Lấy danh sách ProductID từ Wishlist
-        public static List<int> GetWishlistProductIds(string wishlistJson)
+        public static List<int> GetWishlistProductIds(string? wishlistCsv)
         {
-            if (string.IsNullOrEmpty(wishlistJson))
+            if (string.IsNullOrEmpty(wishlistCsv))
                 return new List<int>();
 
-            return JsonConvert.DeserializeObject<List<int>>(wishlistJson) ?? new List<int>();
+            return wishlistCsv.Split(',')
+                              .Where(id => int.TryParse(id, out _))
+                              .Select(int.Parse)
+                              .ToList();
         }
 
-        // Cập nhật Wishlist vào chuỗi JSON
-        public static string UpdateWishlistJson(List<int> productIds)
+
+        // Cập nhật Wishlist vào chuỗi CSV
+        public static string UpdateWishlistCsv(List<int> productIds)
         {
-            return JsonConvert.SerializeObject(productIds);
+            return string.Join(",", productIds);
         }
 
         // Thêm sản phẩm vào Wishlist
@@ -149,7 +151,7 @@ namespace Shofy.Helpers
             if (!wishlist.Contains(productId))
             {
                 wishlist.Add(productId);
-                user.Wishlist = UpdateWishlistJson(wishlist);
+                user.Wishlist = UpdateWishlistCsv(wishlist);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -167,7 +169,7 @@ namespace Shofy.Helpers
             var wishlist = GetWishlistProductIds(user.Wishlist);
             if (wishlist.Remove(productId))
             {
-                user.Wishlist = UpdateWishlistJson(wishlist);
+                user.Wishlist = UpdateWishlistCsv(wishlist);
                 await context.SaveChangesAsync();
                 return true;
             }
@@ -187,7 +189,7 @@ namespace Shofy.Helpers
                 .Where(p => wishlist.Contains(p.ProductID) && p.Status == "Active")
                 .ToListAsync();
         }
-        
+
     }
 
 

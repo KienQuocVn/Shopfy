@@ -201,7 +201,7 @@ namespace Shofy.Pages
                 action = "added";
             }
 
-            user.Wishlist = WishlistHelper.UpdateWishlistJson(wishlist);
+            user.Wishlist = WishlistHelper.UpdateWishlistCsv(wishlist);
             await _context.SaveChangesAsync();
 
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
