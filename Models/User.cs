@@ -39,8 +39,8 @@ namespace Shofy.Models
         public Cart? Cart { get; set; }
         public ICollection<Order>? Orders { get; set; }
         public ICollection<Review>? Reviews { get; set; }
+        public string? HiddenReason { get; set; }
 
-        // Thêm thuộc tính Wishlist để lưu danh sách ProductID dưới dạng JSON
-        public string? Wishlist { get; set; } // Chuỗi JSON chứa danh sách ProductID
+        public string? Wishlist { get; set; } 
     }
 }

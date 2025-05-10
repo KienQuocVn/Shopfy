@@ -5,29 +5,186 @@
     ViewData["Title"] = "Review Product";
 }
 
-<div class="container mt-5">
-    <h2 class="text-center mb-5" style="font-size: 2.5rem;">Product Details</h2>
+<!-- Bootstrap Icons + Animate.css -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
-    <div class="card mx-auto" style="max-width: 800px; padding: 2rem;">
-        <div class="card-body">
-            @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
-            {
-                <div class="text-center mb-4">
-                    <img src="@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded" style="max-height: 350px; width: auto;" />
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+        border: none;
+        background-color: #ffffff;
+    }
+
+    .card-body {
+        padding: 30px;
+    }
+
+    h2 {
+        font-weight: 700;
+        color: #6c63ff;
+    }
+
+    .card img {
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .card img:hover {
+        transform: scale(1.05);
+    }
+
+    .btn {
+        font-weight: 600;
+        padding: 0.75rem 2rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+        background-color: #e0e0e0;
+        border: none;
+        color: #333;
+    }
+
+    .btn-secondary:hover {
+        background-color: #d4d4d4;
+    }
+
+    .btn-primary {
+        background-color: #6c63ff;
+        border: none;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #5a54d1;
+    }
+
+    .description-box {
+        padding: 15px;
+        background-color: #f1f3f5;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+
+    .product-detail p {
+        font-size: 1.3rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .product-detail strong {
+        font-size: 1.4rem;
+        color: #333;
+    }
+
+    .info-box {
+        padding: 15px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .info-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    }
+</style>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark text-white">
+        <div class="sidebar-header">
+            <a href="/Index" class="text-light">
+                <h3 class="mb-0">SHOPFY</h3>
+            </a>
+        </div>
+        <div class="navigation-section">
+            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
+                <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
+                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
+                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <div class="profile-section ms-3">
+                        <!-- Display user avatar and username -->
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                        </div>
+                    </div>
                 </div>
-            }
+            </div>
+        </nav>
+        <div class="container-fluid mt-5">
+            <div class="text-center mb-4">
+                <h2 class="animate__animated animate__fadeInDown">
+                    <i class="bi bi-card-list me-2"></i>Product Details
+                </h2>
+                <p class="text-muted">Review the details and make changes as needed ✨</p>
+            </div>
 
-            <p><strong style="font-size: 1.2rem;">Name:</strong> <span style="font-size: 1.4rem;">@Model.Product.Name</span></p>
-            <p><strong style="font-size: 1.2rem;">Price:</strong> <span style="font-size: 1.4rem;">$@Model.Product.Price</span></p>
-            <p><strong style="font-size: 1.2rem;">Stock Quantity:</strong> <span style="font-size: 1.4rem;">@Model.Product.StockQuantity</span></p>
-            <p><strong style="font-size: 1.2rem;">Status:</strong> <span style="font-size: 1.4rem;">@Model.Product.Status</span></p>
-            <p><strong style="font-size: 1.2rem;">Description:</strong></p>
-            <p class="border p-3 rounded bg-light" style="font-size: 1.3rem;">@Model.Product.Description</p>
+            <div class="card mx-auto" style="max-width: 800px;">
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
+                    {
+                        <div class="text-center mb-4">
+                            <img src="~/images/@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded"
+                                style="max-height: 350px; width: auto;" />
+                        </div>
+                    }
 
-            <div class="mt-5 d-flex justify-content-between">
-                <a href="/Admin/Products" class="btn btn-secondary btn-lg" style="font-size: 1.2rem; padding: 0.75rem 2rem;">Back to List</a>
-                <a href="/Admin/EditProduct/@Model.Product.ProductID" class="btn btn-primary btn-lg" style="font-size: 1.2rem; padding: 0.75rem 2rem;">Edit Product</a>
+                    <div class="product-detail">
+                        <div class="info-box mb-4">
+                            <p><strong>Name:</strong> <span>@Model.Product.Name</span></p>
+                        </div>
+
+                        <div class="info-box mb-4">
+                            <p><strong>Price:</strong> $@Model.Product.Price</p>
+                        </div>
+
+                        <div class="info-box mb-4">
+                            <p><strong>Stock Quantity:</strong> @Model.Product.StockQuantity</p>
+                        </div>
+
+                        <div class="info-box mb-4">
+                            <p><strong>Status:</strong> @Model.Product.Status</p>
+                        </div>
+
+                        <div class="info-box mb-4">
+                            <p><strong>Description:</strong></p>
+                            <p class="description-box">@Model.Product.Description</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 d-flex justify-content-between">
+                        <a href="/Admin/Products" class="btn btn-secondary btn-lg">
+                            <i class="bi bi-arrow-left-circle me-1"></i>Back to List
+                        </a>
+                        <a href="/Admin/EditProduct/@Model.Product.ProductID" class="btn btn-primary btn-lg">
+                            <i class="bi bi-pencil-square me-1"></i>Edit Product
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>

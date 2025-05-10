@@ -4,6 +4,12 @@
     Layout = "_Layout";
     ViewData["Title"] = "User Management";
 }
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mx-auto mt-2 mb-3" style="max-width: 600px; font-size: 0.9rem; padding: 8px 16px; border-radius: 6px;">
+        @TempData["Error"]
+    </div>
+}
 
 <div class="wrapper">
     <!-- Sidebar -->
@@ -20,7 +26,7 @@
                 <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
                 <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
                 <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-                <li><a href="#"><i class="bi bi-wallet me-2"></i> E-Wallet</a></li>
+                @* <li><a href="#"><i class="bi bi-wallet me-2"></i> E-Wallet</a></li> *@
             </ul>
         </div>
 
@@ -42,23 +48,23 @@
                 <button type="button" id="sidebarCollapse" class="btn">
                     <i class="bi bi-list"></i>
                 </button>
-                <div class="search-box d-flex">
+                @* <div class="search-box d-flex">
                     <input type="text" id="searchInput" class="form-control me-2" placeholder="Search...">
                     <button class="btn btn-primary" type="button" onclick="handleSearch()">Search</button>
-                </div>
-                 <div class="d-flex align-items-center">
-                    <div class="icons-group">
+                </div> *@
+                <div class="d-flex align-items-center">
+                    @* <div class="icons-group">
                         <button class="btn"><i class="bi bi-bell"></i></button>
                         <button class="btn"><i class="bi bi-grid-fill"></i></button>
                         <button class="btn"><i class="bi bi-gear"></i></button>
                         <button class="btn"><i class="bi bi-moon"></i></button>
                         <button class="btn"><i class="bi bi-fullscreen"></i></button>
-                    </div> 
+                    </div>  *@
                     <div class="profile-section ms-3">
-                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile" style="width: 40px; height: 40px;">
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
                         <div class="d-flex flex-column">
                             <span class="ms-2">@Model.Username</span>
-                            <small class="text-muted">Role: @Model.Role</small>
                         </div>
                     </div>
                 </div>
@@ -69,7 +75,7 @@
         <div class="container-fluid py-4">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h1 class="h3">User Management</h1>
-                <div class="date-section">
+                @* <div class="date-section">
                     <div class="btn-group ms-3">
                         <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
                         <button class="btn ms-2" style="background-color: #6658dd;">
@@ -79,7 +85,7 @@
                             <i class="bi bi-funnel-fill text-light"></i>
                         </button>
                     </div>
-                </div>
+                </div> *@
             </div>
 
             <!-- User Management Card -->
@@ -90,18 +96,18 @@
                             <div class="me-3">
                                 <strong>Categories</strong>
                                 <a asp-page="/Admin/User" asp-route-RoleFilter=""
-                                   class="btn btn-outline-secondary btn-sm @(string.IsNullOrEmpty(Model.RoleFilter) ? "active" : "")">All</a>
+                                    class="btn btn-outline-secondary btn-sm @(string.IsNullOrEmpty(Model.RoleFilter) ? "active" : "")">All</a>
                                 <a asp-page="/Admin/User" asp-route-RoleFilter="Admin"
-                                   class="btn btn-outline-primary btn-sm @(Model.RoleFilter == "Admin" ? "active" : "")">Admin</a>
+                                    class="btn btn-outline-primary btn-sm @(Model.RoleFilter == "Admin" ? "active" : "")">Admin</a>
                                 <a asp-page="/Admin/User" asp-route-RoleFilter="User"
-                                   class="btn btn-outline-success btn-sm @(Model.RoleFilter == "User" ? "active" : "")">User</a>
+                                    class="btn btn-outline-success btn-sm @(Model.RoleFilter == "User" ? "active" : "")">User</a>
                             </div>
                             <div>
                                 <strong>Status</strong>
                                 <a asp-page="/Admin/User" asp-route-IsActiveFilter="true"
-                                   class="btn btn-outline-success btn-sm @(Model.IsActiveFilter == true ? "active" : "")">Active</a>
+                                    class="btn btn-outline-success btn-sm @(Model.IsActiveFilter == true ? "active" : "")">Active</a>
                                 <a asp-page="/Admin/User" asp-route-IsActiveFilter="false"
-                                   class="btn btn-outline-danger btn-sm @(Model.IsActiveFilter == false ? "active" : "")">Inactive</a>
+                                    class="btn btn-outline-danger btn-sm @(Model.IsActiveFilter == false ? "active" : "")">Inactive</a>
                             </div>
                         </div>
                     </form>
@@ -133,39 +139,40 @@
                                         <td>@user.CreatedDate</td>
                                         <td>
                                             <div class="dropdown">
-                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
-                                                        id="actionMenu@user.UserID" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
+                                                    type="button" id="actionMenu@user.UserID" data-bs-toggle="dropdown"
+                                                    aria-expanded="false">
                                                     ...
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="actionMenu@user.UserID">
                                                     <li>
-                                                        <a class="dropdown-item" asp-page="/Admin/EditUser" asp-route-UserId="@user.UserID">Edit</a>
+                                                        <a class="dropdown-item" asp-page="/Admin/EditUser"
+                                                            asp-route-UserId="@user.UserID">Edit</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" asp-page="/Admin/ReviewUser" asp-route-UserId="@user.UserID">Review</a>
+                                                        <a class="dropdown-item" asp-page="/Admin/ReviewUser"
+                                                            asp-route-UserId="@user.UserID">Review</a>
                                                     </li>
                                                     <li>
                                                         @if (user.IsActive)
                                                         {
-                                                            <form method="post" asp-page-handler="Delete"
-                                                                  asp-route-UserId="@user.UserID"
-                                                                  asp-route-CurrentPage="@Model.CurrentPage"
-                                                                  asp-route-RoleFilter="@Model.RoleFilter"
-                                                                  asp-route-IsActiveFilter="@Model.IsActiveFilter"
-                                                                  onsubmit="return confirm('Are you sure you want to hide this user?');">
-                                                                <button type="submit" class="dropdown-item text-danger">Hide</button>
-                                                            </form>
+                                                            <a asp-page-handler="ConfirmHide" asp-route-UserId="@user.UserID"
+                                                                class="dropdown-item text-danger"
+                                                                onclick="return confirm('Are you sure you want to hide this user?');">
+                                                                Hide
+                                                            </a>
                                                         }
                                                         else
                                                         {
-                                                            <form method="post" asp-page-handler="Show"
-                                                                  asp-route-UserId="@user.UserID"
-                                                                  asp-route-CurrentPage="@Model.CurrentPage"
-                                                                  asp-route-RoleFilter="@Model.RoleFilter"
-                                                                  asp-route-IsActiveFilter="@Model.IsActiveFilter"
-                                                                  onsubmit="return confirm('Are you sure you want to show this user?');">
-                                                                <button type="submit" class="dropdown-item text-success">Show</button>
-                                                            </form>
+                                                        <form method="post" asp-page-handler="Show"
+                                                            asp-route-UserId="@user.UserID"
+                                                            asp-route-CurrentPage="@Model.CurrentPage"
+                                                            asp-route-RoleFilter="@Model.RoleFilter"
+                                                            asp-route-IsActiveFilter="@Model.IsActiveFilter"
+                                                            onsubmit="return confirm('Are you sure you want to show this user?');">
+                                                            <button type="submit"
+                                                                class="dropdown-item text-success">Show</button>
+                                                        </form>
                                                         }
                                                     </li>
                                                 </ul>
