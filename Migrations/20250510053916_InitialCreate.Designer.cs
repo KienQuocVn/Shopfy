@@ -12,7 +12,7 @@ using Shofy.Data;
 namespace Shofy.Migrations
 {
     [DbContext(typeof(ShofyContext))]
-    [Migration("20250421065317_InitialCreate")]
+    [Migration("20250510053916_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -286,6 +286,9 @@ namespace Shofy.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Wishlist")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserID");
 
