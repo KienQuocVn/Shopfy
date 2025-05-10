@@ -21,6 +21,11 @@ namespace Shofy.Pages.Admin
         [BindProperty]
         public Order Order { get; set; }
 
+        // Thông tin người dùng (Username, Role, Avatar) từ session
+        public string Username { get; set; }
+        public string Role { get; set; }
+        public string Avatar { get; set; }
+
         // Xử lý GET: Lấy thông tin đơn hàng từ database
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -32,6 +37,11 @@ namespace Shofy.Pages.Admin
             {
                 return NotFound();
             }
+
+            // Get session variables
+            Username = HttpContext.Session.GetString("Username") ?? "Guest";
+            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
+            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
 
             return Page();
         }

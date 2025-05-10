@@ -5,61 +5,70 @@
     ViewData["Title"] = "Create Product";
 }
 
+<!-- Thêm hiệu ứng animate.css nếu bạn chưa có -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
 <div class="container mt-5">
     <div class="row mb-4">
-        <div class="col-12 d-flex justify-content-between align-items-center">
-            <h2 class="mb-0">Create Product</h2>
-            
+        <div class="col-12 text-center">
+            <h2 class="fw-bold text-primary animate__animated animate__fadeInDown">🛍️ Create New Product</h2>
+            <p class="text-muted">Fill in the details to add a new product</p>
         </div>
     </div>
 
-    <form method="post" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label asp-for="Name" class="form-label">Name</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
+    <div class="card shadow-lg border-0 p-4 animate__animated animate__fadeInUp">
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Name" class="form-label">📦 Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter product name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="Price" class="form-label">Price</label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Price" class="form-label">💲 Price</label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter price (e.g. 100.00)" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="StockQuantity" class="form-label">Stock</label>
-                <input asp-for="StockQuantity" class="form-control" />
-                <span asp-validation-for="StockQuantity" class="text-danger"></span>
-            </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="StockQuantity" class="form-label">📦 Stock</label>
+                    <input asp-for="StockQuantity" class="form-control" placeholder="Enter stock quantity" />
+                    <span asp-validation-for="StockQuantity" class="text-danger"></span>
+                </div>
 
-            <div class="col-md-6 mb-3">
-                <label asp-for="Status" class="form-label">Status</label>
-                <select asp-for="Status" class="form-select">
-                    <option value="Active">Active</option>
-                    <option value="Inactive">Inactive</option>
-                </select>
-                <span asp-validation-for="Status" class="text-danger"></span>
-            </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Status" class="form-label">⚙️ Status</label>
+                    <select asp-for="Status" class="form-select">
+                        <option value="Active">✅ Active</option>
+                        <option value="Inactive">❌ Inactive</option>
+                    </select>
+                    <span asp-validation-for="Status" class="text-danger"></span>
+                </div>
 
-            <div class="col-12 mb-3">
-                <label asp-for="Description" class="form-label">Description</label>
-                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
+                <div class="col-12 mb-3">
+                    <label asp-for="Description" class="form-label">📝 Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Describe the product..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
 
-            <div class="col-12 mb-4">
-                <label asp-for="UploadImage" class="form-label">ImagePath</label>
-                <input asp-for="UploadImage" type="file" class="form-control" />
-                <span asp-validation-for="UploadImage" class="text-danger"></span>
-            </div>
+                <div class="col-12 mb-4">
+                    <label asp-for="UploadImage" class="form-label">🖼️ Product Image</label>
+                    <input asp-for="UploadImage" type="file" class="form-control" />
+                    <span asp-validation-for="UploadImage" class="text-danger"></span>
+                </div>
 
-            <div class="col-12 d-flex justify-content-end">
-                <button type="submit" class="btn btn-primary">Create</button>
-                <a class="btn btn-secondary" href="/Admin/Products">Back</a>
+                <div class="col-12 d-flex justify-content-end gap-2">
+                    <button type="submit" class="btn btn-success px-4">
+                        <i class="bi bi-plus-circle me-1"></i> Create
+                    </button>
+                    <a class="btn btn-outline-secondary px-4" href="/Admin/Products">
+                        <i class="bi bi-arrow-left me-1"></i> Back
+                    </a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 
 @section Scripts {

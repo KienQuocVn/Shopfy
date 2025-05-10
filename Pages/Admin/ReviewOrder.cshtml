@@ -57,170 +57,209 @@
         background-color: #f8f9fa;
     }
 </style>
-<div class="container mt-4">
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar" class="bg-dark text-white">
+        <div class="sidebar-header">
+            <a href="/Index" class="text-light">
+                <h3 class="mb-0">SHOPFY</h3>
+            </a>
+        </div>
+        <div class="navigation-section">
+            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
+            <ul class="list-unstyled">
+                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
+                <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
+                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
+                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div class="row d-flex justify-content-between align-items-center mb-4">
-        <div class="col-auto">
-            <h2 class="mb-0">Order Details</h2>
-        </div>
-        <div class="col-auto">
-            <a href="/Admin/Order" class="btn btn-primary">Quay lại</a>
-        </div>
-    </div>
-
-
-
-    <!-- Progress Tracker -->
-    <div class="progress-tracker">
-        <div class="progress-bar-container">
-            <div class="progress-bar-fill"></div>
-        </div>
-        <div class="progress-step completed">
-            <span class="progress-label">Order</span>
-        </div>
-        <div class="progress-step completed">
-            <span class="progress-label">Packed</span>
-        </div>
-        <div class="progress-step active">
-            <span class="progress-label">Shipped</span>
-        </div>
-        <div class="progress-step">
-            <span class="progress-label">Delivered</span>
-        </div>
-    </div>
-
-    <div class="row">
-        <!-- Order Items -->
-        <div class="col-lg-8">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">ITEMS FROM ORDER @Model.Order.OrderID</h5>
+    <!-- Main Content -->
+    <div id="content">
+        <!-- Top Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="d-flex align-items-center">
+                    <div class="profile-section ms-3">
+                        <!-- Display user avatar and username -->
+                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
+                            style="width: 40px; height: 40px;">
+                        <div class="d-flex flex-column">
+                            <span class="ms-2">@Model.Username</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Unit Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model.Order.OrderDetails != null && Model.Order.OrderDetails.Any())
-                                {
-                                    foreach (var detail in Model.Order.OrderDetails)
-                                    {
+            </div>
+        </nav>
+        <div class="container-fluid mt-4">
+
+            <div class="row d-flex justify-content-between align-items-center mb-4">
+                <div class="col-auto">
+                    <h2 class="mb-0">Order Details</h2>
+                </div>
+                <div class="col-auto">
+                    <a href="/Admin/Order" class="btn btn-primary">Quay lại</a>
+                </div>
+            </div>
+
+
+
+            <!-- Progress Tracker -->
+            <div class="progress-tracker">
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill"></div>
+                </div>
+                <div class="progress-step completed">
+                    <span class="progress-label">Order</span>
+                </div>
+                <div class="progress-step completed">
+                    <span class="progress-label">Packed</span>
+                </div>
+                <div class="progress-step active">
+                    <span class="progress-label">Shipped</span>
+                </div>
+                <div class="progress-step">
+                    <span class="progress-label">Delivered</span>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Order Items -->
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">ITEMS FROM ORDER @Model.Order.OrderID</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
                                         <tr>
-                                            <td>@detail.Product?.Name</td>
-                                            <td>@detail.UnitPrice</td>
-                                            <td>@detail.Quantity</td>
-                                            <td>@((detail.UnitPrice * detail.Quantity))</td>
+                                            <th>Product Name</th>
+                                            <th>Unit Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total Price</th>
                                         </tr>
-                                    }
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="4" class="text-center">No products found in this order.</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                    </thead>
+                                    <tbody>
+                                        @if (Model.Order.OrderDetails != null && Model.Order.OrderDetails.Any())
+                                        {
+                                            foreach (var detail in Model.Order.OrderDetails)
+                                            {
+                                                <tr>
+                                                    <td>@detail.Product?.Name</td>
+                                                    <td>@detail.UnitPrice</td>
+                                                    <td>@detail.Quantity</td>
+                                                    <td>@((detail.UnitPrice * detail.Quantity))</td>
+                                                </tr>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="4" class="text-center">No products found in this order.</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">ORDER SUMMARY</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Grand Total:</span>
+                                <span>@Model.Order.TotalPrice</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Shipping Charge:</span>
+                                <span>...</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Estimated Tax:</span>
+                                <span>...</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between fw-bold">
+                                <span>Total:</span>
+                                <span>@Model.Order.TotalPrice</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Order Summary -->
-        <div class="col-lg-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">ORDER SUMMARY</h5>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Grand Total:</span>
-                        <span>@Model.Order.TotalPrice</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Shipping Charge:</span>
-                        <span>...</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Estimated Tax:</span>
-                        <span>...</span>
-                    </div>
-                    <hr>
-                    <div class="d-flex justify-content-between fw-bold">
-                        <span>Total:</span>
-                        <span>@Model.Order.TotalPrice</span>
+            <!-- Shipping and Billing Information -->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">USER INFORMATION</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-1">UserName: @Model.Order.User?.FullName</p>
+                            <p class="mb-1">Payment Method: @Model.Order.PaymentMethod</p>
+                            <p class="mb-1">Status: @Model.Order.Status</p>
+                            <p class="mb-1">Ordered Date: @Model.Order.OrderedDate.ToString("dd/MM/yyyy")</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Shipping and Billing Information -->
-    <div class="row">
-        <div class="col-lg-3">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">USER INFORMATION</h5>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">SHIPPING INFORMATION</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-1">Kieu Kien Quoc</p>
+                            <p class="mb-1">District 3, Ho Chi Minh</p>
+                            <p class="mb-1">District 3, Ho Chi Minh</p>
+                            <p class="mb-1">P: (123) 456-7890</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="mb-1">UserName: @Model.Order.User?.FullName</p>
-                    <p class="mb-1">Payment Method: @Model.Order.PaymentMethod</p>
-                    <p class="mb-1">Status: @Model.Order.Status</p>
-                    <p class="mb-1">Ordered Date: @Model.Order.OrderedDate.ToString("dd/MM/yyyy")</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-lg-3">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">SHIPPING INFORMATION</h5>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">BILLING INFORMATION</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-1">Payment Type: Credit Card</p>
+                            <p class="mb-1">Provider: Visa ending in 2851</p>
+                            <p class="mb-1">Valid Date: 02/2020</p>
+                            <p class="mb-0">CVV: xxx</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p class="mb-1">Kieu Kien Quoc</p>
-                    <p class="mb-1">District 3, Ho Chi Minh</p>
-                    <p class="mb-1">District 3, Ho Chi Minh</p>
-                    <p class="mb-1">P: (123) 456-7890</p>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-lg-3">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">BILLING INFORMATION</h5>
-                </div>
-                <div class="card-body">
-                    <p class="mb-1">Payment Type: Credit Card</p>
-                    <p class="mb-1">Provider: Visa ending in 2851</p>
-                    <p class="mb-1">Valid Date: 02/2020</p>
-                    <p class="mb-0">CVV: xxx</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">DELIVERY INFO</h5>
-                </div>
-                <div class="card-body">
-                    <div class="text-center">
-                        <i class="bi bi-truck" style="font-size: 40px;"></i>
-                        <h6>UPS Delivery</h6>
-                        <p class="mb-1">Order ID: xxxx235</p>
-                        <p class="mb-0">Payment Mode: COD</p>
+                <div class="col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0">DELIVERY INFO</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-center">
+                                <i class="bi bi-truck" style="font-size: 40px;"></i>
+                                <h6>UPS Delivery</h6>
+                                <p class="mb-1">Order ID: xxxx235</p>
+                                <p class="mb-0">Payment Mode: COD</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-</div>
+        </div>

@@ -19,7 +19,7 @@
             <ul class="list-unstyled">
                 <li class="active"><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a>
                 </li>
-                <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> USer</a></li>
+                <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> User</a></li>
                 <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
                 <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
                 @* <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li> *@
@@ -94,9 +94,9 @@
                                     <h6 class="text-muted">Orders</h6>
                                     <h2>@Model.TotalOrderCount.ToString("N0")</h2>
                                     <div class="@(Model.OrderPercentageChange >= 0 ? "text-success" : "text-danger")">
-                                        <i class="bi bi-shop @(Model.OrderPercentageChange >= 0 ? "up" : "down")"></i>
-                                        @Math.Abs(Model.OrderPercentageChange).ToString("F2")%
-                                        <span class="text-muted">Since last month</span>
+                                        @* <i class="bi bi-shop @(Model.OrderPercentageChange >= 0 ? "up" : "down")"></i> *@
+                                        @* @Math.Abs(Model.OrderPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span> *@
                                     </div>
                                 </div>
                                 <div class="stat-icon bg-light">
@@ -114,9 +114,9 @@
                                     <h6 class="text-muted">Accounts</h6>
                                     <h2>@Model.TotalUserCount.ToString("N0")</h2>
                                     <div class="@(Model.UserPercentageChange >= 0 ? "text-success" : "text-danger")">
-                                        <i class="bi bi-people @(Model.UserPercentageChange >= 0 ? "up" : "down")"></i>
-                                        @Math.Abs(Model.UserPercentageChange).ToString("F2")%
-                                        <span class="text-muted">Since last month</span>
+                                        @* <i class="bi bi-people @(Model.UserPercentageChange >= 0 ? "up" : "down")"></i> *@
+                                        @* @Math.Abs(Model.UserPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span> *@
                                     </div>
                                 </div>
                                 <div class="stat-icon bg-light">
@@ -134,10 +134,10 @@
                                     <h6 class="text-muted">Monthly Revenue</h6>
                                     <h2>@Model.TotalMonthlyRevenue.ToString("C0")</h2>
                                     <div class="@(Model.RevenuePercentageChange >= 0 ? "text-success" : "text-danger")">
-                                        <i
-                                            class="bi bi-currency-dollar @(Model.RevenuePercentageChange >= 0 ? "up" : "down")"></i>
-                                        @Math.Abs(Model.RevenuePercentageChange).ToString("F2")%
-                                        <span class="text-muted">Since last month</span>
+                                        @* <i
+                                            class="bi bi-currency-dollar @(Model.RevenuePercentageChange >= 0 ? "up" : "down")"></i> *@
+                                        @* @Math.Abs(Model.RevenuePercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span> *@
                                     </div>
                                 </div>
                                 <div class="stat-icon bg-light">
@@ -156,10 +156,10 @@
                                     <h2>@Model.TotalProductsSold.ToString("N0")</h2>
                                     <div
                                         class="@(Model.ProductsSoldPercentageChange >= 0 ? "text-success" : "text-danger")">
-                                        <i
-                                            class="bi bi-box @(Model.ProductsSoldPercentageChange >= 0 ? "up" : "down")"></i>
-                                        @Math.Abs(Model.ProductsSoldPercentageChange).ToString("F2")%
-                                        <span class="text-muted">Since last month</span>
+                                        @* <i
+                                            class="bi bi-box @(Model.ProductsSoldPercentageChange >= 0 ? "up" : "down")"></i> *@
+                                        @* @Math.Abs(Model.ProductsSoldPercentageChange).ToString("F2")%
+                                        <span class="text-muted">Since last month</span> *@
                                     </div>
                                 </div>
                                 <div class="stat-icon bg-light">

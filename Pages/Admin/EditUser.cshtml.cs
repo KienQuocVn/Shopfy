@@ -4,6 +4,7 @@ using Shofy.Data;
 using Shofy.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace Shofy.Pages.Admin
 {
@@ -52,6 +53,11 @@ namespace Shofy.Pages.Admin
         [Required(ErrorMessage = "Vui lòng chọn quyền.")]
         public string Role { get; set; }
 
+        // Removed Avatar property for file upload
+        // public IFormFile AvatarFile { get; set; } 
+
+        public string Avatar { get; set; }
+
         public async Task<IActionResult> OnGetAsync(int userId)
         {
             var role = HttpContext.Session.GetString("Role");
@@ -74,6 +80,7 @@ namespace Shofy.Pages.Admin
             PhoneNumber = user.PhoneNumber;
             Address = user.Address;
             Role = user.Role;
+            Avatar = user.Avatar; // Set Avatar from DB
 
             return Page();
         }
@@ -105,6 +112,7 @@ namespace Shofy.Pages.Admin
             userInDb.PhoneNumber = PhoneNumber;
             userInDb.Address = Address;
             userInDb.Role = Role;
+            userInDb.Avatar = Avatar; // No avatar file upload, just save the Avatar path from the DB
 
             try
             {
