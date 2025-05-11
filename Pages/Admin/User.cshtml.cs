@@ -28,11 +28,9 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public string RoleFilter { get; set; } = "";
 
-        // Lọc trạng thái hoạt động của người dùng (active hoặc không)
         [BindProperty(SupportsGet = true)]
         public bool? IsActiveFilter { get; set; }
 
-        // Profile session
         public string Username { get; set; }
         public string Role { get; set; }
         public string Avatar { get; set; }
@@ -53,16 +51,15 @@ namespace Shofy.Pages.Admin
             pageNumber = pageNumber < 1 ? 1 : pageNumber;
             CurrentPage = pageNumber;
 
-            var query = _context.User.AsQueryable(); // Sử dụng AsQueryable để có thể linh hoạt thay đổi điều kiện truy vấn
+            var query = _context.User.AsQueryable();
 
-            // Nếu lọc theo trạng thái hoạt động (active hoặc inactive)
             if (IsActiveFilter.HasValue)
             {
                 query = query.Where(u => u.IsActive == IsActiveFilter.Value);
             }
             else
             {
-                query = query.Where(u => u.IsActive); // Mặc định chỉ lấy user còn hoạt động
+                query = query.Where(u => u.IsActive);
             }
 
             if (!string.IsNullOrEmpty(RoleFilter))
@@ -74,6 +71,7 @@ namespace Shofy.Pages.Admin
             TotalPages = (int)System.Math.Ceiling(totalUsers / (double)PageSize);
 
             Users = query
+                .OrderBy(u => u.UserID)
                 .Skip((CurrentPage - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
@@ -81,27 +79,51 @@ namespace Shofy.Pages.Admin
             return Page();
         }
 
-        // Ẩn người dùng thay vì xóa
         public IActionResult OnPostDelete(int UserId, int CurrentPage, string RoleFilter, bool? IsActiveFilter)
         {
             var user = _context.User.Find(UserId);
-            if (user != null)
-            {
-                user.IsActive = false; // Đánh dấu là người dùng không còn hoạt động (Ẩn)
-                _context.User.Update(user);
-                _context.SaveChanges();
-                _logger.LogInformation("Ẩn người dùng với ID {UserId}", UserId);
-            }
-            else
+            if (user == null)
             {
                 TempData["Error"] = "Không tìm thấy người dùng.";
                 _logger.LogWarning("Không tìm thấy người dùng với ID {UserId}", UserId);
+                return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter, IsActiveFilter });
             }
 
-            return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter = RoleFilter, IsActiveFilter = IsActiveFilter });
+            bool hasOrders = _context.Order.Any(o => o.UserID == UserId);
+            if (hasOrders)
+            {
+                TempData["Error"] = $"Không thể ẩn người dùng với ID {UserId} vì người này đang có đơn hàng.";
+                return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter, IsActiveFilter });
+            }
+
+            user.IsActive = false;
+            user.HiddenReason = "Tài khoản bị vô hiệu hóa bởi Admin.";
+            _context.User.Update(user);
+            _context.SaveChanges();
+
+            _logger.LogInformation("Ẩn người dùng với ID {UserId}", UserId);
+            return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter, IsActiveFilter });
         }
 
-        // Chuyển hướng tới trang sửa người dùng
+        public IActionResult OnPostShow(int UserId, int CurrentPage, string RoleFilter, bool? IsActiveFilter)
+        {
+            var user = _context.User.Find(UserId);
+            if (user == null)
+            {
+                TempData["Error"] = "Không tìm thấy người dùng.";
+                _logger.LogWarning("Không tìm thấy người dùng với ID {UserId}", UserId);
+                return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter, IsActiveFilter });
+            }
+
+            user.IsActive = true;
+            user.HiddenReason = null;
+            _context.User.Update(user);
+            _context.SaveChanges();
+
+            _logger.LogInformation("Hiển thị lại người dùng với ID {UserId}", UserId);
+            return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter, IsActiveFilter });
+        }
+
         public IActionResult OnGetEdit(int UserId)
         {
             var user = _context.User.Find(UserId);
@@ -109,7 +131,6 @@ namespace Shofy.Pages.Admin
             return RedirectToPage("EditUser", new { UserId });
         }
 
-        // Chuyển hướng tới trang review người dùng
         public IActionResult OnGetReview(int UserId)
         {
             var user = _context.User.Find(UserId);
@@ -117,24 +138,11 @@ namespace Shofy.Pages.Admin
             return RedirectToPage("ReviewUser", new { UserId });
         }
 
-        // Hiển thị lại người dùng
-        public IActionResult OnPostShow(int UserId, int CurrentPage, string RoleFilter, bool? IsActiveFilter)
+        public IActionResult OnGetConfirmHide(int UserId)
         {
             var user = _context.User.Find(UserId);
-            if (user != null)
-            {
-                user.IsActive = true; // Đánh dấu người dùng là hoạt động (Hiển thị)
-                _context.User.Update(user);
-                _context.SaveChanges();
-                _logger.LogInformation("Hiển thị người dùng với ID {UserId}", UserId);
-            }
-            else
-            {
-                TempData["Error"] = "Không tìm thấy người dùng.";
-                _logger.LogWarning("Không tìm thấy người dùng với ID {UserId}", UserId);
-            }
-
-            return RedirectToPage(new { pageNumber = CurrentPage, RoleFilter = RoleFilter, IsActiveFilter = IsActiveFilter });
+            if (user == null) return NotFound();
+            return RedirectToPage("ConfirmHide", new { userId = UserId });
         }
     }
 }
