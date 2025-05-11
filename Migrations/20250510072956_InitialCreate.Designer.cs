@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Shofy.Data;
 
@@ -11,9 +12,11 @@ using Shofy.Data;
 namespace Shofy.Migrations
 {
     [DbContext(typeof(ShofyContext))]
-    partial class ShofyContextModelSnapshot : ModelSnapshot
+    [Migration("20250510072956_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,12 +264,6 @@ namespace Shofy.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-<<<<<<< HEAD
-=======
-                    b.Property<string>("HiddenReason")
-                        .HasColumnType("nvarchar(max)");
-
->>>>>>> a1b9e335259ddc6c976c5101bcc5079f3653ac67
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 

@@ -54,16 +54,30 @@ namespace Shofy.Pages.Accounts
             {
                 var user = await _context.User.FirstOrDefaultAsync(u => u.Username.ToLower() == Username.ToLower());
 
-                // Kiểm tra tài khoản tồn tại, mật khẩu đúng và đang hoạt động
-                if (user == null || !BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash) || !user.IsActive)
+                if (user == null)
                 {
-                    _logger.LogWarning("Login failed for Username: {Username}. Reason: {Reason}", Username,
-                        user == null ? "User not found" :
-                        (!user.IsActive ? "User is inactive" : "Password incorrect"));
-
-                    ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng hoặc tài khoản đã bị vô hiệu hóa.";
+                    _logger.LogWarning("Login failed for Username: {Username}. Reason: User not found", Username);
+                    ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
                     return Page();
                 }
+
+                // Nếu tài khoản không hoạt động, chuyển đến trang thông báo bị khóa
+                if (!user.IsActive)
+                {
+                    // Lưu lý do bị khóa vào TempData để hiển thị
+                    TempData["LockedUsername"] = user.Username;
+                    TempData["LockedReason"] = user.HiddenReason ?? "Tài khoản của bạn đã bị vô hiệu hóa bởi quản trị viên.";
+                    return RedirectToPage("/Accounts/Locked");
+                }
+
+                // Kiểm tra mật khẩu
+                if (!BCrypt.Net.BCrypt.Verify(Password, user.PasswordHash))
+                {
+                    _logger.LogWarning("Login failed for Username: {Username}. Reason: Password incorrect", Username);
+                    ErrorMessage = "Tên đăng nhập hoặc mật khẩu không đúng.";
+                    return Page();
+                }
+
 
                 _logger.LogInformation("Login successful for Username: {Username}", Username);
                 HttpContext.Session.SetUserId(user.UserID);
