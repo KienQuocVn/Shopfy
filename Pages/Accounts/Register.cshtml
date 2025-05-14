@@ -172,10 +172,6 @@
         color: white;
     }
 
-    .btn-github {
-        background-color: #333;
-        color: white;
-    }
 
     .btn-linkedin {
         background-color: #0077B5;
@@ -190,16 +186,16 @@
 
 <div class="container">
     <div class="row register-container">
-        <!-- Left side - Illustration -->
+        <!-- Bên trái - Hình minh họa -->
         <div class="col-lg-6 register-illustration">
-            <img src="~/images/auth-banner.png" alt="Register Illustration" class="img-fluid">
+            <img src="~/images/auth-banner.png" alt="Hình minh họa đăng ký" class="img-fluid">
         </div>
 
-        <!-- Right side - Register Form -->
+        <!-- Bên phải - Form đăng ký -->
         <div class="col-lg-6 register-form">
-            <h1 class="form-title">Register an account</h1>
-            <p class="form-subtitle">Your personal data will be used to support your experience throughout this website,
-                to manage access to your account.</p>
+            <h1 class="form-title">Tạo tài khoản mới</h1>
+            <p class="form-subtitle">Thông tin cá nhân của bạn sẽ được sử dụng để hỗ trợ trải nghiệm trên website này và
+                quản lý truy cập vào tài khoản của bạn.</p>
 
             @if (!string.IsNullOrEmpty(successMessage))
             {
@@ -216,105 +212,99 @@
             <form method="post">
                 @Html.AntiForgeryToken()
 
-                <!-- Username Input -->
+                <!-- Tên đăng nhập -->
                 <div class="mb-3">
-                    <label asp-for="Username" class="form-label">Username <i class="bi bi-person"></i></label>
+                    <label asp-for="Username" class="form-label">Tên đăng nhập <i class="bi bi-person"></i></label>
                     <div class="form-group">
                         <input type="text" class="form-control border-start-0" asp-for="Username"
-                            placeholder="Your Username" required />
+                            placeholder="Nhập tên đăng nhập" required />
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Full Name Input -->
+                <!-- Họ và tên -->
                 <div class="mb-3">
-                    <label asp-for="FullName" class="form-label">Full Name <i class="bi bi-person"></i></label>
+                    <label asp-for="FullName" class="form-label">Họ và tên <i class="bi bi-person"></i></label>
                     <div class="form-group">
                         <input type="text" class="form-control border-start-0" asp-for="FullName"
-                            placeholder="Your Full Name" required />
+                            placeholder="Nhập họ và tên" required />
                         <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Email Input -->
+                <!-- Email -->
                 <div class="mb-3">
                     <label asp-for="Email" class="form-label">Email <i class="bi bi-envelope"></i></label>
                     <div class="form-group">
-                        <input type="email" class="form-control border-start-0" asp-for="Email" placeholder="Your Email"
+                        <input type="email" class="form-control border-start-0" asp-for="Email" placeholder="Nhập email"
                             required />
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Password Input -->
+                <!-- Mật khẩu -->
                 <div class="mb-3">
-                    <label asp-for="Password" class="form-label">Password <i class="bi bi-lock"></i></label>
+                    <label asp-for="Password" class="form-label">Mật khẩu <i class="bi bi-lock"></i></label>
                     <div class="form-group">
                         <div class="d-flex">
                             <input type="password" class="form-control border-start-0" asp-for="Password"
-                                placeholder="Password" required id="passwordInput" />
+                                placeholder="Nhập mật khẩu" required id="passwordInput" />
                             <span class="input-group-text border-start-0 password-toggle" data-target="passwordInput"
                                 style="margin-top: 10px;margin-left: 5px;">
                                 <i class="bi bi-eye"></i>
                             </span>
-
                         </div>
-
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Confirm Password Input -->
+                <!-- Xác nhận mật khẩu -->
                 <div class="mb-3">
-                    <label asp-for="ConfirmPassword" class="form-label">Password Confirmation <i
+                    <label asp-for="ConfirmPassword" class="form-label">Xác nhận mật khẩu <i
                             class="bi bi-lock"></i></label>
                     <div class="form-group">
                         <div class="d-flex">
                             <input type="password" class="form-control border-start-0" asp-for="ConfirmPassword"
-                                placeholder="Confirm Password" required id="confirmPasswordInput" />
+                                placeholder="Nhập lại mật khẩu" required id="confirmPasswordInput" />
                             <span class="input-group-text border-start-0 password-toggle"
                                 data-target="confirmPasswordInput" style="margin-top: 10px;margin-left: 5px;">
                                 <i class="bi bi-eye"></i>
                             </span>
-
                         </div>
-
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Terms and Privacy Policy -->
+                <!-- Điều khoản và chính sách -->
                 <div class="terms-check">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="terms" disabled>
+                        <input class="form-check-input" type="checkbox" id="terms" style="margin-left: 2px;">
                         <label class="form-check-label" for="terms">
-                            I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+                            Tôi đồng ý với <a href="#">Điều khoản</a> và <a href="#">Chính sách bảo mật</a>
                         </label>
                     </div>
                 </div>
 
-                <!-- Register Button -->
-                <button type="submit" class="btn btn-primary btn-register">Register →</button>
+                <!-- Nút đăng ký -->
+                <button type="submit" class="btn btn-primary btn-register">Đăng ký →</button>
 
-                <!-- Login Link -->
+                <!-- Liên kết đến trang đăng nhập -->
                 <div class="login-link">
-                    Already have an account? <a href="/Accounts/Login">Login</a>
+                    Đã có tài khoản? <a href="/Accounts/Login">Đăng nhập</a>
                 </div>
 
-                <!-- Social Login (Disabled as not supported by backend) -->
+                <!-- Đăng nhập mạng xã hội (đã vô hiệu) -->
                 <div class="social-login">
-                    <div class="social-login-title">Login with social networks</div>
+                    <div class="social-login-title">Đăng nhập bằng mạng xã hội</div>
                     <a href="#" class="btn btn-social btn-facebook" disabled>
-                        <i class="bi bi-facebook"></i> Sign in with Facebook
+                        <i class="bi bi-facebook"></i> Đăng nhập với Facebook
                     </a>
                     <a href="#" class="btn btn-social btn-google" disabled>
-                        <i class="bi bi-google"></i> Sign in with Google
+                        <i class="bi bi-google"></i> Đăng nhập với Google
                     </a>
-                    <a href="#" class="btn btn-social btn-github" disabled>
-                        <i class="bi bi-github"></i> Sign in with GitHub
-                    </a>
+                    
                     <a href="#" class="btn btn-social btn-linkedin" disabled>
-                        <i class="bi bi-linkedin"></i> Sign in with LinkedIn
+                        <i class="bi bi-linkedin"></i> Đăng nhập với LinkedIn
                     </a>
                 </div>
             </form>
@@ -322,26 +312,27 @@
     </div>
 </div>
 
+
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
-    document.querySelectorAll('.password-toggle').forEach(toggle => {
-        toggle.addEventListener('click', function () {
-            const targetId = this.getAttribute('data-target');
-            const passwordInput = document.getElementById(targetId);
-            const icon = this.querySelector('i');
+        document.querySelectorAll('.password-toggle').forEach(toggle => {
+            toggle.addEventListener('click', function () {
+                const targetId = this.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+                const icon = this.querySelector('i');
 
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                icon.classList.remove('bi-eye');
-                icon.classList.add('bi-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                icon.classList.remove('bi-eye-slash');
-                icon.classList.add('bi-eye');
-            }
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    icon.classList.remove('bi-eye');
+                    icon.classList.add('bi-eye-slash');
+                } else {
+                    passwordInput.type = 'password';
+                    icon.classList.remove('bi-eye-slash');
+                    icon.classList.add('bi-eye');
+                }
+            });
         });
-    });
-</script>
+    </script>
 
 }

@@ -1,10 +1,123 @@
 @page
 @model Shofy.Pages.Accounts.ProfileModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = "Hồ Sơ";
 }
 
 <style>
+    body {
+        background-color: #f4f7fc;
+        font-family: 'Inter', sans-serif;
+    }
+
+    .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .avatar-img {
+        border: 4px solid #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-info:hover {
+        background-color: #117a8b;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-weight: 600;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+        border-bottom: none;
+        padding: 20px 30px;
+        background-color: #f8f9fa;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .modal-body {
+        padding: 30px;
+    }
+
+    .modal-footer {
+        border-top: none;
+        padding: 20px 30px;
+        background-color: #f8f9fa;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: 1px solid #ced4da;
+        padding: 12px;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+    .text-secondary {
+        color: #6c757d !important;
+        font-size: 1.1rem;
+    }
+
+    hr {
+        border-color: #e9ecef;
+        margin: 20px 0;
+    }
+
     .modal {
         z-index: 2000;
     }
@@ -12,9 +125,15 @@
     .modal-backdrop {
         z-index: 1999;
     }
+
+    .alert-danger {
+        border-radius: 8px;
+        padding: 15px;
+        font-size: 0.9rem;
+    }
 </style>
 
-<div class="container">
+<div class="profile-container">
     <div class="main-body">
         @if (TempData["SuccessMessage"] != null)
         {
@@ -30,50 +149,45 @@
                 <button type="button" class="btn-close" data-dismiss="alert" aria-label="Close"></button>
             </div>
         }
-        <div class="row gutters-sm">
-            <div class="col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex flex-column align-items-center text-center">
-                            <img src="@(Model.User?.Avatar ?? "~/images/noavt.jpg")" alt="Avatar"
-                                 class="rounded-circle" width="150">
-                            <div class="mt-3">
-                                <h4 class="mt-3">@Model.User?.Username</h4>
-                                <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#changeAvatarModal">Đổi ảnh đại diện</button>
-                            </div>
-                        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-body text-center py-5">
+                        <img src="@(Model.User?.Avatar ?? "~/images/noavt.jpg")" alt="Ảnh đại diện"
+                             class="rounded-circle avatar-img mb-4" width="150" height="150">
+                        <h4 class="mb-3">@Model.User?.FullName</h4>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#changeAvatarModal">Đổi ảnh đại diện</button>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <div class="row">
+                <div class="card h-100">
+                    <div class="card-body p-5">
+                        <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Full Name</h6>
+                                <h6 class="mb-0 fw-bold">Họ và Tên</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">@Model.User?.FullName</div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Email</h6>
+                                <h6 class="mb-0 fw-bold">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">@Model.User?.Email</div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Phone Number</h6>
+                                <h6 class="mb-0 fw-bold">Số điện thoại</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">@Model.User?.PhoneNumber</div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Address</h6>
+                                <h6 class="mb-0 fw-bold">Địa chỉ</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">@Model.User?.Address</div>
                         </div>
@@ -81,160 +195,160 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <button type="button" class="btn btn-info" data-toggle="modal"
-                                        data-target="#editUserModal">Edit</button>
+                                        data-target="#editUserModal">Chỉnh sửa</button>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6 d-flex justify-content-end">
                                 <button type="button" class="btn btn-info" data-toggle="modal"
                                         data-target="#changePasswordModal">Đổi mật khẩu</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Edit User Modal -->
-                <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="editUserModalLabel">Edit User Information</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                        aria-label="Close"></button>
+        <!-- Edit User Modal -->
+        <div class="modal fade" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editUserModalLabel">Chỉnh sửa thông tin</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-page-handler="Update" method="post">
+                            <input type="hidden" asp-for="UpdateModel.UserID" />
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                        {
+                                            <li>@error.ErrorMessage</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="mb-4">
+                                <label class="form-label">Tên đăng nhập</label>
+                                <p class="form-control-static">@Model.User?.Username</p>
                             </div>
-                            <div class="modal-body">
-                                <form asp-page-handler="Update" method="post">
-                                    <input type="hidden" asp-for="UpdateModel.UserID" />
-                                    @if (!ViewData.ModelState.IsValid)
-                                    {
-                                        <div class="alert alert-danger" role="alert">
-                                            <ul>
-                                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                                {
-                                                    <li>@error.ErrorMessage</li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                    <div class="mb-3">
-                                        <label class="form-label">Username</label>
-                                        <p class="form-control-static">@Model.User?.Username</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="UpdateModel.Email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" asp-for="UpdateModel.Email" required />
-                                        <span asp-validation-for="UpdateModel.Email" class="text-danger"></span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="UpdateModel.FullName" class="form-label">Full Name</label>
-                                        <input type="text" class="form-control" asp-for="UpdateModel.FullName" required />
-                                        <span asp-validation-for="UpdateModel.FullName" class="text-danger"></span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="UpdateModel.PhoneNumber" class="form-label">Phone Number</label>
-                                        <input type="text" class="form-control" asp-for="UpdateModel.PhoneNumber" />
-                                        <span asp-validation-for="UpdateModel.PhoneNumber" class="text-danger"></span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="UpdateModel.Address" class="form-label">Address</label>
-                                        <input type="text" class="form-control" asp-for="UpdateModel.Address" />
-                                        <span asp-validation-for="UpdateModel.Address" class="text-danger"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
+                            <div class="mb-4">
+                                <label asp-for="UpdateModel.Email" class="form-label">Email</label>
+                                <input type="email" class="form-control" asp-for="UpdateModel.Email" required />
+                                <span asp-validation-for="UpdateModel.Email" class="text-danger"></span>
                             </div>
-                        </div>
+                            <div class="mb-4">
+                                <label asp-for="UpdateModel.FullName" class="form-label">Họ và Tên</label>
+                                <input type="text" class="form-control" asp-for="UpdateModel.FullName" required />
+                                <span asp-validation-for="UpdateModel.FullName" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4">
+                                <label asp-for="UpdateModel.PhoneNumber" class="form-label">Số điện thoại</label>
+                                <input type="text" class="form-control" asp-for="UpdateModel.PhoneNumber" />
+                                <span asp-validation-for="UpdateModel.PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="mb-4">
+                                <label asp-for="UpdateModel.Address" class="form-label">Địa chỉ</label>
+                                <input type="text" class="form-control" asp-for="UpdateModel.Address" />
+                                <span asp-validation-for="UpdateModel.Address" class="text-danger"></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Change Avatar Modal -->
-                <div class="modal fade" id="changeAvatarModal" tabindex="-1" aria-labelledby="changeAvatarModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="changeAvatarModalLabel">Change Avatar</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                        aria-label="Close"></button>
+        <!-- Change Avatar Modal -->
+        <div class="modal fade" id="changeAvatarModal" tabindex="-1" aria-labelledby="changeAvatarModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changeAvatarModalLabel">Đổi ảnh đại diện</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-page-handler="UpdateAvatar" method="post" enctype="multipart/form-data">
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                        {
+                                            <li>@error.ErrorMessage</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="mb-4">
+                                <label asp-for="AvatarModel.AvatarFile" class="form-label">Chọn ảnh</label>
+                                <input type="file" class="form-control" asp-for="AvatarModel.AvatarFile" accept=".jpg,.jpeg,.png" required />
+                                <span asp-validation-for="AvatarModel.AvatarFile" class="text-danger"></span>
                             </div>
-                            <div class="modal-body">
-                                <form asp-page-handler="UpdateAvatar" method="post" enctype="multipart/form-data">
-                                    @if (!ViewData.ModelState.IsValid)
-                                    {
-                                        <div class="alert alert-danger" role="alert">
-                                            <ul>
-                                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                                {
-                                                    <li>@error.ErrorMessage</li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                    <div class="mb-3">
-                                        <label asp-for="AvatarModel.AvatarFile" class="form-label">Select Image</label>
-                                        <input type="file" class="form-control" asp-for="AvatarModel.AvatarFile" accept=".jpg,.jpeg,.png" required />
-                                        <span asp-validation-for="AvatarModel.AvatarFile" class="text-danger"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Upload</button>
-                                    </div>
-                                </form>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Tải lên</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- Change Password Modal -->
-                <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
-                     aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
-                                <button type="button" class="btn-close" data-dismiss="modal"
-                                        aria-label="Close"></button>
+        <!-- Change Password Modal -->
+        <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordModalLabel">Đổi mật khẩu</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form asp-page-handler="UpdatePassword" method="post">
+                            @if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                        {
+                                            <li>@error.ErrorMessage</li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                            <div class="mb-4">
+                                <label asp-for="PasswordModel.CurrentPassword" class="form-label">Mật khẩu hiện tại</label>
+                                <input type="password" class="form-control" asp-for="PasswordModel.CurrentPassword" required />
+                                <span asp-validation-for="PasswordModel.CurrentPassword" class="text-danger"></span>
                             </div>
-                            <div class="modal-body">
-                                <form asp-page-handler="UpdatePassword" method="post">
-                                    @if (!ViewData.ModelState.IsValid)
-                                    {
-                                        <div class="alert alert-danger" role="alert">
-                                            <ul>
-                                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-                                                {
-                                                    <li>@error.ErrorMessage</li>
-                                                }
-                                            </ul>
-                                        </div>
-                                    }
-                                    <div class="mb-3">
-                                        <label asp-for="PasswordModel.CurrentPassword" class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" asp-for="PasswordModel.CurrentPassword" required />
-                                        <span asp-validation-for="PasswordModel.CurrentPassword" class="text-danger"></span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="PasswordModel.NewPassword" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" asp-for="PasswordModel.NewPassword" required />
-                                        <span asp-validation-for="PasswordModel.NewPassword" class="text-danger"></span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label asp-for="PasswordModel.ConfirmNewPassword" class="form-label">Confirm New Password</label>
-                                        <input type="password" class="form-control" asp-for="PasswordModel.ConfirmNewPassword" required />
-                                        <span asp-validation-for="PasswordModel.ConfirmNewPassword" class="text-danger"></span>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                                    </div>
-                                </form>
+                            <div class="mb-4">
+                                <label asp-for="PasswordModel.NewPassword" class="form-label">Mật khẩu mới</label>
+                                <input type="password" class="form-control" asp-for="PasswordModel.NewPassword" required />
+                                <span asp-validation-for="PasswordModel.NewPassword" class="text-danger"></span>
                             </div>
-                        </div>
+                            <div class="mb-4">
+                                <label asp-for="PasswordModel.ConfirmNewPassword" class="form-label">Xác nhận mật khẩu mới</label>
+                                <input type="password" class="form-control" asp-for="PasswordModel.ConfirmNewPassword" required />
+                                <span asp-validation-for="PasswordModel.ConfirmNewPassword" class="text-danger"></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Đóng</button>
+                                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

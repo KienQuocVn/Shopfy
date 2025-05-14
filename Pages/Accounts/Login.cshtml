@@ -162,10 +162,6 @@
         color: white;
     }
 
-    .btn-github {
-        background-color: #333;
-        color: white;
-    }
 
     .btn-linkedin {
         background-color: #0077B5;
@@ -179,16 +175,18 @@
 </style>
 <div class="container">
     <div class="row login-container">
-        <!-- Left side - Illustration -->
+        <!-- Bên trái - Ảnh minh họa -->
         <div class="col-lg-6 login-illustration">
-            <img src="~/images/auth-banner.png" alt="Login Illustration" class="img-fluid">
+            <img src="~/images/auth-banner.png" alt="Hình minh họa đăng nhập" class="img-fluid">
         </div>
 
-        <!-- Right side - Login Form -->
+        <!-- Bên phải - Form đăng nhập -->
         <div class="col-lg-6 login-form">
-            <h1 class="form-title">Login to your account</h1>
-            <p class="form-subtitle">Your personal data will be used to support your experience throughout this website,
-                to manage access to your account.</p>
+            <h1 class="form-title">Đăng nhập tài khoản</h1>
+            <p class="form-subtitle">
+                Thông tin cá nhân của bạn sẽ được sử dụng để hỗ trợ trải nghiệm của bạn trên trang web,
+                và để quản lý quyền truy cập vào tài khoản của bạn.
+            </p>
 
             @if (!string.IsNullOrEmpty(successMessage))
             {
@@ -202,19 +200,19 @@
             <form method="post">
                 @Html.AntiForgeryToken()
 
-                <!-- Email/Username Input -->
+                <!-- Nhập tên đăng nhập/email -->
                 <div class="mb-3">
-                    <label asp-for="Username" class="form-label">Username <i class="bi bi-envelope"></i></label>
+                    <label asp-for="Username" class="form-label">Tên đăng nhập <i class="bi bi-person"></i></label>
                     <div class="form-group">
                         <input type="text" class="form-control border-start-0" asp-for="Username"
-                            placeholder="Email address" required />
+                            placeholder="Địa chỉ email hoặc tên đăng nhập" required value="admin" />
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
                 </div>
 
-                <!-- Password Input -->
+                <!-- Nhập mật khẩu -->
                 <div class="mb-3">
-                    <label asp-for="Password" class="form-label">Password <i class="bi bi-lock"></i></label>
+                    <label asp-for="Password" class="form-label">Mật khẩu <i class="bi bi-lock"></i></label>
                     <div class="form-group">
                         <div class="d-flex">
                             <input type="password" class="form-control border-start-0" asp-for="Password"
@@ -224,48 +222,44 @@
                                 <i class="bi bi-eye" id="togglePassword"></i>
                             </span>
                         </div>
-
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
-
                 </div>
 
-                <!-- Remember Me & Forgot Password -->
+                <!-- Ghi nhớ & Quên mật khẩu -->
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="remember" disabled>
-                        <label class="form-check-label" for="remember">Remember me</label>
+                        <input type="checkbox" class="form-check-input" id="remember" style="margin-left: 2px;">
+                        <label class="form-check-label" for="remember">Ghi nhớ đăng nhập</label>
                     </div>
-                    <a href="/Accounts/ForgotPassword" class="forgot-password">Forgot password?</a>
+                    <a href="/Accounts/ForgotPassword" class="forgot-password">Quên mật khẩu?</a>
                 </div>
-                <!-- Login Button -->
-                <button type="submit" class="btn btn-primary btn-login">Login →</button>
 
-                <!-- Register Link -->
+                <!-- Nút đăng nhập -->
+                <button type="submit" class="btn btn-primary btn-login">Đăng nhập →</button>
+
+                <!-- Link đăng ký -->
                 <div class="register-link">
-                    Don't have an account? <a href="/Accounts/Register">Register now</a>
-                </div>
-
-                <!-- Social Login (Commented out as not supported by backend) -->
-                <div class="social-login">
-                    <div class="social-login-title">Login with social networks</div>
-                    <a href="#" class="btn btn-social btn-facebook" disabled>
-                        <i class="bi bi-facebook"></i> Sign in with Facebook
-                    </a>
-                    <a href="#" class="btn btn-social btn-google" disabled>
-                        <i class="bi bi-google"></i> Sign in with Google
-                    </a>
-                    <a href="#" class="btn btn-social btn-github" disabled>
-                        <i class="bi bi-github"></i> Sign in with GitHub
-                    </a>
-                    <a href="#" class="btn btn-social btn-linkedin" disabled>
-                        <i class="bi bi-linkedin"></i> Sign in with LinkedIn
-                    </a>
+                    Chưa có tài khoản? <a href="/Accounts/Register">Đăng ký ngay</a>
                 </div>
             </form>
+
+            <!-- Đăng nhập bằng mạng xã hội -->
+            <div class="social-login">
+                <div class="social-login-title">Đăng nhập bằng mạng xã hội</div>
+                <a href="/Accounts/Login?handler=ExternalLogin&provider=Facebook" class="btn btn-social btn-facebook">
+                    <i class="bi bi-facebook"></i> Đăng nhập bằng Facebook
+                </a>
+
+                <a href="/Accounts/Login?handler=ExternalLogin&provider=Google" class="btn btn-social btn-google">
+                    <i class="bi bi-google"></i> Đăng nhập bằng Google
+                </a>
+
+            </div>
         </div>
     </div>
 </div>
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

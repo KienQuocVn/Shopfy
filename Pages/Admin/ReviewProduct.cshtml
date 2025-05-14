@@ -1,8 +1,8 @@
 @page "{id:int}"
 @model Shofy.Pages.Admin.ReviewProductModel
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Review Product";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Xem chi tiết sản phẩm";
 }
 
 <!-- Bootstrap Icons + Animate.css -->
@@ -97,94 +97,59 @@
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
     }
 </style>
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="bg-dark text-white">
-        <div class="sidebar-header">
-            <a href="/Index" class="text-light">
-                <h3 class="mb-0">SHOPFY</h3>
-            </a>
-        </div>
-        <div class="navigation-section">
-            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
-            <ul class="list-unstyled">
-                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
-                <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
-                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
-                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <div id="content">
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="d-flex align-items-center">
-                    <div class="profile-section ms-3">
-                        <!-- Display user avatar and username -->
-                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
-                            style="width: 40px; height: 40px;">
-                        <div class="d-flex flex-column">
-                            <span class="ms-2">@Model.Username</span>
-                        </div>
-                    </div>
+<div class="container-fluid py-4">
+    <div class="text-center mb-4">
+        <h2 class="animate__animated animate__fadeInDown">
+            <i class="bi bi-card-list me-2"></i>Chi Tiết Sản Phẩm
+        </h2>
+        <p class="text-muted">Xem lại thông tin chi tiết và thực hiện thay đổi nếu cần ✨</p>
+    </div>
+
+    <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-body">
+            @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
+            {
+                <div class="text-center mb-4">
+                    <img src="~/images/@Model.Product.ImagePath" alt="Ảnh Sản Phẩm" class="img-fluid rounded"
+                         style="max-height: 350px; width: auto;" />
+                </div>
+            }
+
+            <div class="product-detail">
+                <div class="info-box mb-4">
+                    <p><strong>Tên:</strong> <span>@Model.Product.Name</span></p>
+                </div>
+
+                <div class="info-box mb-4">
+                    <p><strong>Giá:</strong> @Model.Product.Price.ToString("#,##0.## ₫", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</p>
+                </div>
+
+                <div class="info-box mb-4">
+                    <p><strong>Số Lượng Tồn Kho:</strong> @Model.Product.StockQuantity</p>
+                </div>
+
+                <div class="info-box mb-4">
+                    <p><strong>Trạng Thái:</strong> 
+                        @(Model.Product.Status == "Available" ? "Còn Hàng" : 
+                          Model.Product.Status == "OutOfStock" ? "Hết Hàng" : Model.Product.Status)
+                    </p>
+                </div>
+
+                <div class="info-box mb-4">
+                    <p><strong>Mô Tả:</strong></p>
+                    <p class="description-box">@Model.Product.Description</p>
                 </div>
             </div>
-        </nav>
-        <div class="container-fluid mt-5">
-            <div class="text-center mb-4">
-                <h2 class="animate__animated animate__fadeInDown">
-                    <i class="bi bi-card-list me-2"></i>Product Details
-                </h2>
-                <p class="text-muted">Review the details and make changes as needed ✨</p>
-            </div>
 
-            <div class="card mx-auto" style="max-width: 800px;">
-                <div class="card-body">
-                    @if (!string.IsNullOrEmpty(Model.Product.ImagePath))
-                    {
-                        <div class="text-center mb-4">
-                            <img src="~/images/@Model.Product.ImagePath" alt="Product Image" class="img-fluid rounded"
-                                style="max-height: 350px; width: auto;" />
-                        </div>
-                    }
-
-                    <div class="product-detail">
-                        <div class="info-box mb-4">
-                            <p><strong>Name:</strong> <span>@Model.Product.Name</span></p>
-                        </div>
-
-                        <div class="info-box mb-4">
-                            <p><strong>Price:</strong> $@Model.Product.Price</p>
-                        </div>
-
-                        <div class="info-box mb-4">
-                            <p><strong>Stock Quantity:</strong> @Model.Product.StockQuantity</p>
-                        </div>
-
-                        <div class="info-box mb-4">
-                            <p><strong>Status:</strong> @Model.Product.Status</p>
-                        </div>
-
-                        <div class="info-box mb-4">
-                            <p><strong>Description:</strong></p>
-                            <p class="description-box">@Model.Product.Description</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-5 d-flex justify-content-between">
-                        <a href="/Admin/Products" class="btn btn-secondary btn-lg">
-                            <i class="bi bi-arrow-left-circle me-1"></i>Back to List
-                        </a>
-                        <a href="/Admin/EditProduct/@Model.Product.ProductID" class="btn btn-primary btn-lg">
-                            <i class="bi bi-pencil-square me-1"></i>Edit Product
-                        </a>
-                    </div>
-                </div>
+            <div class="mt-5 d-flex justify-content-between">
+                <a href="/Admin/Products" class="btn btn-secondary btn-lg">
+                    <i class="bi bi-arrow-left-circle me-1"></i>Quay Lại Danh Sách
+                </a>
+                <a href="/Admin/EditProduct/@Model.Product.ProductID" class="btn btn-primary btn-lg">
+                    <i class="bi bi-pencil-square me-1"></i>Chỉnh Sửa Sản Phẩm
+                </a>
             </div>
         </div>
+    </div>
+</div>

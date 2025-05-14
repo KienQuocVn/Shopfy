@@ -1,149 +1,9 @@
 @page "{UserId:int}"
 @model Shofy.Pages.Admin.ReviewUserModel
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Review User";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Xem chi tiết người dùng";
 }
-
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="bg-dark text-white">
-        <div class="sidebar-header">
-            <a href="/Index" class="text-light">
-                <h3 class="mb-0">SHOPFY</h3>
-            </a>
-        </div>
-        <div class="navigation-section">
-            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
-            <ul class="list-unstyled">
-                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a></li>
-                <li class="active"><a href="/Admin/User"><i class="bi bi-cart me-2"></i> Users</a></li>
-                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
-                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div id="content">
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn">
-                    <i class="bi bi-list"></i>
-                </button>
-                <div class="d-flex align-items-center">
-                    <div class="profile-section ms-3">
-                        <!-- Display user avatar and username -->
-                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile" style="width: 40px; height: 40px;">
-                        <div class="d-flex flex-column">
-                            <span class="ms-2">@Model.Username</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <!-- Header with Title and Back Button -->
-                    <div class="row d-flex justify-content-between align-items-center mb-4">
-                        <div class="col-auto">
-                            <h2 class="mb-0 text-primary">Thông tin chi tiết khách hàng</h2>
-                        </div>
-                        <div class="col-auto">
-                            <a asp-page="User" class="btn btn-lg btn-gradient-primary text-white transition-transform hover:scale-105">Quay lại</a>
-                        </div>
-                    </div>
-
-                    <!-- User Profile Section -->
-                    <div class="row gutters-sm">
-                        <div class="col-md-4 mb-3">
-                            <div class="card border-0 shadow-lg rounded-3 bg-light">
-                                <div class="card-body text-center">
-                                    <div class="avatar-container position-relative mb-3">
-                                        <img src="@(Model.User?.Avatar ?? "~/images/noavt.jpg")" alt="Avatar" class="rounded-circle avatar-img shadow-sm">
-                                    </div>
-                                    <h4 class="fw-bold text-dark">@Model.User.Username</h4>
-                                    <p class="text-success mb-1">@Model.User.Role</p>
-                                    <p class="text-muted font-size-sm">@Model.User.Address</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- User Details Section -->
-                        <div class="col-md-8">
-                            <div class="card border-0 shadow-lg rounded-3 mb-4">
-                                <div class="card-body">
-                                    <!-- Full Name -->
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 text-info">Full Name</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.User.FullName
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    
-                                    <!-- Email -->
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 text-info">Email</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.User.Email
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <!-- Phone Number -->
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 text-info">Phone Number</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.User.PhoneNumber
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <!-- Address -->
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 text-info">Address</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.User.Address
-                                        </div>
-                                    </div>
-                                    <hr>
-
-                                    <!-- Created Date -->
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0 text-info">Created Date</h6>
-                                        </div>
-                                        <div class="col-sm-9 text-secondary">
-                                            @Model.User.CreatedDate
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
-
 <style>
     /* Custom Styles */
     .avatar-container {
@@ -209,3 +69,103 @@
         color: #343a40;
     }
 </style>
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Tiêu đề và Nút Quay Lại -->
+            <div class="row d-flex justify-content-between align-items-center mb-4">
+                <div class="col-auto">
+                    <h2 class="mb-0 text-primary">Thông Tin Chi Tiết Khách Hàng</h2>
+                </div>
+                <div class="col-auto">
+                    <a asp-page="User"
+                        class="btn btn-lg btn-gradient-primary text-white transition-transform hover:scale-105">Quay
+                        Lại</a>
+                </div>
+            </div>
+
+            <!-- Phần Hồ Sơ Người Dùng -->
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card border-0 shadow-lg rounded-3 bg-light">
+                        <div class="card-body text-center">
+                            <div class="avatar-container position-relative mb-3">
+                                <img src="@(Model.User?.Avatar ?? "~/images/noavt.jpg")" alt="Ảnh đại diện"
+                                    class="rounded-circle avatar-img shadow-sm">
+                            </div>
+                            <h4 class="fw-bold text-dark">@Model.User.Username</h4>
+                            <p class="text-success mb-1">
+                                @(Model.User.Role == "Admin" ? "Quản Trị" :
+                                                                Model.User.Role == "User" ? "Người Dùng" : Model.User.Role)
+                            </p>
+                            <p class="text-muted font-size-sm">@Model.User.Address</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phần Chi Tiết Người Dùng -->
+                <div class="col-md-8">
+                    <div class="card border-0 shadow-lg rounded-3 mb-4">
+                        <div class="card-body">
+                            <!-- Họ Tên -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 text-info">Họ Tên</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.User.FullName
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Email -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 text-info">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.User.Email
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Số Điện Thoại -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 text-info">Số Điện Thoại</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.User.PhoneNumber
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Địa Chỉ -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 text-info">Địa Chỉ</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.User.Address
+                                </div>
+                            </div>
+                            <hr>
+
+                            <!-- Ngày Tạo -->
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0 text-info">Ngày Tạo</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    @Model.User.CreatedDate
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

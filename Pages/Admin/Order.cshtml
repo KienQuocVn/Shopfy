@@ -1,210 +1,142 @@
 @page
 @model Shofy.Pages.Admin.OrderIndexModel
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = "Order Management";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Quản Lý Đơn Hàng";
 }
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="bg-dark text-white">
-        <div class="sidebar-header">
-            <a href="/Index" class="text-light">
-                <h3 class="mb-0">SHOPFY</h3>
-            </a>
-        </div>
-        <div class="navigation-section">
-            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
-            <ul class="list-unstyled">
-                <li><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a>
-                </li>
-                <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> USer</a></li>
-                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
-                <li class="active"><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-                @* <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li> *@
-            </ul>
-        </div>
-        @* <div class="apps-section">
-            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
-            <ul class="list-unstyled">
-                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
-                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
-                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
-            </ul>
-        </div> *@
-    </nav>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3">Quản Lý Đơn Hàng</h1>
+    </div>
 
-    <!-- Main Content -->
-    <div id="content">
-        <!-- Top Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn">
-                    <i class="bi bi-list"></i>
+    <!-- Form Tìm Kiếm và Lọc -->
+    <form method="get" class="row mb-4 align-items-end">
+        <!-- Ô Tìm Kiếm -->
+        <div class="col-auto" style="flex: 1;">
+            <div class="input-group">
+                <input type="text" name="search" value="@Model.Search" class="form-control"
+                       placeholder="Tìm kiếm theo ID, Trạng Thái hoặc Tên Người Dùng..." />
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="bi bi-search"></i>
                 </button>
-
-                @* <div class="search-box d-flex">
-                    <input type="text" id="searchInput" class="form-control me-2" placeholder="Search...">
-                    <button class="btn btn-primary" type="button" onclick="handleSearch()">Search</button>
-                </div> *@
-
-                <div class="d-flex align-items-center">
-                    @* <div class="icons-group">
-                        <button class="btn"><i class="bi bi-bell"></i></button>
-                        <button class="btn"><i class="bi bi-grid-fill"></i></button>
-                        <button class="btn"><i class="bi bi-gear"></i></button>
-                        <button class="btn"><i class="bi bi-moon"></i></button>
-                        <button class="btn"><i class="bi bi-fullscreen"></i></button>
-                    </div> *@
-                    <div class="profile-section ms-3">
-                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
-                            style="width: 40px; height: 40px;">
-                        <div class="d-flex flex-column">
-                            <span class="ms-2">@Model.Username</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Order Management Content -->
-        <div class="container-fluid py-4">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 class="h3">Order Management</h1>
-                @* <div class="date-section">
-                    <div class="btn-group ms-3">
-                        <input type="date" class="form-control" id="datePicker" placeholder="Select Date">
-                        <button class="btn ms-2" style="background-color: #6658dd;"><i
-                                class="bi bi-arrow-repeat text-light"></i></button>
-                    </div>
-                </div> *@
-            </div>
-
-            <!-- Search and Filter Form -->
-            <form method="get" class="row mb-4 align-items-end">
-                <!-- Search Input -->
-                <div class="col-auto" style="flex: 1;">
-                    <div class="input-group">
-                        <input type="text" name="search" value="@Model.Search" class="form-control"
-                            placeholder="Search by ID, Status, or User Name..." />
-                        <button class="btn btn-outline-secondary" type="submit">
-                            <i class="bi bi-search"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Status Filter -->
-                <div class="col-auto d-flex justify-content-center align-items-center">
-                    <select name="status" class="form-select form-select-lg">
-                        <option value="">--Status--</option>
-                        <option value="Pending" selected="@(Model.Status == "Pending")">Pending</option>
-                        <option value="Processing" selected="@(Model.Status == "Processing")">Processing</option>
-                        <option value="Completed" selected="@(Model.Status == "Completed")">Completed</option>
-                        <option value="Cancelled" selected="@(Model.Status == "Cancelled")">Cancelled</option>
-                    </select>
-                </div>
-
-                <!-- Filter Button -->
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-filter"></i> Filter
-                    </button>
-                </div>
-            </form>
-
-            <!-- Orders Table -->
-            <div class="card">
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-bordered rounded">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">UserName</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">PaymentMethod</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-center">OrderedDate</th>
-                                    <th class="text-center">Actions</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                @if (Model.Orders.Count == 0)
-                                {
-                                    <tr>
-                                        <td colspan="7" class="text-center text-muted">Không tìm thấy đơn hàng nào.</td>
-                                    </tr>
-                                }
-                                else
-                                {
-                                    @foreach (var order in Model.Orders)
-                                    {
-                                        <tr>
-                                            <td class="text-center">@order.OrderID</td>
-                                            <td class="text-center">@order.User?.Username</td>
-                                            <td class="text-center text-success fw-bold">$@order.TotalPrice</td>
-                                            <td class="text-center">@order.PaymentMethod</td>
-                                            <td class="text-center"><span class="badge bg-info text-dark">@order.Status</span>
-                                            </td>
-                                            <td class="text-center">@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
-                                            <td class="text-center">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle"
-                                                        type="button" id="actionMenu@order.OrderID" data-bs-toggle="dropdown"
-                                                        aria-expanded="false">
-                                                        ...
-                                                    </button>
-                                                    <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
-                                                        <li>
-                                                            <a class="dropdown-item" asp-page="/Admin/EditOrder"
-                                                                asp-route-id="@order.OrderID">Edit</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
-                                                                asp-route-id="@order.OrderID">Review</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" asp-page-handler="ExportInvoice"
-                                                                asp-route-id="@order.OrderID">Invoice</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    }
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Pagination -->
-            <div class="d-flex justify-content-center mt-4">
-                <nav>
-                    <ul class="pagination">
-                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
-                            <a class="page-link" asp-page="/Admin/Order" asp-route-currentPage="1">First</a>
-                        </li>
-                        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
-                            <a class="page-link" asp-page="/Admin/Order"
-                                asp-route-currentPage="@(Model.CurrentPage - 1)">Previous</a>
-                        </li>
-                        <li class="page-item disabled">
-                            <span class="page-link">Page @Model.CurrentPage of @Model.TotalPages</span>
-                        </li>
-                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
-                            <a class="page-link" asp-page="/Admin/Order"
-                                asp-route-currentPage="@(Model.CurrentPage + 1)">Next</a>
-                        </li>
-                        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
-                            <a class="page-link" asp-page="/Admin/Order"
-                                asp-route-currentPage="@Model.TotalPages">Last</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
+
+        <!-- Lọc Theo Trạng Thái -->
+        <div class="col-auto d-flex justify-content-center align-items-center">
+            <select name="status" class="form-select form-select-lg">
+                <option value="">--Trạng Thái--</option>
+                <option value="Pending" selected="@(Model.Status == "Pending")">Chờ Xử Lý</option>
+                <option value="Processing" selected="@(Model.Status == "Processing")">Đang Xử Lý</option>
+                <option value="Completed" selected="@(Model.Status == "Completed")">Hoàn Thành</option>
+                <option value="Cancelled" selected="@(Model.Status == "Cancelled")">Đã Hủy</option>
+            </select>
+        </div>
+
+        <!-- Nút Lọc -->
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-filter"></i> Lọc
+            </button>
+        </div>
+    </form>
+
+    <!-- Bảng Đơn Hàng -->
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered rounded">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th class="text-center">Mã Đơn Hàng</th>
+                            <th class="text-center">Tên Người Dùng</th>
+                            <th class="text-center">Giá</th>
+                            <th class="text-center">Phương Thức Thanh Toán</th>
+                            <th class="text-center">Trạng Thái</th>
+                            <th class="text-center">Ngày Đặt Hàng</th>
+                            <th class="text-center">Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders.Count == 0)
+                        {
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">Không tìm thấy đơn hàng nào.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            @foreach (var order in Model.Orders)
+                            {
+                                <tr>
+                                    <td class="text-center">@order.OrderID</td>
+                                    <td class="text-center">@order.User?.Username</td>
+                                    <td class="text-center text-success fw-bold">@order.TotalPrice.ToString("#,##0.## ₫", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</td>
+                                    <td class="text-center">@order.PaymentMethod</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-info text-dark">
+                                            @(order.Status == "Pending" ? "Chờ Xử Lý" :
+                                              order.Status == "Processing" ? "Đang Xử Lý" :
+                                              order.Status == "Completed" ? "Hoàn Thành" :
+                                              order.Status == "Cancelled" ? "Đã Hủy" : order.Status)
+                                        </span>
+                                    </td>
+                                    <td class="text-center">@order.OrderedDate.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-center">
+                                        <div class="dropdown">
+                                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button"
+                                                    id="actionMenu@order.OrderID" data-bs-toggle="dropdown" aria-expanded="false">
+                                                ...
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="actionMenu@order.OrderID">
+                                                <li>
+                                                    <a class="dropdown-item" asp-page="/Admin/EditOrder"
+                                                       asp-route-id="@order.OrderID">Chỉnh Sửa</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-page="/Admin/ReviewOrder"
+                                                       asp-route-id="@order.OrderID">Xem Chi Tiết</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-page-handler="ExportInvoice"
+                                                       asp-route-id="@order.OrderID">Xuất Hóa Đơn</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phân Trang -->
+    <div class="d-flex justify-content-center mt-4">
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Admin/Order" asp-route-currentPage="1">Đầu</a>
+                </li>
+                <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Admin/Order"
+                       asp-route-currentPage="@(Model.CurrentPage - 1)">Trước</a>
+                </li>
+                <li class="page-item disabled">
+                    <span class="page-link">Trang @Model.CurrentPage / @Model.TotalPages</span>
+                </li>
+                <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Admin/Order"
+                       asp-route-currentPage="@(Model.CurrentPage + 1)">Tiếp</a>
+                </li>
+                <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                    <a class="page-link" asp-page="/Admin/Order" asp-route-currentPage="@Model.TotalPages">Cuối</a>
+                </li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -213,29 +145,3 @@
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- Sidebar Toggle Script -->
-<script>
-    document.getElementById('sidebarCollapse').addEventListener('click', function () {
-        document.getElementById('sidebar').classList.toggle('active');
-        document.getElementById('content').classList.toggle('active');
-    });
-</script>
-<script>
-    function handleSearch() {
-        const keyword = document.getElementById('searchInput').value.trim().toLowerCase();
-        if (keyword === 'user') {
-            window.location.href = '/Admin/User';
-        } else if (keyword === 'products') {
-            window.location.href = '/Admin/Products';
-        } else if (keyword === 'order') {
-            window.location.href = '/Admin/Order';
-        } else if (keyword === 'chat') {
-            window.location.href = '/Admin/Chat';
-        } else {
-            alert('Không tìm thấy trang phù hợp');
-        }else if (keyword === 'Dashboard') {
-            window.location.href = '/Admin/Index';
-        }
-    }
-</script>

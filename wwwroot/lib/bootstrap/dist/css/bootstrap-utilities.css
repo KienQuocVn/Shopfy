@@ -1901,7 +1901,6 @@
 
 .text-muted {
   --bs-text-opacity: 1;
-  color: var(--bs-secondary-color) !important;
 }
 
 .text-black-50 {

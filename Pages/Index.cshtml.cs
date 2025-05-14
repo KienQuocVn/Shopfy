@@ -53,26 +53,27 @@ namespace Shofy.Pages
             // Lọc theo khoảng giá
             if (!string.IsNullOrEmpty(PriceRange))
             {
+                _logger.LogInformation($"Applying PriceRange filter: {PriceRange}");
                 switch (PriceRange)
                 {
-                    case "0-50":
-                        productQuery = productQuery.Where(p => p.Price >= 0 && p.Price <= 50);
+                    case "200000-500000":
+                        productQuery = productQuery.Where(p => p.Price >= 200000 && p.Price <= 500000);
                         break;
-                    case "50-100":
-                        productQuery = productQuery.Where(p => p.Price > 50 && p.Price <= 100);
+                    case "500000-1000000":
+                        productQuery = productQuery.Where(p => p.Price > 500000 && p.Price <= 1000000);
                         break;
-                    case "100-150":
-                        productQuery = productQuery.Where(p => p.Price > 100 && p.Price <= 150);
+                    case "1000000-1500000":
+                        productQuery = productQuery.Where(p => p.Price > 1000000 && p.Price <= 1500000);
                         break;
-                    case "150-200":
-                        productQuery = productQuery.Where(p => p.Price > 150 && p.Price <= 200);
+                    case "1500000-2000000":
+                        productQuery = productQuery.Where(p => p.Price > 1500000 && p.Price <= 2000000);
                         break;
-                    case "200+":
-                        productQuery = productQuery.Where(p => p.Price > 200);
+                    case "2000000-2500000":
+                        productQuery = productQuery.Where(p => p.Price > 2000000 && p.Price <= 2500000);
                         break;
                 }
-
             }
+
             var userId = HttpContext.Session.GetUserId();
             if (userId.HasValue)
             {
@@ -109,7 +110,6 @@ namespace Shofy.Pages
             var userId = HttpContext.Session.GetUserId();
             if (!userId.HasValue)
             {
-                TempData["Error"] = "Please log in to add items to cart.";
                 return RedirectToPage("/Accounts/Login");
             }
 

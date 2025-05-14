@@ -31,9 +31,6 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public bool? IsActiveFilter { get; set; }
 
-        public string Username { get; set; }
-        public string Role { get; set; }
-        public string Avatar { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int pageNumber = 1)
         {
@@ -43,10 +40,6 @@ namespace Shofy.Pages.Admin
             {
                 return RedirectToPage("/Error");
             }
-
-            Username = HttpContext.Session.GetString("Username") ?? "Guest";
-            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
-            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
 
             pageNumber = pageNumber < 1 ? 1 : pageNumber;
             CurrentPage = pageNumber;

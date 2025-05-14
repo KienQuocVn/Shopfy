@@ -37,11 +37,6 @@ namespace Shofy.Pages.Admin
         [TempData]
         public string? StatusMessage { get; set; }
 
-        // Profile section properties
-        public string Username { get; set; }
-        public string Role { get; set; }
-        public string Avatar { get; set; }
-        
         // Check admin role
         public async Task<IActionResult> OnGetAsync(string? searchTerm, string? priceRange, int pageNumber = 1)
         {
@@ -51,10 +46,6 @@ namespace Shofy.Pages.Admin
                 return RedirectToPage("/Error");
             }
 
-            // Retrieve profile data from session
-            Username = HttpContext.Session.GetString("Username") ?? "Guest";
-            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
-            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
 
             SearchTerm = searchTerm ?? string.Empty;
             PriceRange = priceRange ?? string.Empty;

@@ -12,8 +12,7 @@ namespace Shofy.Pages.Client
 {
     public class Pages_Client_ProductModel : PageModel
     {
-
-        private readonly ShofyContext _context; 
+        private readonly ShofyContext _context;
         private readonly ILogger<Pages_Client_ProductModel> _logger;
 
         public Pages_Client_ProductModel(ShofyContext context, ILogger<Pages_Client_ProductModel> logger)
@@ -44,10 +43,12 @@ namespace Shofy.Pages.Client
 
             if (!string.IsNullOrEmpty(PriceRange))
             {
+                _logger.LogInformation($"Applying PriceRange filter: {PriceRange}");
                 productQuery = FilterProductsByPriceRange(productQuery, PriceRange);
             }
 
             Products = await productQuery.ToListAsync();
+            _logger.LogInformation($"Number of products after filter: {Products.Count}");
 
             if (productId.HasValue)
             {
@@ -70,12 +71,12 @@ namespace Shofy.Pages.Client
         {
             return priceRange switch
             {
-                "0-50" => query.Where(p => p.Price >= 0 && p.Price <= 50),
-                "50-100" => query.Where(p => p.Price > 50 && p.Price <= 100),
-                "100-150" => query.Where(p => p.Price > 100 && p.Price <= 150),
-                "150-200" => query.Where(p => p.Price > 150 && p.Price <= 200),
-                "200+" => query.Where(p => p.Price > 200),
-                _ => query,
+                "200000-500000" => query.Where(p => p.Price >= 200000 && p.Price <= 500000),
+                "500000-1000000" => query.Where(p => p.Price > 500000 && p.Price <= 1000000),
+                "1000000-1500000" => query.Where(p => p.Price > 1000000 && p.Price <= 1500000),
+                "1500000-2000000" => query.Where(p => p.Price > 1500000 && p.Price <= 2000000),
+                "2000000-2500000" => query.Where(p => p.Price > 2000000 && p.Price <= 2500000),
+                _ => query, // Trường hợp không khớp, trả về toàn bộ sản phẩm
             };
         }
 
@@ -83,27 +84,35 @@ namespace Shofy.Pages.Client
         {
             if (quantity <= 0) quantity = 1;
 
-            var product = await _context.Product.FindAsync(productId);
+            var product = await _context.Product.FirstOrDefaultAsync(p => p.ProductID == productId && p.Status == "Active");
             if (product == null)
             {
                 TempData["Error"] = "Product not found.";
-                return NotFound();
+                return RedirectToPage();
             }
 
             var userId = HttpContext.Session.GetUserId();
             if (!userId.HasValue)
             {
-                TempData["Error"] = "Please log in to add items to cart.";
                 return RedirectToPage("/Accounts/Login");
             }
 
             var cart = await _context.Cart
                 .Include(c => c.CartItems)
-                .FirstOrDefaultAsync(c => c.UserID == userId.Value) ?? new Cart { UserID = userId.Value, CreatedAt = DateTime.Now };
+                .FirstOrDefaultAsync(c => c.UserID == userId.Value);
 
-            _context.Cart.Add(cart); // If cart was newly created, add it to the DbContext.
+            if (cart == null)
+            {
+                cart = new Cart { UserID = userId.Value, CreatedAt = DateTime.Now };
+                _context.Cart.Add(cart);
+                await _context.SaveChangesAsync();
+            }
 
-            if (cart.CartItems == null) cart.CartItems = new List<CartItem>();
+            // Đảm bảo CartItems không null
+            if (cart.CartItems == null)
+            {
+                cart.CartItems = new List<CartItem>();
+            }
 
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductID == productId);
             if (cartItem == null)
@@ -123,9 +132,8 @@ namespace Shofy.Pages.Client
 
             await _context.SaveChangesAsync();
             TempData["CartSuccess"] = $"{product.Name} is added to cart!";
-            return RedirectToPage("");
+            return RedirectToPage();
         }
-
 
         public async Task<IActionResult> OnPostToggleWishlistAsync(int productId)
         {

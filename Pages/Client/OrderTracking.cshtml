@@ -1,7 +1,7 @@
 @page "{id:int?}"
 @model Shofy.Pages.Client.OrderTrackingModel
 @{
-    ViewData["Title"] = "Order Tracking";
+    ViewData["Title"] = "Theo dõi đơn hàng";
 }
 
 <style>
@@ -121,12 +121,12 @@
     <div class="tracking-container">
         <div class="row d-flex justify-content-between align-items-center mb-4">
             <div class="col-auto">
-                <h4>Order @Model.Order.OrderID</h4>
+                <h4>Đơn hàng @Model.Order.OrderID</h4>
                 <p class="text-muted mb-0">@Model.Order.OrderedDate.ToString("dd/MM/yyyy")</p>
             </div>
             <div class="col-auto">
                 <span class="status-badge in-transit">
-                    <i class="bi bi-truck"></i> In Transit
+                    <i class="bi bi-truck"></i> @Model.Order.Status
                 </span>
             </div>
         </div>
@@ -137,16 +137,16 @@
                 <div class="delivery-info">
                     <div class="row">
                         <div class="col-md-6">
-                            <h6 class="fw-bold">Delivery Address</h6>
-                            <p class="mb-0">FullName: @Model.Order.User?.FullName</p>
-                            <p class="mb-0">Address: @Model.Order.User?.Address</p>
-                            <p class="mb-0">Phone: @Model.Order.User?.PhoneNumber</p>
+                            <h6 class="fw-bold">Địa chỉ giao hàng</h6>
+                            <p class="mb-0">Họ và tên: @Model.Order.User?.FullName</p>
+                            <p class="mb-0">Địa chỉ: @Model.Order.User?.Address</p>
+                            <p class="mb-0">Số điện thoại: @Model.Order.User?.PhoneNumber</p>
                         </div>
                         <div class="col-md-6">
-                            <h6>Estimated Delivery</h6>
-                            <p class="mb-0">March 18, 2024</p>
-                            <p class="mb-0">Between 9:00 AM - 5:00 PM</p>
-                            <h6 class="mt-3">Tracking Number</h6>
+                            <h6>Thời gian giao hàng dự kiến</h6>
+                            <p class="mb-0">18 Tháng 3, 2024</p>
+                            <p class="mb-0">Giữa 9:00 SA - 5:00 CH</p>
+                            <h6 class="mt-3">Số theo dõi</h6>
                             <p class="mb-0">1Z999AA1234567890</p>
                         </div>
                     </div>
@@ -156,29 +156,29 @@
                 <div class="tracking-timeline">
                     <ul class="p-0">
                         <li class="tracking-step completed">
-                            <div class="step-title">Order Placed</div>
-                            <div class="step-info">Your order has been placed successfully</div>
-                            <div class="step-time">March 15, 2024 - 10:30 AM</div>
+                            <div class="step-title">Đơn hàng được đặt</div>
+                            <div class="step-info">Đơn hàng của bạn đã được đặt thành công</div>
+                            <div class="step-time">15 Tháng 3, 2024 - 10:30 SA</div>
                         </li>
                         <li class="tracking-step completed">
-                            <div class="step-title">Order Confirmed</div>
-                            <div class="step-info">Your order has been confirmed and is being processed</div>
-                            <div class="step-time">March 15, 2024 - 11:00 AM</div>
+                            <div class="step-title">Đơn hàng được xác nhận</div>
+                            <div class="step-info">Đơn hàng của bạn đã được xác nhận và đang được xử lý</div>
+                            <div class="step-time">15 Tháng 3, 2024 - 11:00 SA</div>
                         </li>
                         <li class="tracking-step completed">
-                            <div class="step-title">Order Packed</div>
-                            <div class="step-info">Your items have been packed and are ready for shipping</div>
-                            <div class="step-time">March 16, 2024 - 2:15 PM</div>
+                            <div class="step-title">Đơn hàng được đóng gói</div>
+                            <div class="step-info">Sản phẩm của bạn đã được đóng gói và sẵn sàng để vận chuyển</div>
+                            <div class="step-time">16 Tháng 3, 2024 - 2:15 CH</div>
                         </li>
                         <li class="tracking-step active">
-                            <div class="step-title">In Transit</div>
-                            <div class="step-info">Your package is on its way to you</div>
-                            <div class="step-time">March 17, 2024 - 9:45 AM</div>
+                            <div class="step-title">Đang vận chuyển</div>
+                            <div class="step-info">Gói hàng của bạn đang trên đường đến bạn</div>
+                            <div class="step-time">17 Tháng 3, 2024 - 9:45 SA</div>
                         </li>
                         <li class="tracking-step">
-                            <div class="step-title">Delivered</div>
-                            <div class="step-info">Package will be delivered to the provided address</div>
-                            <div class="step-time">Expected by March 18, 2024</div>
+                            <div class="step-title">Đã giao</div>
+                            <div class="step-info">Gói hàng sẽ được giao đến địa chỉ đã cung cấp</div>
+                            <div class="step-time">Dự kiến vào 18 Tháng 3, 2024</div>
                         </li>
                     </ul>
                 </div>
@@ -187,37 +187,41 @@
             <!-- Order Summary -->
             <div class="col-md-4">
                 <div class="order-summary">
-                    <h5 class="mb-4">Order Summary</h5>
+                    <h5 class="mb-4">Tóm tắt đơn hàng</h5>
                     @foreach (var detail in Model.Order.OrderDetails)
                     {
                         <div class="product-item d-flex">
-                            <img src="~/images/@detail.Product?.ImagePath" class="product-image" alt="@detail.Product?.Name" style="margin-right: 15px;">
+                            <img src="~/images/@detail.Product?.ImagePath" class="product-image" alt="@detail.Product?.Name"
+                                style="margin-right: 15px;">
                             <div>
                                 <h6 class="mb-1"> @detail.Product?.Name</h6>
                                 <p class="mb-1 text-muted"> @detail.Quantity</p>
-                                <p class="mb-0">@detail.UnitPrice</p>
-                            </div>
+                                <p class="mb-0">@detail.UnitPrice.ToString("#,##0.## ₫",
+                                                                    System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</p>
                         </div>
-                    }
+                    </div>
+                                        }
 
                     <!-- Order Totals -->
                     <div class="mt-4">
                         <div class="d-flex justify-content-between mb-2">
-                            <span>Subtotal:</span>
-                            <span>@Model.Order.TotalPrice</span>
+                            <span>Tổng phụ:</span>
+                            <span>@Model.Order.TotalPrice.ToString("#,##0.## ₫",
+                                                                System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
-                            <span>Shipping:</span>
+                            <span>Phí vận chuyển:</span>
                             <span>...</span>
                         </div>
                         <div class="d-flex justify-content-between mb-2">
-                            <span>Tax:</span>
+                            <span>Thuế:</span>
                             <span>...</span>
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between fw-bold">
-                            <span>Total:</span>
-                            <span>@Model.Order.TotalPrice</span>
+                            <span>Tổng cộng:</span>
+                            <span>@Model.Order.TotalPrice.ToString("#,##0.## ₫",
+                                                                System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</span>
                         </div>
                     </div>
                 </div>

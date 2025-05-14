@@ -5,11 +5,18 @@
     ViewData["Title"] = "Cảm ơn bạn!";
 }
 
-<div class="container py-5 text-center">
-    <h2 class="mb-4">Cảm ơn bạn đã mua hàng!</h2>
-    <p>Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ xử lý trong thời gian sớm nhất.</p>
-    <p>Bạn sẽ được chuyển hướng về trang sản phẩm trong <span id="countdown">5</span> giây...</p>
-    <a href="/Client/Product" class="btn btn-primary">Quay lại ngay</a>
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card shadow-lg border-0 rounded-4 p-5 text-center" style="max-width: 500px; width: 100%;">
+        <div class="text-success mb-4">
+            <i class="bi bi-check-circle-fill display-1"></i>
+        </div>
+        <h2 class="mb-3 fw-bold">Cảm ơn bạn đã mua hàng!</h2>
+        <p class="mb-3">Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ xử lý trong thời gian sớm nhất.</p>
+        <p class="text-muted mb-4">
+            Bạn sẽ được chuyển hướng về trang sản phẩm trong <span id="countdown" class="fw-bold text-danger">5</span> giây...
+        </p>
+        <a href="/Client/Product" class="btn btn-primary btn-lg rounded-pill px-4">Quay lại ngay</a>
+    </div>
 </div>
 
 @section Scripts {
@@ -23,7 +30,7 @@
 
             if (timeLeft <= 0) {
                 clearInterval(countdown);
-                window.location.href = "http://localhost:9999/Client/Product";
+                window.location.href = "/Client/Product";
             }
         }, 1000);
     </script>
