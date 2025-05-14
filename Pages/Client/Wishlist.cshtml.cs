@@ -62,7 +62,6 @@ namespace Shofy.Pages.Client
             var userId = HttpContext.Session.GetUserId();
             if (!userId.HasValue)
             {
-                TempData["Error"] = "Please log in to add items to cart.";
                 return RedirectToPage("/Accounts/Login");
             }
 

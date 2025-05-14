@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Shofy.Helpers;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
 
 namespace Shofy.Pages.Accounts
 {
@@ -94,6 +96,53 @@ namespace Shofy.Pages.Accounts
                 ErrorMessage = "Đã xảy ra lỗi hệ thống. Vui lòng thử lại sau.";
                 return Page();
             }
+        }
+
+        public async Task<IActionResult> OnGetExternalLoginAsync(string provider)
+        {
+            var redirectUrl = Url.Page("/Accounts/Login", pageHandler: "ExternalLoginCallback");
+            var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
+            return new ChallengeResult(provider, properties);
+        }
+
+        public async Task<IActionResult> OnGetExternalLoginCallbackAsync()
+        {
+            var result = await HttpContext.AuthenticateAsync();
+            if (!result.Succeeded)
+            {
+                ErrorMessage = "Không thể xác thực với Facebook.";
+                return RedirectToPage("/Accounts/Login");
+            }
+
+            var claims = result.Principal.Identities.FirstOrDefault()?.Claims.ToList();
+            var email = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+            var name = claims?.FirstOrDefault(c => c.Type == ClaimTypes.Name)?.Value;
+            var providerKey = claims?.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
+            var user = await _context.User.FirstOrDefaultAsync(u => u.Email == email);
+            if (user == null)
+            {
+                user = new User
+                {
+                    Username = email,
+                    Email = email,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(Guid.NewGuid().ToString()), 
+                    Role = "User",
+                    IsActive = true,
+                    Avatar = "/images/noavt.jpg"
+                };
+
+                _context.User.Add(user);
+                await _context.SaveChangesAsync();
+            }
+
+            // Đăng nhập Session
+            HttpContext.Session.SetUserId(user.UserID);
+            HttpContext.Session.SetUsername(user.Username);
+            HttpContext.Session.SetUserRole(user.Role);
+            HttpContext.Session.SetString("Avatar", user.Avatar ?? "/images/noavt.jpg");
+
+            return RedirectToPage("/Index");
         }
     }
 }

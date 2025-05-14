@@ -1,7 +1,7 @@
 @page
 @model Shofy.Pages.Client.Pages_Client_PaymentModel
 @{
-    ViewData["Title"] = "Payment";
+    ViewData["Title"] = "Thanh toán";
 }
 
 <style>
@@ -101,194 +101,194 @@
     }
 
     @@media(max - width: 768px) {
-            .checkout-container {
-                flex-direction: column;
-            }
+        .checkout-container {
+            flex-direction: column;
         }
-    </style>
+    }
+</style>
 
-    <!-- breadcrumb -->
+<!-- breadcrumb -->
+<div class="container">
+    <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
+            Trang chủ
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <a href="/Client/ShopingCart" class="stext-109 cl8 hov-cl1 trans-04">
+            Giỏ hàng
+            <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+        </a>
+        <span class="stext-109 cl4">
+            Thanh toán
+        </span>
+    </div>
+</div>
+
+@if (!HttpContext.Session.GetInt32("UserID").HasValue)
+{
     <div class="container">
-        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-            <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-                Home
-                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-            </a>
-            <a href="/Client/ShopingCart" class="stext-109 cl8 hov-cl1 trans-04">
-                Shopping Cart
-                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-            </a>
-            <span class="stext-109 cl4">
-                Checkout
-            </span>
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Vui lòng đăng nhập</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    Bạn cần <a href="/Accounts/Login">đăng nhập</a> để tiếp tục thanh toán.
+                </p>
+            </div>
         </div>
     </div>
-
-    @if (!HttpContext.Session.GetInt32("UserID").HasValue)
-    {
-        <div class="container">
-            <div class="row">
-                <div class="col-12 p-t-50 p-b-50 text-center">
-                    <h4 class="mtext-105 cl2">Please Log In</h4>
-                    <p class="stext-102 cl3 p-t-23">
-                        You need to <a href="/Accounts/Login">log in</a> to proceed with payment.
-                    </p>
-                </div>
+}
+else if (!Model.CartItems.Any())
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Giỏ hàng của bạn trống</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    Duyệt qua <a href="/Client/Product">sản phẩm</a> của chúng tôi để thêm vào giỏ hàng.
+                </p>
             </div>
         </div>
-    }
-    else if (!Model.CartItems.Any())
-    {
-        <div class="container">
-            <div class="row">
-                <div class="col-12 p-t-50 p-b-50 text-center">
-                    <h4 class="mtext-105 cl2">Your Cart is Empty</h4>
-                    <p class="stext-102 cl3 p-t-23">
-                        Browse our <a href="/Client/Product">products</a> to add items to your cart.
-                    </p>
-                </div>
+    </div>
+}
+else if (Model.InvalidCartItems)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-12 p-t-50 p-b-50 text-center">
+                <h4 class="mtext-105 cl2">Sản phẩm trong giỏ hàng không hợp lệ</h4>
+                <p class="stext-102 cl3 p-t-23">
+                    Một số sản phẩm trong giỏ hàng của bạn không còn sẵn hàng. Vui lòng quay lại <a
+                        href="/Client/ShopingCart">giỏ hàng</a> của bạn để kiểm tra và cập nhật.
+                </p>
             </div>
         </div>
-    }
-    else if (Model.InvalidCartItems)
-    {
-        <div class="container">
-            <div class="row">
-                <div class="col-12 p-t-50 p-b-50 text-center">
-                    <h4 class="mtext-105 cl2">Invalid Cart Items</h4>
-                    <p class="stext-102 cl3 p-t-23">
-                        Some items in your cart are no longer available. Please return to <a href="/Client/ShopingCart">your
-                            cart</a> to review and update.
-                    </p>
+    </div>
+}
+else
+{
+    <div class="checkout-container">
+        <form method="post" id="paymentForm">
+            <div class="checkout-form">
+                <h2>Thanh toán</h2>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="Email" value="@Model.Email" placeholder="Nhập email của bạn"
+                        required>
                 </div>
-            </div>
-        </div>
-    }
-    else
-    {
-        <div class="checkout-container">
-            <form method="post" id="paymentForm">
-                <div class="checkout-form">
-                    <h2>Checkout</h2>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="Email" value="@Model.Email" placeholder="Enter your email"
-                            required>
+                <div class="form-group">
+                    <label for="name">Họ và tên</label>
+                    <input type="text" id="name" name="FullName" value="@Model.FullName"
+                        placeholder="Nhập họ và tên của bạn" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ giao hàng</label>
+                    <input type="text" id="address" name="Address" value="@Model.Address"
+                        placeholder="123 Đường Chính, Thành phố, v.v..." required>
+                </div>
+                <div class="form-group">
+                    <label for="phonenumber">Số điện thoại</label>
+                    <input type="text" id="phonenumber" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="090..."
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Phương thức thanh toán</label>
+                    <div class="payment-methods">
+                        <label>
+                            <input type="radio" name="PaymentMethod" value="card" checked
+                                onchange="handlePaymentMethodChange(this)"> Thẻ tín dụng
+                        </label>
+                        <label>
+                            <input type="radio" name="PaymentMethod" value="cod" onchange="handlePaymentMethodChange(this)">
+                            Thanh toán khi giao hàng
+                        </label>
+                        <label>
+                            <input type="radio" name="PaymentMethod" value="momo"
+                                onchange="handlePaymentMethodChange(this)"> MoMo
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="FullName" value="@Model.FullName" placeholder="Enter your full name"
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Shipping Address</label>
-                        <input type="text" id="address" name="Address" value="@Model.Address"
-                            placeholder="123 Main St, City etc..." required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phonenumber">Phone Number</label>
-                        <input type="text" id="phonenumber" name="PhoneNumber" value="@Model.PhoneNumber" placeholder="090..."
-                            required>
-                    </div>
-                    <div class="form-group">
-                        <label>Payment Method</label>
-                        <div class="payment-methods">
-                            <label>
-                                <input type="radio" name="PaymentMethod" value="card" checked
-                                    onchange="handlePaymentMethodChange(this)"> Credit Card
-                            </label>
-                            <label>
-                                <input type="radio" name="PaymentMethod" value="cod" onchange="handlePaymentMethodChange(this)">
-                                Cash on Delivery
-                            </label>
-                            <label>
-                                <input type="radio" name="PaymentMethod" value="momo"
-                                    onchange="handlePaymentMethodChange(this)"> MoMo
-                            </label>
+                </div>
+                <div class="form-group" id="card-details">
+                    <label for="card-number">Số thẻ</label>
+                    <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx">
+                    <div style="display: flex; gap: 10px;">
+                        <div style="flex: 1;">
+                            <label for="expiry">Ngày hết hạn</label>
+                            <input type="text" id="expiry" placeholder="MM/YY">
+                        </div>
+                        <div style="flex: 1;">
+                            <label for="cvv">CVV</label>
+                            <input type="password" id="cvv" placeholder="Nhập CVV">
                         </div>
                     </div>
-                    <div class="form-group" id="card-details">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" id="card-number" placeholder="xxxx xxxx xxxx xxxx">
-                        <div style="display: flex; gap: 10px;">
-                            <div style="flex: 1;">
-                                <label for="expiry">Expiration Date</label>
-                                <input type="text" id="expiry" placeholder="MM/YY">
-                            </div>
-                            <div style="flex: 1;">
-                                <label for="cvv">CVV</label>
-                                <input type="password" id="cvv" placeholder="Enter CVV">
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" id="submitButton">Place Order</button>
                 </div>
-            </form>
-            <div class="order-summary">
-                <h2>Order Summary</h2>
-                <ul>
-                    @foreach (var item in Model.CartItems)
-                    {
-                        <li>
-                            @($"{item.Product?.Name ?? "Unknown Product"} (x{item.Quantity})")
-                            <span>@((item.Product?.Price * item.Quantity)?.ToString("C") ?? "$0.00")</span>
-                        </li>
-                    }
+                <button type="submit" id="submitButton">Đặt hàng</button>
+            </div>
+        </form>
+        <div class="order-summary">
+            <h2>Tóm tắt đơn hàng</h2>
+            <ul>
+                @foreach (var item in Model.CartItems)
+                {
                     <li>
-                        <strong>Total</strong>
-                        <span><strong>@Model.TotalPrice.ToString("C")</strong></span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    }
-
-    @section Scripts {
-        <script>
-            function handlePaymentMethodChange(radio) {
-                const cardDetails = document.getElementById('card-details');
-                const submitButton = document.getElementById('submitButton');
-
-                if (radio.value === 'card') {
-                    cardDetails.style.display = 'block';
-                    submitButton.textContent = 'Place Order';
-                } else if (radio.value === 'momo') {
-                    cardDetails.style.display = 'none';
-                    submitButton.textContent = 'Proceed to MoMo Payment';
-                } else {
-                    cardDetails.style.display = 'none';
-                    submitButton.textContent = 'Place Order';
-                }
-            }
-
-            document.getElementById('paymentForm').addEventListener('submit', async function (e) {
-                const selectedPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked').value;
-                if (selectedPaymentMethod === 'momo') {
-                    e.preventDefault();
-                    try {
-                        const form = e.target;
-                        const response = await fetch(form.action, {
-                            method: 'POST',
-                            body: new FormData(form)
-                        });
-
-                        const result = await response.json();
-                        if (result.success && result.payUrl) {
-                            window.location.href = result.payUrl;
-                        } else {
-                            alert('Could not initialize MoMo payment. Please try again.');
+                        @($"{item.Product?.Name ?? "Sản phẩm không xác định"} (x{item.Quantity})")
+                        <span>@((item.Product?.Price * item.Quantity)?.ToString("#,##0.## ₫",
+                                                System.Globalization.CultureInfo.GetCultureInfo("vi-VN")))</span>
+            </li>
                         }
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('An error occurred. Please try again.');
-                    }
-                }
-            });
+                <li>
+                    <strong>Tổng cộng</strong>
+                    <span><strong>@Model.TotalPrice.ToString("#,##0.## ₫", System.Globalization.CultureInfo.GetCultureInfo("vi-VN"))</strong></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+@section Scripts {
+    <script>
+        function handlePaymentMethodChange(radio) {
+            const cardDetails = document.getElementById('card-details');
+            const submitButton = document.getElementById('submitButton');
 
-            // Trigger initial state
-            const initialPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked');
-            if (initialPaymentMethod) {
-                handlePaymentMethodChange(initialPaymentMethod);
+            if (radio.value === 'card') {
+                cardDetails.style.display = 'block';
+                submitButton.textContent = 'Place Order';
+            } else if (radio.value === 'momo') {
+                cardDetails.style.display = 'none';
+                submitButton.textContent = 'Proceed to MoMo Payment';
+            } else {
+                cardDetails.style.display = 'none';
+                submitButton.textContent = 'Place Order';
             }
-        </script>
-    }
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', async function (e) {
+            const selectedPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked').value;
+            if (selectedPaymentMethod === 'momo') {
+                e.preventDefault();
+                try {
+                    const form = e.target;
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form)
+                    });
+
+                    const result = await response.json();
+                    if (result.success && result.payUrl) {
+                        window.location.href = result.payUrl;
+                    } else {
+                        alert('Could not initialize MoMo payment. Please try again.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+        });
+
+        // Trigger initial state
+        const initialPaymentMethod = document.querySelector('input[name="PaymentMethod"]:checked');
+        if (initialPaymentMethod) {
+            handlePaymentMethodChange(initialPaymentMethod);
+        }
+    </script>
+}

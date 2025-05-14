@@ -50,10 +50,6 @@ namespace Shofy.Pages.Admin
         [BindProperty(SupportsGet = true)]
         public string PaymentMethod { get; set; }
 
-        // Profile section properties
-        public string Username { get; set; }
-        public string Role { get; set; }
-        public string Avatar { get; set; }
 
         // Check Role=Admin
         public async Task<IActionResult> OnGetAsync()
@@ -64,10 +60,6 @@ namespace Shofy.Pages.Admin
                 return RedirectToPage("/Error");
             }
 
-            // Retrieve profile data from session
-            Username = HttpContext.Session.GetString("Username") ?? "Guest";
-            Role = HttpContext.Session.GetString("Role") ?? "Unknown";
-            Avatar = HttpContext.Session.GetString("Avatar") ?? "/images/noavt.jpg";
             
             var query = _context.Order
                 .Include(o => o.User)
