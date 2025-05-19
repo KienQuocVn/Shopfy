@@ -9,7 +9,7 @@ namespace Shofy.Data
 {
     public class ShofyContext : DbContext
     {
-        public ShofyContext (DbContextOptions<ShofyContext> options) : base(options)
+        public ShofyContext(DbContextOptions<ShofyContext> options) : base(options)
         {
 
         }
@@ -30,6 +30,8 @@ namespace Shofy.Data
 
         public DbSet<Shofy.Models.Review> Review { get; set; }
 
+        public DbSet<Message> Message { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("Users");
@@ -46,7 +48,7 @@ namespace Shofy.Data
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserID)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             modelBuilder.Entity<Review>()
                 .HasOne(r => r.User)
                 .WithMany(u => u.Reviews)
@@ -110,7 +112,32 @@ namespace Shofy.Data
             modelBuilder.Entity<Payment>()
                 .HasIndex(p => p.OrderID);
 
-                
+            modelBuilder.Entity<Message>()
+                .ToTable("Messages");
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Sender)
+                .WithMany(u => u.SentMessages)
+                .HasForeignKey(m => m.SenderID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Receiver)
+                .WithMany(u => u.ReceivedMessages)
+                .HasForeignKey(m => m.ReceiverID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(m => m.Order)
+                .WithMany(o => o.Messages)
+                .HasForeignKey(m => m.OrderID)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Message>()
+                .HasIndex(m => new { m.SenderID, m.ReceiverID });
+
+            modelBuilder.Entity<Message>()
+                .HasIndex(m => m.OrderID);
         }
     }
 }

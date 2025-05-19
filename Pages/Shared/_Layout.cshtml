@@ -397,10 +397,10 @@
 					</div>
 					<div class="col-md-6">
 						<div class="payment-methods">
-							<img src="~/images/paypal.png" alt="PayPal">
-							<img src="~/images/visa.png" alt="Visa">
-							<img src="~/images/card.png" alt="Mastercard">
-							<img src="~/images/stripe.png" alt="Stripe">
+							<img src="~/images/paypal.png" alt="PayPal" width="50px">
+							<img src="~/images/visa.png" alt="Visa" width="50px">
+							<img src="~/images/card.png" alt="Mastercard" width="50px">
+							<img src="~/images/stripe.png" alt="Stripe" width="50px">
 						</div>
 					</div>
 				</div>
@@ -466,12 +466,10 @@
 	}
 	<script>
 		if (window.location.hash === '#_=_') {
-			// Xóa hash và reload nếu cần
 			history.replaceState
 				? history.replaceState(null, null, window.location.href.split('#')[0])
 				: window.location.hash = '/Index';
 				window.location.reload();
-
 		}
 		
 	</script>

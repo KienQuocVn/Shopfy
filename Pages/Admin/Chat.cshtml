@@ -1,7 +1,151 @@
 @page
 @model Shofy.Pages.Admin.ChatModel
 @{
+    Layout = "_AdminLayout";
+
     ViewData["Title"] = "Chat";
+}
+
+@section Scripts {
+    <script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+    <script>
+        let connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .build();
+
+        let selectedOrderId = @(Model.SelectedOrderId?.ToString() ?? "null");
+
+        // Start SignalR connection and handle initial load
+        connection.start().then(function () {
+            console.log("SignalR Connected!");
+            if (selectedOrderId) {
+                selectOrder(selectedOrderId, getUserIdForOrder(selectedOrderId));
+            }
+        }).catch(function (err) {
+            console.error(err.toString());
+        });
+
+        // Handle receiving messages
+        connection.on("ReceiveMessage", function (message) {
+            if (message.orderId === selectedOrderId) {
+                appendMessage(message);
+            }
+            updateOrderList();
+        });
+
+        // Handle order list updates
+        connection.on("UpdateOrderList", function () {
+            updateOrderList();
+        });
+
+        // Helper function to get userId for an order
+        function getUserIdForOrder(orderId) {
+            const orders = @Html.Raw(Json.Serialize(Model.Orders));
+            const order = orders.find(o => o.orderID === orderId);
+            return order ? order.userID : null;
+        }
+
+        // Append message to chat
+        function appendMessage(message) {
+            const chatMessages = document.getElementById("chatMessages");
+            if (!chatMessages) return;
+
+            const messageDiv = document.createElement("div");
+            const currentUserId = '@User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value';
+            const isCurrentUser = message.senderId.toString() === currentUserId;
+
+            messageDiv.className = `message ${isCurrentUser ? "message-sent" : "message-received"}`;
+            messageDiv.innerHTML = `
+                        <div class="${isCurrentUser ? "message-sent" : "message-received"}">
+                            <p class="mb-0">${message.message}</p>
+                            <small class="${isCurrentUser ? "text-white-50" : "text-muted"}">
+                                ${new Date(message.sentDate).toLocaleTimeString()}
+                            </small>
+                        </div>
+                    `;
+
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Send message
+        function sendMessage() {
+            const messageInput = document.getElementById("messageInput");
+            const message = messageInput.value.trim();
+
+            if (message && selectedOrderId) {
+                const userIdInput = document.getElementById("selectedUserId");
+                if (!userIdInput) return;
+
+                const userId = parseInt(userIdInput.value);
+                connection.invoke("SendMessage", message, selectedOrderId, userId)
+                    .then(() => {
+                        messageInput.value = "";
+                    })
+                    .catch(function (err) {
+                        console.error(err.toString());
+                    });
+            }
+        }
+
+        // Select order and load chat
+        function selectOrder(orderId, userId) {
+            if (selectedOrderId && selectedOrderId !== orderId) {
+                connection.invoke("LeaveOrderGroup", selectedOrderId);
+            }
+            selectedOrderId = orderId;
+            const userIdInput = document.getElementById("selectedUserId");
+            if (userIdInput) {
+                userIdInput.value = userId;
+            }
+            connection.invoke("JoinOrderGroup", orderId)
+                .then(() => {
+                    loadMessages(orderId);
+                    // Update URL to reflect selected order
+                    window.history.pushState({}, '', `?orderId=${orderId}`);
+                })
+                .catch(err => console.error(err.toString()));
+        }
+
+        // Load messages for an order
+        async function loadMessages(orderId) {
+            try {
+                const response = await fetch(`?handler=Messages&orderId=${orderId}`);
+                const messages = await response.json();
+                const chatMessages = document.getElementById("chatMessages");
+                if (chatMessages) {
+                    chatMessages.innerHTML = "";
+                    messages.forEach(appendMessage);
+                }
+            } catch (error) {
+                console.error("Error loading messages:", error);
+            }
+        }
+
+        // Update order list
+        async function updateOrderList() {
+            try {
+                const response = await fetch(window.location.pathname);
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newOrderList = doc.querySelector('.chat-list');
+                const currentOrderList = document.querySelector('.chat-list');
+                if (newOrderList && currentOrderList) {
+                    currentOrderList.innerHTML = newOrderList.innerHTML;
+                }
+            } catch (error) {
+                console.error("Error updating order list:", error);
+            }
+        }
+
+        // Handle Enter key in message input
+        document.addEventListener("keypress", function (e) {
+            if (e.target.id === "messageInput" && e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
 }
 
 <style>
@@ -26,6 +170,7 @@
         padding: 0.75rem 1rem;
         border-bottom: 1px solid #f1f1f1;
         cursor: pointer;
+        transition: all 0.3s ease;
     }
 
     .chat-item:hover {
@@ -40,38 +185,26 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-    }
-
-    .online-indicator {
-        width: 10px;
-        height: 10px;
-        background-color: #00d084;
-        border-radius: 50%;
-        display: inline-block;
-        margin-right: 5px;
+        object-fit: cover;
     }
 
     .chat-header {
         border-bottom: 1px solid #e9ecef;
         padding: 1rem;
+        background-color: #fff;
     }
 
     .chat-messages {
         height: calc(100% - 130px);
         overflow-y: auto;
         padding: 1rem;
+        background-color: #f8f9fa;
     }
 
     .message {
-        max-width: 75%;
         margin-bottom: 1rem;
-    }
-
-    .message-received {
-        background-color: #f8f9fa;
-        padding: 0.75rem;
-        border-radius: 1rem;
-        margin-right: auto;
+        display: flex;
+        flex-direction: column;
     }
 
     .message-sent {
@@ -80,85 +213,24 @@
         padding: 0.75rem;
         border-radius: 1rem;
         margin-left: auto;
+        max-width: 75%;
+        align-self: flex-end;
+    }
+
+    .message-received {
+        background-color: #fff;
+        padding: 0.75rem;
+        border-radius: 1rem;
+        margin-right: auto;
+        max-width: 75%;
+        align-self: flex-start;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .chat-input {
         border-top: 1px solid #e9ecef;
         padding: 1rem;
-    }
-
-    .search-box {
-        background-color: #f8f9fa;
-        border-radius: 20px;
-        padding: 0.5rem 1rem;
-        margin: 1rem;
-    }
-
-    .nav-pills .nav-link {
-        color: #6c757d;
-        padding: 0.5rem 1rem;
-    }
-
-    .nav-pills .nav-link.active {
-        background-color: transparent;
-        color: #6c5ce7;
-        border-bottom: 2px solid #6c5ce7;
-        border-radius: 0;
-    }
-
-    .profile-section {
-        padding: 2rem;
-        border-left: 1px solid #e9ecef;
         background-color: #fff;
-    }
-
-    .profile-avatar {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 3px solid #f8f9fa;
-    }
-
-    .contact-info {
-        margin-top: 1rem;
-    }
-
-    .info-item {
-        display: flex;
-        align-items: flex-start;
-        padding: 0.5rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .info-item:hover {
-        background-color: #f8f9fa;
-    }
-
-    .info-item i {
-        font-size: 1.2rem;
-        margin-top: 3px;
-    }
-
-    .info-item div {
-        margin-left: 0.5rem;
-    }
-
-    .info-item label {
-        display: block;
-        font-size: 0.85rem;
-        margin-bottom: 2px;
-    }
-
-    .info-item p {
-        color: #495057;
-    }
-
-    .action-buttons .btn {
-        padding: 0.5rem;
-        margin: 0 0.25rem;
-        border-radius: 50%;
     }
 
     .unread-badge {
@@ -168,206 +240,130 @@
         padding: 0.25rem 0.5rem;
         font-size: 0.75rem;
     }
+
+    .order-info {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+
+    .order-status {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+        background-color: #e9ecef;
+    }
+
+    .status-completed {
+        background-color: #dcf5e7;
+        color: #0f766e;
+    }
+
+    .status-processing {
+        background-color: #fff7ed;
+        color: #9a3412;
+    }
+
+    .status-pending {
+        background-color: #fef2f2;
+        color: #991b1b;
+    }
+
+    .status-canceled {
+        background-color: #fef2f2;
+        color: #991b1b;
+    }
 </style>
-<div class="wrapper">
-    <!-- Sidebar -->
-    <nav id="sidebar" class="bg-dark text-white">
-        <div class="sidebar-header">
-            <a href="/Index" class="text-light">
-                <h3 class="mb-0">SHOPFY</h3>
-            </a>
-        </div>
-        <div class="navigation-section">
-            <p class="text-muted pt-4 pb-2 fw-bold" style="margin-left: 10px;">NAVIGATION</p>
-            <ul class="list-unstyled">
-                <li class="active"><a href="/Admin/Index" class="fw-bold"><i class="bi bi-house me-2"></i> Analytics</a>
-                </li>
-                <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> USer</a></li>
-                <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Products</a></li>
-                <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Orders</a></li>
-                <li><a href="#"><i class="bi bi-wallet me-2"></i></i> E-Wallet</a></li>
-            </ul>
-        </div>
-        <div class="apps-section">
-            <p class="text-muted ps-3 pt-4 pb-2 mb-0 fw-bold" style="margin-left: 10px;">APPS</p>
-            <ul class="list-unstyled">
-                <li><a href="/Admin/Chat"><i class="bi bi-chat-left-dots me-2"></i> Chat</a></li>
-                <li><a href="#"><i class="bi bi-calendar me-2"></i> Calender</a></li>
-                <li><a href="#"><i class="bi bi-envelope me-2"></i> Email</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <button type="button" id="sidebarCollapse" class="btn">
-                    <i class="bi bi-list"></i>
-                </button>
 
-                <div class="search-box">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <button class="btn btn-primary">Search</button>
-                </div>
-
-                <div class="d-flex align-items-center">
-
-                    <div class="icons-group">
-                        <button class="btn"><i class="bi bi-bell"></i></button>
-                        <button class="btn"><i class="bi bi-grid-fill"></i></button>
-                        <button class="btn"><i class="bi bi-gear"></i></button>
-                        <button class="btn"><i class="bi bi-moon"></i></button>
-                        <button class="btn"><i class="bi bi-fullscreen"></i></button>
-                    </div>
-                    <div class="profile-section ms-3">
-                        <img src="@Model.Avatar" class="rounded-circle" alt="Profile"
-                            style="width: 40px; height: 40px;">
-                        <div class="d-flex flex-column">
-                            <span class="ms-2">@Model.Username</span>
-                            <small class="text-muted">Role: @Model.Role</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-
-        <!-- Dashboard Content -->
-        <div class="container-fluid ">
-
-            <!-- Stats Cards -->
-            <div class="chat-container row m-0">
-                <!-- Sidebar -->
-                <div class="col-3 p-0">
-                    <!-- Navigation Pills -->
-                    <ul class="nav nav-pills nav-fill p-2">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#">All</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Favorites</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Friends</a>
-                        </li>
-                    </ul>
-
-                    <!-- Search Box -->
-                    <div class="search-box">
-                        <i class="bi bi-search text-muted"></i>
-                        <input type="text" class="border-0 bg-transparent" placeholder="Messages">
-                    </div>
-
-                    <!-- Chat List -->
-                    <div class="chat-list">
-                        <div class="chat-item active">
-                            <div class="d-flex align-items-center">
-                                <img src="" class="chat-avatar">
-                                <div class="ms-3">
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="mb-0">Brandon Smith</h6>
-                                        <small class="text-muted">4:30am</small>
-                                    </div>
-                                    <p class="mb-0 text-muted small">How are you today?</p>
+<div class="container-fluid">
+    <div class="chat-container row m-0">
+        <!-- Sidebar -->
+        <div class="col-3 p-0">
+            <div class="chat-list">
+                @foreach (var order in Model.Orders)
+                {
+                    <div class="chat-item @(order.OrderID == Model.SelectedOrderId ? "active" : "")"
+                        onclick="selectOrder(@order.OrderID, @order.UserID)">
+                        <div class="d-flex align-items-center">
+                            <img src="@(string.IsNullOrEmpty(order.User?.Avatar) ? "/images/default-avatar.png" : order.User.Avatar)"
+                                class="chat-avatar" alt="@order.User?.Username">
+                            <div class="ms-3 flex-grow-1">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h6 class="mb-0">@order.User?.Username</h6>
+                                    <small class="text-muted">@order.OrderedDate.ToString("MM/dd/yyyy")</small>
                                 </div>
-                                <span class="ms-auto unread-badge">3</span>
+                                <div class="order-info">
+                                    <span class="order-status @($"status-{order.Status.ToLower()}")">@order.Status</span>
+                                    <span class="ms-2">#@order.OrderID</span>
+                                </div>
                             </div>
+                            @if (order.Messages?.Any(m => !m.IsRead && m.ReceiverID.ToString() ==
+                                                    User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value) == true)
+                            {
+                                <span class="ms-2 unread-badge">
+                                    @order.Messages.Count(m => !m.IsRead && m.ReceiverID.ToString() ==
+                                    User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value)
+                        </span>
+                                                }
                         </div>
-                        <!-- Add more chat items as needed -->
                     </div>
-                </div>
+                }
+            </div>
+        </div>
 
-                <!-- Main Chat Area -->
-                <div class="col-6 p-0">
-                    <!-- Chat Header -->
+        <!-- Main Chat Area -->
+        <!-- Main Chat Area -->
+        <div class="col-9 p-0">
+            @if (Model.SelectedOrderId.HasValue)
+            {
+                var selectedOrder = Model.Orders.FirstOrDefault(o => o.OrderID == Model.SelectedOrderId);
+                if (selectedOrder != null)
+                {
                     <div class="chat-header d-flex align-items-center">
-                        <img src="" class="chat-avatar">
+                        <img src="@(string.IsNullOrEmpty(selectedOrder.User?.Avatar) ? "/images/default-avatar.png" : selectedOrder.User.Avatar)"
+                            class="chat-avatar" alt="@selectedOrder.User?.Username">
                         <div class="ms-3">
-                            <h6 class="mb-0">Shreyu N</h6>
-                            <small><span class="online-indicator"></span>Online</small>
-                        </div>
-                        <div class="ms-auto">
-                            <div class="action-buttons">
-                                <button class="btn btn-light"><i class="bi bi-telephone"></i></button>
-                                <button class="btn btn-light"><i class="bi bi-camera-video"></i></button>
-                                <button class="btn btn-light"><i class="bi bi-person-plus"></i></button>
-                                <button class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                <button class="btn btn-light"><i class="bi bi-three-dots-vertical"></i></button>
+                            <h6 class="mb-0">@selectedOrder.User?.Username</h6>
+                            <div class="order-info">
+                                <span
+                                    class="order-status @($"status-{selectedOrder.Status.ToLower()}")">@selectedOrder.Status</span>
+                                <span class="ms-2">Order #@selectedOrder.OrderID</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Chat Messages -->
-                    <div class="chat-messages">
-                        <div class="message">
-                            <div class="message-received">
-                                <p class="mb-0">Hello!</p>
-                                <small class="text-muted">10:00</small>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="message-received">
-                                <p class="mb-0">Hi, How are you? What about our next meeting?</p>
-                                <small class="text-muted">10:01</small>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="message-sent">
-                                <p class="mb-0">Yeah everything is fine</p>
-                                <small class="text-white-50">10:01</small>
-                            </div>
-                        </div>
+                    <div id="chatMessages" class="chat-messages">
                     </div>
 
-                    <!-- Chat Input -->
                     <div class="chat-input">
+                        <input type="hidden" id="selectedUserId" value="@selectedOrder.UserID">
                         <div class="input-group">
-                            <button class="btn btn-light"><i class="bi bi-paperclip"></i></button>
-                            <input type="text" class="form-control" placeholder="Enter your text">
-                            <button class="btn btn-light"><i class="bi bi-emoji-smile"></i></button>
-                            <button class="btn btn-success"><i class="bi bi-send"></i></button>
+                            <input type="text" id="messageInput" class="form-control" placeholder="Type your message...">
+                            <button class="btn btn-primary" onclick="sendMessage()">
+                                <i class="bi bi-send"></i>
+                            </button>
                         </div>
                     </div>
-                </div>
-
-                <!-- Profile Section -->
-                <div class="col-3 profile-section">
-                    <div class="d-flex flex-column align-items-center">
-                        <img src="" class="profile-avatar mb-3">
-                        <h5 class="mb-2">Shreyu N</h5>
-                        <p class="text-muted mb-4">Last Interacted: Few hours back</p>
-
-                        <button class="btn btn-primary mb-4 w-100">
-                            <i class="bi bi-envelope me-2"></i> Send Email
-                        </button>
-
-                        <div class="contact-info w-100">
-                            <div class="info-item mb-3">
-                                <i class="bi bi-envelope text-muted me-2"></i>
-                                <div>
-                                    <label class="text-muted">Email:</label>
-                                    <p class="mb-0">support@coderthemes.com</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item mb-3">
-                                <i class="bi bi-telephone text-muted me-2"></i>
-                                <div>
-                                    <label class="text-muted">Phone Number:</label>
-                                    <p class="mb-0">+1 456 9595 9594</p>
-                                </div>
-                            </div>
-
-                            <div class="info-item mb-3">
-                                <i class="bi bi-geo-alt text-muted me-2"></i>
-                                <div>
-                                    <label class="text-muted">Location:</label>
-                                    <p class="mb-0">California, USA</p>
-                                </div>
-                            </div>
+                }
+                else
+                {
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <div class="text-center text-muted">
+                            <i class="bi bi-chat-dots" style="font-size: 3rem;"></i>
+                            <h5 class="mt-3">Order not found</h5>
                         </div>
                     </div>
+                }
+            }
+            else
+            {
+                <div class="d-flex justify-content-center align-items-center h-100">
+                    <div class="text-center text-muted">
+                        <i class="bi bi-chat-dots" style="font-size: 3rem;"></i>
+                        <h5 class="mt-3">Select an order to start chatting</h5>
+                    </div>
                 </div>
-            </div>
+            }
         </div>
     </div>
 </div>
