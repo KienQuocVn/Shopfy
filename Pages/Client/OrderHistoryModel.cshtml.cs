@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Claims;
 
 namespace Shofy.Pages.Client
 {
@@ -21,6 +22,7 @@ namespace Shofy.Pages.Client
         }
 
         public IList<Order> Orders { get; set; }
+        public IList<Message> Messages { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public string DateRange { get; set; }
@@ -44,6 +46,7 @@ namespace Shofy.Pages.Client
                 .Include(o => o.User)
                 .Include(o => o.OrderDetails)
                     .ThenInclude(od => od.Product)
+                .Include(o => o.Messages)
                 .Where(o => o.UserID == userId.Value);
 
             // Apply Date Range Filter
@@ -100,6 +103,33 @@ namespace Shofy.Pages.Client
                 .ToListAsync();
 
             return Page();
+        }
+
+        public async Task<IActionResult> OnGetMessagesAsync(int orderId)
+        {
+            var userId = HttpContext.Session.GetUserId();
+            if (!userId.HasValue)
+            {
+                return new JsonResult(new { error = "Unauthorized" });
+            }
+
+            var messages = await _context.Message
+                .Include(m => m.Sender)
+                .Include(m => m.Receiver)
+                .Where(m => m.OrderID == orderId && (m.SenderID == userId || m.ReceiverID == userId))
+                .OrderBy(m => m.SentDate)
+                .Select(m => new
+                {
+                    senderId = m.SenderID,
+                    senderName = m.Sender.Username,
+                    message = m.Content,
+                    orderId = m.OrderID,
+                    sentDate = m.SentDate,
+                    isRead = m.IsRead
+                })
+                .ToListAsync();
+
+            return new JsonResult(messages);
         }
     }
 }

@@ -41,6 +41,9 @@ namespace Shofy.Models
         public ICollection<Review>? Reviews { get; set; }
         public string? HiddenReason { get; set; }
 
-        public string? Wishlist { get; set; } 
+        public string? Wishlist { get; set; }
+
+        public ICollection<Message>? SentMessages { get; set; }
+        public ICollection<Message>? ReceivedMessages { get; set; }
     }
 }

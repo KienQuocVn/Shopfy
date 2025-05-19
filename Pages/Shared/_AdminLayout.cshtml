@@ -56,6 +56,7 @@
                     <li><a href="/Admin/User"><i class="bi bi-people me-2"></i> Quản lý người dùng</a></li>
                     <li><a href="/Admin/Products"><i class="bi bi-grid-fill me-2"></i> Quản lý sản phẩm</a></li>
                     <li><a href="/Admin/Order"><i class="bi bi-shop me-2"></i> Quản lý đơn hàng</a></li>
+                    @* <li><a href="/Admin/Chat"><i class="bi bi-shop me-2"></i> Chat</a></li> *@
                 </ul>
             </div>
         </nav>
@@ -117,6 +118,8 @@
             document.getElementById('content').classList.toggle('active');
         });
     </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Shofy.Services.MoMo;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Facebook;
+using Microsoft.AspNetCore.SignalR;
+using Shofy.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,14 +65,14 @@ builder.Services.AddSingleton(new MailAddress(emailFrom, "Shofy Support"));
 // Authentication
 builder.Services.AddAuthentication(options =>
 {
- options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 })
 .AddCookie()
 .AddFacebook(facebookOptions =>
 {
- facebookOptions.AppId = Environment.GetEnvironmentVariable("FACEBOOK_APP_ID") ?? "FACEBOOK_APP_ID";
- facebookOptions.AppSecret = Environment.GetEnvironmentVariable("FACEBOOK_APP_SECRET") ?? "FACEBOOK_APP_SECRET";
- facebookOptions.CallbackPath = "/signin-facebook";
+    facebookOptions.AppId = Environment.GetEnvironmentVariable("FACEBOOK_APP_ID") ?? "FACEBOOK_APP_ID";
+    facebookOptions.AppSecret = Environment.GetEnvironmentVariable("FACEBOOK_APP_SECRET") ?? "FACEBOOK_APP_SECRET";
+    facebookOptions.CallbackPath = "/signin-facebook";
 })
 .AddGoogle(googleOptions =>
 {
@@ -91,6 +93,9 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddRazorPages();
 builder.Services.AddHttpContextAccessor();
 
+// Add SignalR
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Middleware
@@ -110,7 +115,11 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseSession();
-
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+    endpoints.MapHub<ChatHub>("/chathub");
+});
 app.MapRazorPages();
 
 app.Run();
